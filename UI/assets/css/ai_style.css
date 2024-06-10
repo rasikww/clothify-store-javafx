@@ -1,0 +1,56 @@
+.top {
+    /* -fx-border-color: black; */
+    -fx-background-color: #6a6d6f;
+}
+.log-out {
+    -fx-text-fill: white;
+}
+.log-out:hover {
+    -fx-text-fill: red;
+    -fx-cursor: hand;
+}
+
+.tab-pane {
+    -fx-border-radius: 10px;
+}
+.middle-pane {
+    -fx-border-color: lightblue;
+    -fx-border-radius: 10px;
+}
+.btn-add {
+    -fx-font-size: large;
+    -fx-font-weight: bold;
+    -fx-border-color: #365fff;
+    -fx-background-color: #365fff;
+    -fx-text-fill: white;
+    -fx-border-radius: 10px;
+}
+.btn-add:hover {
+    -fx-cursor: hand;
+}
+.btn-refresh {
+    -fx-font-size: large;
+    -fx-font-weight: bold;
+    -fx-border-color: #365fff;
+    -fx-background-color: white;
+    -fx-text-fill: #365fff;
+    -fx-border-radius: 5px;
+}
+.btn-refresh:hover {
+    -fx-cursor: hand;
+}
+.btn-remove {
+    -fx-font-size: large;
+    -fx-font-weight: bold;
+    -fx-border-color: red;
+    -fx-background-color: white;
+    -fx-text-fill: red;
+    -fx-border-radius: 5px;
+}
+.btn-remove:hover {
+    -fx-cursor: hand;
+}
+.tbl-head {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
