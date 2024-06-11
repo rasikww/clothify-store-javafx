@@ -2,7 +2,14 @@ package edu.icet.coursework.controller.login;
 
 import edu.icet.coursework.dto.User;
 import edu.icet.coursework.util.CrudUtil;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
+import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
@@ -40,7 +47,6 @@ public class LoginController {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        System.out.println(hashPassword);
         return hashPassword;
     }
 
@@ -53,11 +59,44 @@ public class LoginController {
         if (obtainedUser == null) {
             return false;
         }else{
-            System.out.println(obtainedUser);
+            if (obtainedUser.getIsAdmin()){
+                openAdminWindow();
+            }else openEmployeeWindow();
             return true;
         }
         //if true change ui according to is_admin property
     }
+
+    private void openEmployeeWindow() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/employee_interface.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Clothify Store Employee View");
+
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void openAdminWindow() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin_interface.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Clothify Store Admin View");
+
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private User getUser(String strEmail, String hashedPassword){
         String sql = "SELECT * FROM user where email=? AND password_hash=?";
         User obtainedUser=null;

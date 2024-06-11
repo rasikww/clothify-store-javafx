@@ -56,7 +56,6 @@ public class LoginScreenFormController implements Initializable {
             if (!isUserExist){
                 new Alert(Alert.AlertType.ERROR,"Email and Password doesn't match").show();
             }else{
-                new Alert(Alert.AlertType.CONFIRMATION,"Login Successful").show();
                 closeWindow();
             }
         }
