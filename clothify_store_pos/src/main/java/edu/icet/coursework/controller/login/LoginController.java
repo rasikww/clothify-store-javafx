@@ -6,10 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
-import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
@@ -27,10 +25,6 @@ public class LoginController {
     }
     //-----------------------------
 
-    private boolean areEmailAndPwdHashMatched(String strEmail, String hashPassword){
-
-        return false;//remove this
-    }
     private String strToHashPassword(String strPassword){
         String hashPassword=null;
         try {
