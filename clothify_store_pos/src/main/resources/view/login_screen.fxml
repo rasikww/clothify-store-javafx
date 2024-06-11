@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.coursework.controller.login.LoginScreenFormController">
    <children>
       <Label layoutX="221.0" layoutY="15.0" prefHeight="30.0" prefWidth="118.0" text="Clothify Store">
          <font>
@@ -41,14 +41,14 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <JFXPasswordField layoutX="222.0" layoutY="178.0" prefHeight="26.0" prefWidth="230.0" />
-      <JFXTextField layoutX="222.0" layoutY="141.0" prefHeight="26.0" prefWidth="230.0" />
-      <Hyperlink layoutX="348.0" layoutY="212.0" text="Change Password" />
-      <JFXButton layoutX="235.0" layoutY="246.0" prefHeight="27.0" prefWidth="89.0" styleClass="btn-login" stylesheets="@assets/css/styles.css" text="Login" textFill="WHITE">
+      <JFXTextField fx:id="txtEmail" layoutX="222.0" layoutY="141.0" onAction="#txtEmailOnAction" prefHeight="26.0" prefWidth="230.0" />
+      <JFXPasswordField fx:id="txtPassword" layoutX="222.0" layoutY="178.0" onAction="#txtPasswordOnAction" prefHeight="26.0" prefWidth="230.0" />
+      <Hyperlink fx:id="linkChangePassword" layoutX="348.0" layoutY="212.0" onAction="#linkChangePasswordOnAction" text="Change Password" />
+      <JFXButton fx:id="btnLogin" layoutX="235.0" layoutY="246.0" onAction="#btnLoginOnAction" prefHeight="27.0" prefWidth="89.0" styleClass="btn-login" stylesheets="@../assets/css/styles.css" text="Login" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </JFXButton>
-      <Button layoutX="533.0" layoutY="2.0" maxWidth="24.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="btn-close" stylesheets="@assets/css/styles.css" />
+      <Button fx:id="btnClose" layoutX="533.0" layoutY="2.0" maxWidth="24.0" mnemonicParsing="false" onAction="#btnCloseOnAction" prefHeight="24.0" prefWidth="24.0" styleClass="btn-close" stylesheets="@../assets/css/styles.css" />
    </children>
 </AnchorPane>

@@ -1,0 +1,17 @@
+package edu.icet.coursework.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class User {
+    Integer userId;
+    String name;
+    String phoneNumber;
+    String email;
+    String passwordHash;
+    Boolean isAdmin;
+}
