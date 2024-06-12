@@ -1,5 +1,7 @@
 package edu.icet.coursework.controller.login;
 
+import edu.icet.coursework.controller.admin.AdminFormController;
+import edu.icet.coursework.controller.employee.EmployeeFormController;
 import edu.icet.coursework.dto.User;
 import edu.icet.coursework.util.CrudUtil;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +17,7 @@ import java.sql.SQLException;
 
 public class LoginController {
     private static LoginController instance;
+    private User obtainedUser;
 
     private LoginController(){}
     public static LoginController getInstance(){
@@ -45,11 +48,8 @@ public class LoginController {
     }
 
     public boolean loginProcess(String strEmail, String strPassword) {
-        //convert string password to md5 hash
         String hashedPassword = strToHashPassword(strPassword);
-        //user password check performing here
-        User obtainedUser = getUser(strEmail,hashedPassword);
-        //if false go back
+        obtainedUser = getUser(strEmail,hashedPassword);
         if (obtainedUser == null) {
             return false;
         }else{
@@ -58,13 +58,15 @@ public class LoginController {
             }else openEmployeeWindow();
             return true;
         }
-        //if true change ui according to is_admin property
     }
 
     private void openEmployeeWindow() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/employee_interface.fxml"));
             Parent root = loader.load();
+
+            EmployeeFormController employeeFormController = loader.getController();
+            employeeFormController.initUser(obtainedUser);
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
@@ -81,6 +83,9 @@ public class LoginController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin_interface.fxml"));
             Parent root = loader.load();
 
+            AdminFormController adminFormController = loader.getController();
+            adminFormController.initUser(obtainedUser);
+
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Clothify Store Admin View");
@@ -93,7 +98,6 @@ public class LoginController {
 
     private User getUser(String strEmail, String hashedPassword){
         String sql = "SELECT * FROM user where email=? AND password_hash=?";
-        User obtainedUser=null;
         try {
             ResultSet resultSet = CrudUtil.execute(sql, strEmail, hashedPassword);
             while (resultSet.next()){

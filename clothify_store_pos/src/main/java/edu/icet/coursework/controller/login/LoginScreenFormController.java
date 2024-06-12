@@ -10,11 +10,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static javafx.scene.input.KeyCode.*;
 
 public class LoginScreenFormController implements Initializable {
     public JFXPasswordField txtPassword;
@@ -46,6 +49,10 @@ public class LoginScreenFormController implements Initializable {
     }
 
     public void btnLoginOnAction(ActionEvent actionEvent) {
+        btnLoginProcess();
+    }
+
+    private void btnLoginProcess(){
         String strEmail = txtEmail.getText();
         String strPassword = txtPassword.getText();
 
@@ -61,10 +68,14 @@ public class LoginScreenFormController implements Initializable {
         }
     }
 
-
     public void btnCloseOnAction(ActionEvent actionEvent) {
         System.exit(0);
     }
 
 
+    public void txtPasswordOnKeyPressed(KeyEvent keyEvent) {
+        if(keyEvent.getCode() == ENTER){
+            btnLoginProcess();
+        }
+    }
 }
