@@ -130,22 +130,22 @@
                                                             <Font size="20.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label layoutX="203.0" layoutY="15.0" text="Customer ID placeholder">
+                                                      <Label fx:id="lblCustomerId" layoutX="203.0" layoutY="15.0" text="Customer ID placeholder">
                                                          <font>
                                                             <Font size="20.0" />
                                                          </font>
                                                       </Label>
-                                                      <JFXTextField layoutX="203.0" layoutY="79.0" prefHeight="26.0" prefWidth="312.0" promptText="Enter Customer Name">
+                                                      <JFXTextField fx:id="txtCustomerNameAdd" layoutX="203.0" layoutY="79.0" prefHeight="26.0" prefWidth="312.0" promptText="Enter Customer Name">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
                                                       </JFXTextField>
-                                                      <JFXTextField layoutX="203.0" layoutY="119.0" prefHeight="26.0" prefWidth="312.0" promptText="Enter Customer Email">
+                                                      <JFXTextField fx:id="txtCustomerEmailAdd" layoutX="203.0" layoutY="119.0" prefHeight="26.0" prefWidth="312.0" promptText="Enter Customer Email">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
                                                       </JFXTextField>
-                                                      <JFXTextField layoutX="203.0" layoutY="163.0" prefHeight="26.0" prefWidth="312.0" promptText="Enter Customer Phone Number">
+                                                      <JFXTextField fx:id="txtCustomerPhoneNoAdd" layoutX="203.0" layoutY="163.0" prefHeight="26.0" prefWidth="312.0" promptText="Enter Customer Phone Number">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
@@ -342,12 +342,12 @@
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="349.0" prefWidth="495.0">
                                              <children>
-                                                <TableView fx:id="tblCustomer" layoutX="60.0" layoutY="54.0" prefHeight="321.0" prefWidth="881.0">
+                                                <TableView layoutX="60.0" layoutY="54.0" prefHeight="321.0" prefWidth="881.0">
                                                   <columns>
-                                                    <TableColumn fx:id="colCustomerId" prefWidth="75.0" text="Customer ID" />
-                                                    <TableColumn fx:id="colCustomerName" prefWidth="75.0" text="Name" />
-                                                      <TableColumn fx:id="colCustomerEmail" prefWidth="75.0" text="Email" />
-                                                      <TableColumn fx:id="colCustomerPhoneNo" editable="false" prefWidth="107.99996948242188" text="Phone Number" />
+                                                    <TableColumn prefWidth="75.0" text="Customer ID" />
+                                                    <TableColumn prefWidth="75.0" text="Name" />
+                                                      <TableColumn prefWidth="75.0" text="Email" />
+                                                      <TableColumn editable="false" prefWidth="107.99996948242188" text="Phone Number" />
                                                   </columns>
                                                    <columnResizePolicy>
                                                       <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
