@@ -1,0 +1,29 @@
+CREATE TABLE user (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50),
+    phone_number VARCHAR(20),
+    email VARCHAR(255) NOT NULL,
+    password_hash VARCHAR(32) NOT NULL,
+    is_admin TINYINT(1) NOT NULL DEFAULT 0
+);
+
+INSERT INTO user (name, phone_number, email, password_hash, is_admin)
+VALUES ('John Doe', '1234567890', 'john@example.com', 'e807f1fcf82d132f9bb018ca6738a19f', 1);
+
+INSERT INTO user (name, phone_number, email, password_hash, is_admin)
+VALUES ('Jane Smith', '0987654321', 'jane@example.com', '6fb42da0e32e07b61c9f0251fe627a9c', 0);
+
+
+CREATE TABLE customer (
+    customer_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    email VARCHAR(255) NOT NULL,
+    phone_number VARCHAR(20)
+);
+
+INSERT INTO customer (customer_id, name, email, phone_number) VALUES
+(1, 'Alice Johnson', 'alice.johnson@example.com', '555-1234'),
+(2, 'Bob Smith', 'bob.smith@example.com', '555-5678'),
+(3, 'Charlie Brown', 'charlie.brown@example.com', '555-8765'),
+(4, 'Diana Prince', 'diana.prince@example.com', '555-4321'),
+(5, 'Edward Norton', 'edward.norton@example.com', '555-3456');
