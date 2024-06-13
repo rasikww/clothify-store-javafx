@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="255015c2-beb4-44bd-8c6a-111be5e78d70" name="Changes" comment="added @SoftDelete to CustomerEntity and completed customer deletion.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/customer/CustomerBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/customer/CustomerBO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/customer/impl/CustomerBOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/customer/impl/CustomerBOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/customer/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/customer/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/employee/EmployeeFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/employee/EmployeeFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/CrudDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/CrudDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/customer/impl/CustomerDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/customer/impl/CustomerDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/employee_interface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/employee_interface.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="255015c2-beb4-44bd-8c6a-111be5e78d70" name="Changes" comment="added java and hibernate logic for update customer section of the UI" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -179,7 +170,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718278688737</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="added java and hibernate logic for update customer section of the UI">
+      <option name="closed" value="true" />
+      <created>1718304218387</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1718304218389</updated>
+    </task>
+    <task id="LOCAL-00010" summary="added java and hibernate logic for update customer section of the UI">
+      <option name="closed" value="true" />
+      <created>1718304360884</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1718304360884</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -202,6 +209,7 @@
     <MESSAGE value="added hibernateUtil" />
     <MESSAGE value="add customer ui logic is complete" />
     <MESSAGE value="added @SoftDelete to CustomerEntity and completed customer deletion." />
-    <option name="LAST_COMMIT_MESSAGE" value="added @SoftDelete to CustomerEntity and completed customer deletion." />
+    <MESSAGE value="added java and hibernate logic for update customer section of the UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="added java and hibernate logic for update customer section of the UI" />
   </component>
 </project>
