@@ -31,8 +31,16 @@ public class EmployeeFormController implements Initializable {
     public JFXTextField txtCustomerPhoneNoRemove;
     public JFXButton btnRemoveCustomer;
     public JFXButton btnRefreshCustomerRemove;
+    public JFXTextField txtCustomerNameUpdate;
+    public JFXTextField txtCustomerEmailUpdate;
+    public JFXTextField txtCustomerPhoneNoUpdate;
+    public JFXButton btnUpdateCustomer;
+    public JFXButton btnRefreshCustomerUpdate;
+    public JFXTextField txtCustomerIdUpdate;
+    public JFXButton btnSearchCustomerUpdate;
     private User loggedInUser;
     private String nextCustomerId;
+    private Customer searchedCustomer;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -103,7 +111,7 @@ public class EmployeeFormController implements Initializable {
         displayRemoveCustomerData();
     }
     private Customer searchCustomer(String customerId){
-        return CustomerController.getInstance().getCustomer(customerId);
+        return searchedCustomer = CustomerController.getInstance().getCustomer(customerId);
     }
     private void displayRemoveCustomerData(){
         Customer customer = searchCustomer(txtCustomerIdRemove.getText());
@@ -121,17 +129,70 @@ public class EmployeeFormController implements Initializable {
         txtCustomerEmailRemove.clear();
         txtCustomerPhoneNoRemove.clear();
     }
+    private void refreshProcessUpdate(){
+        txtCustomerIdUpdate.clear();
+        txtCustomerNameUpdate.clear();
+        txtCustomerEmailUpdate.clear();
+        txtCustomerPhoneNoUpdate.clear();
+    }
 
     public void btnRemoveCustomerOnAction(ActionEvent actionEvent) {
         boolean isRemoved = CustomerController.getInstance().removeCustomer(txtCustomerIdRemove.getText());
         if (isRemoved){
             new Alert(Alert.AlertType.CONFIRMATION,"Removed the customer").show();
         }else{
-            new Alert(Alert.AlertType.ERROR,"Error Occured while removing the customer").show();
+            new Alert(Alert.AlertType.ERROR,"Error Occurred while removing the customer").show();
         }
+        refreshProcessRemove();
     }
 
     public void btnRefreshCustomerRemoveOnAction(ActionEvent actionEvent) {
         refreshProcessRemove();
+    }
+
+    public void txtCustomerPhoneNoUpdateOnAction(ActionEvent actionEvent) {
+
+    }
+    private void displayUpdateCustomerData(){
+        Customer customer = searchCustomer(txtCustomerIdUpdate.getText());
+        if (customer == null) {
+            new Alert(Alert.AlertType.ERROR,"No such Customer").show();
+        }else{
+            txtCustomerNameUpdate.setText(customer.getName());
+            txtCustomerEmailUpdate.setText(customer.getEmail());
+            txtCustomerPhoneNoUpdate.setText(customer.getPhoneNumber());
+        }
+    }
+
+    public void btnUpdateCustomerOnAction(ActionEvent actionEvent) {
+        String customerName = txtCustomerNameUpdate.getText();
+        String customerEmail = txtCustomerEmailUpdate.getText();
+        String customerPhoneNo = txtCustomerPhoneNoUpdate.getText();
+
+        Customer customer = new Customer(
+                searchedCustomer.getCustomerId() ,
+                customerName,
+                customerEmail,
+                customerPhoneNo
+        );
+
+        boolean isUpdated = CustomerController.getInstance().updateCustomer(customer);
+        if (isUpdated){
+            new Alert(Alert.AlertType.CONFIRMATION,"Updated the customer").show();
+        }else{
+            new Alert(Alert.AlertType.ERROR,"Error Occurred while updating the customer").show();
+        }
+        refreshProcessUpdate();
+    }
+
+    public void btnRefreshCustomerUpdate(ActionEvent actionEvent) {
+        refreshProcessUpdate();
+    }
+
+    public void txtCustomerIdUpdateOnAction(ActionEvent actionEvent) {
+        displayUpdateCustomerData();
+    }
+    public void btnSearchCustomerUpdateOnAction(ActionEvent actionEvent){
+        displayUpdateCustomerData();
     }
 }

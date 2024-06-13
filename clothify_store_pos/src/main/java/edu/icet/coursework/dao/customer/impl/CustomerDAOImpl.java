@@ -42,7 +42,6 @@ public class CustomerDAOImpl implements CustomerDAO {
                 session.remove(customerEntity);
                 session.getTransaction().commit();
                 isDeleted = true;
-                System.out.println("deleted - "+customerEntity.getName());
             }
         } catch (Exception e) {
                 if (session.getTransaction().isActive()){
@@ -86,5 +85,29 @@ public class CustomerDAOImpl implements CustomerDAO {
             session.close();
         }
         return customerEntity;
+    }
+
+    @Override
+    public boolean update(CustomerEntity newCustomerEntity) {
+        boolean isUpdated = false;
+        CustomerEntity customerEntity = null;
+        Session session = HibernateUtil.getSession();
+        try {
+            session.getTransaction().begin();
+            customerEntity = session.get(CustomerEntity.class, newCustomerEntity.getCustomerId());
+            customerEntity.setName(newCustomerEntity.getName());
+            customerEntity.setEmail(newCustomerEntity.getEmail());
+            customerEntity.setPhoneNumber(newCustomerEntity.getPhoneNumber());
+            session.flush();
+            session.getTransaction().commit();
+            isUpdated = true;
+        } catch (Exception e) {
+            if (session.getTransaction().isActive()){
+                session.getTransaction().rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return isUpdated;
     }
 }

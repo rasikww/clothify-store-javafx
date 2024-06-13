@@ -7,6 +7,7 @@ import edu.icet.coursework.dto.Customer;
 import edu.icet.coursework.entity.CustomerEntity;
 import edu.icet.coursework.util.DAOType;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.internal.bytebuddy.matcher.StringMatcher;
 
 public class CustomerBOImpl implements CustomerBO {
     CustomerDAO customerDAO = DAOFactory.getInstance().getDAO(DAOType.CUSTOMER);
@@ -27,5 +28,10 @@ public class CustomerBOImpl implements CustomerBO {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    @Override
+    public boolean updateCustomer(Customer customer) {
+        return customerDAO.update(new ModelMapper().map(customer, CustomerEntity.class));
     }
 }

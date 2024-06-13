@@ -7,4 +7,5 @@ public interface CustomerBO extends SuperBO {
     boolean saveCustomer(Customer customerDTO);
     boolean deleteCustomerById(Integer id);
     Customer getCustomer(Integer customerId);
+    boolean updateCustomer(Customer customer);
 }

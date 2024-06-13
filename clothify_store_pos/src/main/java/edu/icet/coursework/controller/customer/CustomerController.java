@@ -1,7 +1,6 @@
 package edu.icet.coursework.controller.customer;
 
 import edu.icet.coursework.bo.BOFactory;
-import edu.icet.coursework.bo.SuperBO;
 import edu.icet.coursework.bo.customer.CustomerBO;
 import edu.icet.coursework.dao.DAOFactory;
 import edu.icet.coursework.dao.customer.CustomerDAO;
@@ -38,5 +37,9 @@ public class CustomerController {
 
     public boolean removeCustomer(String customerId) {
         return customerBO.deleteCustomerById(Integer.valueOf(customerId));
+    }
+
+    public boolean updateCustomer(Customer customer) {
+        return customerBO.updateCustomer(customer);
     }
 }
