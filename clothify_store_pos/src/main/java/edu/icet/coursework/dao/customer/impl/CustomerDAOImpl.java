@@ -3,7 +3,6 @@ package edu.icet.coursework.dao.customer.impl;
 import edu.icet.coursework.dao.customer.CustomerDAO;
 import edu.icet.coursework.entity.CustomerEntity;
 import edu.icet.coursework.util.HibernateUtil;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
 
@@ -90,11 +89,10 @@ public class CustomerDAOImpl implements CustomerDAO {
     @Override
     public boolean update(CustomerEntity newCustomerEntity) {
         boolean isUpdated = false;
-        CustomerEntity customerEntity = null;
         Session session = HibernateUtil.getSession();
         try {
             session.getTransaction().begin();
-            customerEntity = session.get(CustomerEntity.class, newCustomerEntity.getCustomerId());
+            CustomerEntity customerEntity = session.get(CustomerEntity.class, newCustomerEntity.getCustomerId());
             customerEntity.setName(newCustomerEntity.getName());
             customerEntity.setEmail(newCustomerEntity.getEmail());
             customerEntity.setPhoneNumber(newCustomerEntity.getPhoneNumber());

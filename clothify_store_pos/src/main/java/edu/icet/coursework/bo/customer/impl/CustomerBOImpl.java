@@ -7,7 +7,6 @@ import edu.icet.coursework.dto.Customer;
 import edu.icet.coursework.entity.CustomerEntity;
 import edu.icet.coursework.util.DAOType;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.internal.bytebuddy.matcher.StringMatcher;
 
 public class CustomerBOImpl implements CustomerBO {
     CustomerDAO customerDAO = DAOFactory.getInstance().getDAO(DAOType.CUSTOMER);
