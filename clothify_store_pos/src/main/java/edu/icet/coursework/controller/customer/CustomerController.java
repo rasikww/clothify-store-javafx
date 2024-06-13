@@ -1,6 +1,7 @@
 package edu.icet.coursework.controller.customer;
 
 import edu.icet.coursework.bo.BOFactory;
+import edu.icet.coursework.bo.SuperBO;
 import edu.icet.coursework.bo.customer.CustomerBO;
 import edu.icet.coursework.dao.DAOFactory;
 import edu.icet.coursework.dao.customer.CustomerDAO;
@@ -19,6 +20,8 @@ public class CustomerController {
         return instance;
     }
     //--------------------------------------
+    CustomerBO customerBO = BOFactory.getInstance().getBO(BOType.CUSTOMER);
+
     public String generateNextCustomerId() {
         CustomerDAO customerDAO = DAOFactory.getInstance().getDAO(DAOType.CUSTOMER);
         CustomerEntity lastCustomer = customerDAO.getLast();
@@ -26,7 +29,14 @@ public class CustomerController {
     }
 
     public boolean addCustomer(Customer newCustomer) {
-        CustomerBO customerBO = BOFactory.getInstance().getBO(BOType.CUSTOMER);
         return customerBO.saveCustomer(newCustomer);
+    }
+
+    public Customer getCustomer(String customerId) {
+        return customerBO.getCustomer(Integer.valueOf(customerId));
+    }
+
+    public boolean removeCustomer(String customerId) {
+        return customerBO.deleteCustomerById(Integer.valueOf(customerId));
     }
 }

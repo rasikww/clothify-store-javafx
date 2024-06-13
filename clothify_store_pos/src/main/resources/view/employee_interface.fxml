@@ -216,17 +216,17 @@
                                                             <Font size="20.0" />
                                                          </font>
                                                       </Label>
-                                                      <JFXTextField layoutX="203.0" layoutY="19.0" prefHeight="26.0" prefWidth="312.0" promptText="Enter Customer Name">
+                                                      <JFXTextField fx:id="txtCustomerNameRemove" editable="false" layoutX="203.0" layoutY="19.0" prefHeight="26.0" prefWidth="312.0" promptText="Enter Customer Name">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
                                                       </JFXTextField>
-                                                      <JFXTextField layoutX="203.0" layoutY="59.0" prefHeight="26.0" prefWidth="312.0" promptText="Enter Customer Email">
+                                                      <JFXTextField fx:id="txtCustomerEmailRemove" editable="false" layoutX="203.0" layoutY="59.0" prefHeight="26.0" prefWidth="312.0" promptText="Enter Customer Email">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
                                                       </JFXTextField>
-                                                      <JFXTextField layoutX="203.0" layoutY="103.0" prefHeight="26.0" prefWidth="312.0" promptText="Enter Customer Phone Number">
+                                                      <JFXTextField fx:id="txtCustomerPhoneNoRemove" editable="false" layoutX="203.0" layoutY="103.0" prefHeight="26.0" prefWidth="312.0" promptText="Enter Customer Phone Number">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
@@ -241,14 +241,14 @@
                                                       <Font size="20.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXButton layoutX="422.0" layoutY="298.0" prefHeight="35.0" prefWidth="96.0" styleClass="btn-remove" stylesheets="@../assets/css/ai_style.css" text="Remove" />
-                                                <JFXButton layoutX="559.0" layoutY="298.0" prefHeight="35.0" prefWidth="96.0" styleClass="btn-refresh" stylesheets="@../assets/css/ai_style.css" text="Refresh" />
-                                                <JFXTextField layoutX="470.0" layoutY="62.0" prefHeight="31.0" prefWidth="210.0" promptText="Enter Customer ID">
+                                                <JFXButton fx:id="btnRemoveCustomer" layoutX="422.0" layoutY="298.0" onAction="#btnRemoveCustomerOnAction" prefHeight="35.0" prefWidth="96.0" styleClass="btn-remove" stylesheets="@../assets/css/ai_style.css" text="Remove" />
+                                                <JFXButton fx:id="btnRefreshCustomerRemove" layoutX="559.0" layoutY="298.0" onAction="#btnRefreshCustomerRemoveOnAction" prefHeight="35.0" prefWidth="96.0" styleClass="btn-refresh" stylesheets="@../assets/css/ai_style.css" text="Refresh" />
+                                                <JFXTextField fx:id="txtCustomerIdRemove" layoutX="470.0" layoutY="62.0" onAction="#txtCustomerIdRemoveOnAction" prefHeight="31.0" prefWidth="210.0" promptText="Enter Customer ID">
                                                    <font>
                                                       <Font size="15.0" />
                                                    </font>
                                                 </JFXTextField>
-                                                <JFXButton layoutX="714.0" layoutY="63.0" prefHeight="35.0" prefWidth="96.0" styleClass="btn-add" stylesheets="@../assets/css/ai_style.css" text="Search" />
+                                                <JFXButton fx:id="btnSearchCustomerRemove" layoutX="714.0" layoutY="63.0" onAction="#btnSearchCustomerRemoveOnAction" prefHeight="35.0" prefWidth="96.0" styleClass="btn-add" stylesheets="@../assets/css/ai_style.css" text="Search" />
                                              </children>
                                           </AnchorPane>
                                        </content>

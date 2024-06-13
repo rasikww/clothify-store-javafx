@@ -24,6 +24,13 @@ public class EmployeeFormController implements Initializable {
     public JFXTextField txtCustomerPhoneNoAdd;
     public JFXButton btnAddCustomer;
     public JFXButton btnRefreshCustomerAdd;
+    public JFXTextField txtCustomerIdRemove;
+    public JFXButton btnSearchCustomerRemove;
+    public JFXTextField txtCustomerNameRemove;
+    public JFXTextField txtCustomerEmailRemove;
+    public JFXTextField txtCustomerPhoneNoRemove;
+    public JFXButton btnRemoveCustomer;
+    public JFXButton btnRefreshCustomerRemove;
     private User loggedInUser;
     private String nextCustomerId;
 
@@ -63,7 +70,7 @@ public class EmployeeFormController implements Initializable {
 
         boolean isAdded = CustomerController.getInstance().addCustomer(customer);
         if(isAdded){
-            refreshProcess();
+            refreshProcessAdd();
             new Alert(Alert.AlertType.CONFIRMATION,"Customer Added").show();
         }else{
             new Alert(Alert.AlertType.ERROR,"Can't add Customer").show();
@@ -75,16 +82,56 @@ public class EmployeeFormController implements Initializable {
     }
 
     public void btnRefreshCustomerAddOnAction(ActionEvent actionEvent) {
-        refreshProcess();
+        refreshProcessAdd();
     }
     private void displayNextCustomerId(){
         nextCustomerId = getNextCustomerId();
         lblCustomerId.setText(nextCustomerId);
     }
-    private void refreshProcess(){
+    private void refreshProcessAdd(){
         txtCustomerNameAdd.clear();
         txtCustomerEmailAdd.clear();
         txtCustomerPhoneNoAdd.clear();
         displayNextCustomerId();
+    }
+
+    public void txtCustomerIdRemoveOnAction(ActionEvent actionEvent) {
+        displayRemoveCustomerData();
+    }
+
+    public void btnSearchCustomerRemoveOnAction(ActionEvent actionEvent) {
+        displayRemoveCustomerData();
+    }
+    private Customer searchCustomer(String customerId){
+        return CustomerController.getInstance().getCustomer(customerId);
+    }
+    private void displayRemoveCustomerData(){
+        Customer customer = searchCustomer(txtCustomerIdRemove.getText());
+        if (customer == null) {
+            new Alert(Alert.AlertType.ERROR,"No such Customer").show();
+        }else{
+            txtCustomerNameRemove.setText(customer.getName());
+            txtCustomerEmailRemove.setText(customer.getEmail());
+            txtCustomerPhoneNoRemove.setText(customer.getPhoneNumber());
+        }
+    }
+    private void refreshProcessRemove(){
+        txtCustomerIdRemove.clear();
+        txtCustomerNameRemove.clear();
+        txtCustomerEmailRemove.clear();
+        txtCustomerPhoneNoRemove.clear();
+    }
+
+    public void btnRemoveCustomerOnAction(ActionEvent actionEvent) {
+        boolean isRemoved = CustomerController.getInstance().removeCustomer(txtCustomerIdRemove.getText());
+        if (isRemoved){
+            new Alert(Alert.AlertType.CONFIRMATION,"Removed the customer").show();
+        }else{
+            new Alert(Alert.AlertType.ERROR,"Error Occured while removing the customer").show();
+        }
+    }
+
+    public void btnRefreshCustomerRemoveOnAction(ActionEvent actionEvent) {
+        refreshProcessRemove();
     }
 }

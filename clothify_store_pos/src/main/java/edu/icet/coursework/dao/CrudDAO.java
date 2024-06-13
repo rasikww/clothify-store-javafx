@@ -4,4 +4,5 @@ public interface CrudDAO <T> extends SuperDAO {
     boolean save(T entity);
     boolean deleteById(Integer id);
     T getLast();
+    T getById(Integer id);
 }

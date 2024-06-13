@@ -9,14 +9,23 @@ import edu.icet.coursework.util.DAOType;
 import org.modelmapper.ModelMapper;
 
 public class CustomerBOImpl implements CustomerBO {
+    CustomerDAO customerDAO = DAOFactory.getInstance().getDAO(DAOType.CUSTOMER);
     @Override
     public boolean saveCustomer(Customer customerDTO) {
-        CustomerDAO customerDAO = DAOFactory.getInstance().getDAO(DAOType.CUSTOMER);
         return customerDAO.save(new ModelMapper().map(customerDTO, CustomerEntity.class));
     }
 
     @Override
-    public boolean deleteCustomerById(Integer id) {
-        return false;
+    public boolean deleteCustomerById(Integer customerId) {
+        return customerDAO.deleteById(customerId);
+    }
+
+    @Override
+    public Customer getCustomer(Integer customerId) {
+        try {
+            return new ModelMapper().map(customerDAO.getById(customerId),Customer.class);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
