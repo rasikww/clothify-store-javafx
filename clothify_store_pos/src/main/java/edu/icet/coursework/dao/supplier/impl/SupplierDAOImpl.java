@@ -1,28 +1,30 @@
-package edu.icet.coursework.dao.customer.impl;
+package edu.icet.coursework.dao.supplier.impl;
 
-import edu.icet.coursework.dao.customer.CustomerDAO;
-import edu.icet.coursework.entity.CustomerEntity;
-import edu.icet.coursework.util.hibernateUtil.HibernateCustomerUtil;
+import edu.icet.coursework.dao.supplier.SupplierDAO;
+import edu.icet.coursework.entity.SupplierEntity;
+import edu.icet.coursework.util.hibernateUtil.HibernateSupplierUtil;
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
 
 import java.util.List;
 
-public class CustomerDAOImpl implements CustomerDAO {
+public class SupplierDAOImpl implements SupplierDAO {
 
     @Override
-    public boolean save(CustomerEntity entity) {
+    public boolean save(SupplierEntity entity) {
         boolean isSaved = false;
-        Session session = HibernateCustomerUtil.getSession();
+        Session session = HibernateSupplierUtil.getSession();
         try {
             session.getTransaction().begin();
             session.persist(entity);
             session.getTransaction().commit();
             isSaved = true;
+            System.out.println("in try: "+ entity);
         } catch (Exception e) {
             if (session.getTransaction().isActive()){
                 session.getTransaction().rollback();
             }
+            System.out.println("in catch");
 
         }finally {
             session.close();
@@ -33,12 +35,12 @@ public class CustomerDAOImpl implements CustomerDAO {
     @Override
     public boolean deleteById(Integer id) {
         boolean isDeleted = false;
-        Session session = HibernateCustomerUtil.getSession();
+        Session session = HibernateSupplierUtil.getSession();
         try {
             session.getTransaction().begin();
-            CustomerEntity customerEntity = session.get(CustomerEntity.class, id);
-            if (customerEntity != null) {
-                session.remove(customerEntity);
+            SupplierEntity supplierEntity = session.get(SupplierEntity.class, id);
+            if (supplierEntity != null) {
+                session.remove(supplierEntity);
                 session.getTransaction().commit();
                 isDeleted = true;
             }
@@ -53,49 +55,50 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public CustomerEntity getLast() {
-        Session session = HibernateCustomerUtil.getSession();
-        CustomerEntity customerEntity = null;
+    public SupplierEntity getLast() {
+        Session session = HibernateSupplierUtil.getSession();
+        SupplierEntity supplierEntity = null;
         try {
-            String sql = "SELECT * FROM customer ORDER BY customer_id DESC LIMIT 1";
-            NativeQuery<CustomerEntity> query = session.createNativeQuery(sql, CustomerEntity.class);
-            List<CustomerEntity> results = query.list();
+            String sql = "SELECT * FROM supplier ORDER BY supplier_id DESC LIMIT 1";
+            NativeQuery<SupplierEntity> query = session.createNativeQuery(sql, SupplierEntity.class);
+            List<SupplierEntity> results = query.list();
 
             if (!results.isEmpty()) {
-                customerEntity = results.get(0);
+                supplierEntity = results.get(0);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
+
         } finally {
             session.close();
         }
-        return customerEntity;
+        return supplierEntity;
     }
 
     @Override
-    public CustomerEntity getById(Integer id) {
-        CustomerEntity customerEntity = null;
-        Session session = HibernateCustomerUtil.getSession();
+    public SupplierEntity getById(Integer id) {
+        SupplierEntity supplierEntity = null;
+        Session session = HibernateSupplierUtil.getSession();
         try {
-            customerEntity = session.get(CustomerEntity.class, id);
+            supplierEntity = session.get(SupplierEntity.class, id);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }finally {
             session.close();
         }
-        return customerEntity;
+        return supplierEntity;
     }
 
     @Override
-    public boolean update(CustomerEntity newCustomerEntity) {
+    public boolean update(SupplierEntity newSupplierEntity) {
         boolean isUpdated = false;
-        Session session = HibernateCustomerUtil.getSession();
+        Session session = HibernateSupplierUtil.getSession();
         try {
             session.getTransaction().begin();
-            CustomerEntity customerEntity = session.get(CustomerEntity.class, newCustomerEntity.getCustomerId());
-            customerEntity.setName(newCustomerEntity.getName());
-            customerEntity.setEmail(newCustomerEntity.getEmail());
-            customerEntity.setPhoneNumber(newCustomerEntity.getPhoneNumber());
+            SupplierEntity supplierEntity = session.get(SupplierEntity.class, newSupplierEntity.getSupplierId());
+            supplierEntity.setName(newSupplierEntity.getName());
+            supplierEntity.setEmail(newSupplierEntity.getEmail());
+            supplierEntity.setPhoneNumber(newSupplierEntity.getPhoneNumber());
             session.flush();
             session.getTransaction().commit();
             isUpdated = true;

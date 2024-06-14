@@ -923,7 +923,6 @@
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="349.0" prefWidth="495.0">
                                              <children>
-                                                <JFXButton layoutX="428.0" layoutY="408.0" prefHeight="35.0" prefWidth="119.0" styleClass="btn-add" stylesheets="@../assets/css/ai_style.css" text="Add Supplier" />
                                                 <Pane layoutX="206.0" layoutY="47.0" prefHeight="319.0" prefWidth="562.0" style="-fx-border-color: black; -fx-border-radius: 10px;">
                                                    <children>
                                                       <Label layoutX="19.0" layoutY="36.0" text="Supplier ID">
@@ -966,22 +965,27 @@
                                                             <Font size="20.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label layoutX="233.0" layoutY="36.0" text="Supplier ID placeholder">
+                                                      <Label fx:id="lblSupplierIdAdd" layoutX="233.0" layoutY="36.0" text="Supplier ID placeholder">
                                                          <font>
                                                             <Font size="20.0" />
                                                          </font>
                                                       </Label>
-                                                      <JFXTextField layoutX="233.0" layoutY="82.0" prefHeight="26.0" prefWidth="312.0" promptText="Enter Supplier Name">
+                                                      <JFXTextField fx:id="txtSupplierNameAdd" layoutX="233.0" layoutY="82.0" prefHeight="26.0" prefWidth="312.0" promptText="Enter Supplier Name">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
                                                       </JFXTextField>
-                                                      <JFXTextField layoutX="233.0" layoutY="179.0" prefHeight="26.0" prefWidth="312.0" promptText="Enter Supplier Email">
+                                                      <JFXTextField fx:id="txtSupplierCompanyAdd" layoutX="232.0" layoutY="128.0" prefHeight="26.0" prefWidth="312.0" promptText="Enter Supplier Company">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
                                                       </JFXTextField>
-                                                      <JFXTextField layoutX="233.0" layoutY="231.0" prefHeight="26.0" prefWidth="312.0" promptText="Enter Supplier Phone Number">
+                                                      <JFXTextField fx:id="txtSupplierEmailAdd" layoutX="233.0" layoutY="179.0" prefHeight="26.0" prefWidth="312.0" promptText="Enter Supplier Email">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </JFXTextField>
+                                                      <JFXTextField fx:id="txtSupplierPhoneNoAdd" layoutX="233.0" layoutY="231.0" onAction="#txtSupplierPhoneNoAddOnAction" prefHeight="26.0" prefWidth="312.0" promptText="Enter Supplier Phone Number">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
@@ -996,14 +1000,10 @@
                                                             <Font size="20.0" />
                                                          </font>
                                                       </Label>
-                                                      <JFXTextField layoutX="232.0" layoutY="128.0" prefHeight="26.0" prefWidth="312.0" promptText="Enter Supplier Company">
-                                                         <font>
-                                                            <Font size="15.0" />
-                                                         </font>
-                                                      </JFXTextField>
                                                    </children>
                                                 </Pane>
-                                                <JFXButton layoutX="832.0" layoutY="408.0" prefHeight="35.0" prefWidth="96.0" styleClass="btn-refresh" stylesheets="@../assets/css/ai_style.css" text="Refresh" />
+                                                <JFXButton fx:id="btnAddSupplier" layoutX="444.0" layoutY="408.0" onAction="#btnAddSupplierOnAction" prefHeight="35.0" prefWidth="119.0" styleClass="btn-add" stylesheets="@../assets/css/ai_style.css" text="Add Supplier" />
+                                                <JFXButton fx:id="btnRefreshSupplierAdd" layoutX="832.0" layoutY="408.0" onAction="#btnRefreshSupplierAddOnAction" prefHeight="35.0" prefWidth="96.0" styleClass="btn-refresh" stylesheets="@../assets/css/ai_style.css" text="Refresh" />
                                              </children>
                                           </AnchorPane>
                                        </content>
@@ -1019,7 +1019,7 @@
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="349.0" prefWidth="495.0">
                                              <children>
-                                                <JFXButton layoutX="428.0" layoutY="408.0" prefHeight="35.0" prefWidth="133.0" styleClass="btn-remove" stylesheets="@../assets/css/ai_style.css" text="Remove" />
+                                                <JFXButton fx:id="btnRemoveSupplier" layoutX="428.0" layoutY="408.0" onAction="#btnRemoveSupplierOnAction" prefHeight="35.0" prefWidth="133.0" styleClass="btn-remove" stylesheets="@../assets/css/ai_style.css" text="Remove" />
                                                 <Pane layoutX="206.0" layoutY="47.0" prefHeight="319.0" prefWidth="562.0" style="-fx-border-color: black; -fx-border-radius: 10px;">
                                                    <children>
                                                       <Label layoutX="19.0" layoutY="36.0" text="Supplier ID">
@@ -1062,7 +1062,7 @@
                                                             <Font size="20.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label layoutX="233.0" layoutY="36.0" text="Supplier ID placeholder">
+                                                      <Label fx:id="lblSupplierIdRemove" layoutX="233.0" layoutY="36.0" text="Supplier ID placeholder">
                                                          <font>
                                                             <Font size="20.0" />
                                                          </font>
@@ -1077,29 +1077,29 @@
                                                             <Font size="20.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label layoutX="233.0" layoutY="80.0" text="Supplier Name placeholder">
+                                                      <Label fx:id="lblSupplierNameRemove" layoutX="233.0" layoutY="80.0" text="Supplier Name placeholder">
                                                          <font>
                                                             <Font size="20.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label layoutX="233.0" layoutY="126.0" text="Supplier Company placeholder">
+                                                      <Label fx:id="lblSupplierCompanyRemove" layoutX="233.0" layoutY="126.0" text="Supplier Company placeholder">
                                                          <font>
                                                             <Font size="20.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label layoutX="233.0" layoutY="177.0" text="Supplier Email placeholder">
+                                                      <Label fx:id="lblSupplierEmailRemove" layoutX="233.0" layoutY="177.0" text="Supplier Email placeholder">
                                                          <font>
                                                             <Font size="20.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label layoutX="233.0" layoutY="229.0" text="Supplier Phone No placeholder">
+                                                      <Label fx:id="lblSupplierPhoneNoRemove" layoutX="233.0" layoutY="229.0" text="Supplier Phone No placeholder">
                                                          <font>
                                                             <Font size="20.0" />
                                                          </font>
                                                       </Label>
                                                    </children>
                                                 </Pane>
-                                                <JFXButton layoutX="832.0" layoutY="408.0" prefHeight="35.0" prefWidth="96.0" styleClass="btn-refresh" stylesheets="@../assets/css/ai_style.css" text="Refresh" />
+                                                <JFXButton fx:id="btnRefreshSupplierRemove" layoutX="832.0" layoutY="408.0" onAction="#btnRefreshSupplierRemoveOnAction" prefHeight="35.0" prefWidth="96.0" styleClass="btn-refresh" stylesheets="@../assets/css/ai_style.css" text="Refresh" />
                                                 <Label layoutX="206.0" layoutY="6.0" text="Supplier ID">
                                                    <font>
                                                       <Font size="20.0" />
@@ -1110,12 +1110,12 @@
                                                       <Font size="20.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXTextField layoutX="339.0" layoutY="5.0" prefHeight="31.0" prefWidth="257.0" promptText="Enter Supplier ID">
+                                                <JFXTextField fx:id="txtSupplierIdRemove" layoutX="339.0" layoutY="5.0" onAction="#txtSupplierIdRemoveOnAction" prefHeight="31.0" prefWidth="257.0" promptText="Enter Supplier ID">
                                                    <font>
                                                       <Font size="15.0" />
                                                    </font>
                                                 </JFXTextField>
-                                                <JFXButton layoutX="620.0" layoutY="3.0" prefHeight="35.0" prefWidth="148.0" styleClass="btn-add" stylesheets="@../assets/css/ai_style.css" text="Search Supplier" />
+                                                <JFXButton fx:id="btnSearchSupplierRemove" layoutX="620.0" layoutY="3.0" onAction="#btnSearchSupplierRemoveOnAction" prefHeight="35.0" prefWidth="148.0" styleClass="btn-add" stylesheets="@../assets/css/ai_style.css" text="Search Supplier" />
                                              </children>
                                           </AnchorPane>
                                        </content>

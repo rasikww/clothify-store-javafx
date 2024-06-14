@@ -27,3 +27,20 @@ INSERT INTO customer (customer_id, name, email, phone_number) VALUES
 (3, 'Charlie Brown', 'charlie.brown@example.com', '555-8765'),
 (4, 'Diana Prince', 'diana.prince@example.com', '555-4321'),
 (5, 'Edward Norton', 'edward.norton@example.com', '555-3456');
+
+
+CREATE TABLE Supplier (
+    supplier_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    company VARCHAR(50),
+    email VARCHAR(255) NOT NULL,
+    phone_number VARCHAR(20) NOT NULL
+);
+
+
+INSERT INTO Supplier (supplier_id, name, company, email, phone_number) VALUES (1, 'Supplier One', 'Company A', 'supplier.one@companya.com', '1234567890');
+INSERT INTO Supplier (supplier_id, name, company, email, phone_number) VALUES (2, 'Supplier Two', 'Company B', 'supplier.two@companyb.com', '2345678901');
+INSERT INTO Supplier (supplier_id, name, company, email, phone_number) VALUES (3, 'Supplier Three', 'Company C', 'supplier.three@companyc.com', '3456789012');
+INSERT INTO Supplier (supplier_id, name, company, email, phone_number) VALUES (4, 'Supplier Four', 'Company D', 'supplier.four@companyd.com', '4567890123');
+INSERT INTO Supplier (supplier_id, name, company, email, phone_number) VALUES (5, 'Supplier Five', 'Company E', 'supplier.five@companye.com', '5678901234');
+

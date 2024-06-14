@@ -24,7 +24,9 @@ public class CustomerController {
     public String generateNextCustomerId() {
         CustomerDAO customerDAO = DAOFactory.getInstance().getDAO(DAOType.CUSTOMER);
         CustomerEntity lastCustomer = customerDAO.getLast();
-        return String.valueOf((lastCustomer.getCustomerId()+1));
+        if (lastCustomer == null) {
+            return "1";
+        }else return String.valueOf((lastCustomer.getCustomerId()+1));
     }
 
     public boolean addCustomer(Customer newCustomer) {

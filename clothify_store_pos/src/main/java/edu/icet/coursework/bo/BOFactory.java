@@ -1,6 +1,7 @@
 package edu.icet.coursework.bo;
 
 import edu.icet.coursework.bo.customer.impl.CustomerBOImpl;
+import edu.icet.coursework.bo.supplier.impl.SupplierBOImpl;
 import edu.icet.coursework.util.BOType;
 
 public class BOFactory {
@@ -15,11 +16,10 @@ public class BOFactory {
     //---------------------------------------
     public <T extends SuperBO> T getBO(BOType boType){
         switch (boType){
-            case CUSTOMER:return (T) new CustomerBOImpl();
+            case CUSTOMER: return (T) new CustomerBOImpl();
             case ORDER:
                 break;
-            case SUPPLIER:
-                break;
+            case SUPPLIER: return (T) new SupplierBOImpl();
             case PRODUCT:
                 break;
             case REPORT:

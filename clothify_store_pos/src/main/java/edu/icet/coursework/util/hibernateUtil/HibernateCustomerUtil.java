@@ -1,4 +1,4 @@
-package edu.icet.coursework.util;
+package edu.icet.coursework.util.hibernateUtil;
 
 import edu.icet.coursework.entity.CustomerEntity;
 import org.hibernate.Session;
@@ -9,7 +9,7 @@ import org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-public class HibernateUtil {
+public class HibernateCustomerUtil {
     private static final SessionFactory sessionFactory = createSession();
 
     private static SessionFactory createSession() {

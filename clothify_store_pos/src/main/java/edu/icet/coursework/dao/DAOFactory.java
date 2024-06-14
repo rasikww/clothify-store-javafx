@@ -1,6 +1,7 @@
 package edu.icet.coursework.dao;
 
 import edu.icet.coursework.dao.customer.impl.CustomerDAOImpl;
+import edu.icet.coursework.dao.supplier.impl.SupplierDAOImpl;
 import edu.icet.coursework.util.DAOType;
 
 public class DAOFactory {
@@ -18,8 +19,7 @@ public class DAOFactory {
             case CUSTOMER: return (T) new CustomerDAOImpl();
             case ORDER:
                 break;
-            case SUPPLIER:
-                break;
+            case SUPPLIER: return (T) new SupplierDAOImpl();
             case PRODUCT:
                 break;
             case REPORT:
