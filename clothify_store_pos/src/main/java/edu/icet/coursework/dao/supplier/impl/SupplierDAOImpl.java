@@ -13,7 +13,7 @@ public class SupplierDAOImpl implements SupplierDAO {
     @Override
     public boolean save(SupplierEntity entity) {
         boolean isSaved = false;
-        Session session = HibernateSupplierUtil.getSession();
+        Session session = HibernateSupplierUtil.getInstance().getSession();
         try {
             session.getTransaction().begin();
             session.persist(entity);
@@ -35,7 +35,7 @@ public class SupplierDAOImpl implements SupplierDAO {
     @Override
     public boolean deleteById(Integer id) {
         boolean isDeleted = false;
-        Session session = HibernateSupplierUtil.getSession();
+        Session session = HibernateSupplierUtil.getInstance().getSession();
         try {
             session.getTransaction().begin();
             SupplierEntity supplierEntity = session.get(SupplierEntity.class, id);
@@ -56,7 +56,7 @@ public class SupplierDAOImpl implements SupplierDAO {
 
     @Override
     public SupplierEntity getLast() {
-        Session session = HibernateSupplierUtil.getSession();
+        Session session = HibernateSupplierUtil.getInstance().getSession();
         SupplierEntity supplierEntity = null;
         try {
             String sql = "SELECT * FROM supplier ORDER BY supplier_id DESC LIMIT 1";
@@ -78,7 +78,7 @@ public class SupplierDAOImpl implements SupplierDAO {
     @Override
     public SupplierEntity getById(Integer id) {
         SupplierEntity supplierEntity = null;
-        Session session = HibernateSupplierUtil.getSession();
+        Session session = HibernateSupplierUtil.getInstance().getSession();
         try {
             supplierEntity = session.get(SupplierEntity.class, id);
         } catch (Exception e) {
@@ -92,7 +92,7 @@ public class SupplierDAOImpl implements SupplierDAO {
     @Override
     public boolean update(SupplierEntity newSupplierEntity) {
         boolean isUpdated = false;
-        Session session = HibernateSupplierUtil.getSession();
+        Session session = HibernateSupplierUtil.getInstance().getSession();
         try {
             session.getTransaction().begin();
             SupplierEntity supplierEntity = session.get(SupplierEntity.class, newSupplierEntity.getSupplierId());
