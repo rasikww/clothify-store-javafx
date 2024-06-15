@@ -1,6 +1,7 @@
 package edu.icet.coursework.controller.employee;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import edu.icet.coursework.controller.customer.CustomerController;
 import edu.icet.coursework.controller.supplier.SupplierController;
@@ -11,6 +12,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 
 import java.net.URL;
@@ -56,6 +58,29 @@ public class EmployeeFormController implements Initializable {
     public JFXButton btnRefreshSupplierRemove;
     public JFXTextField txtSupplierIdRemove;
     public JFXButton btnSearchSupplierRemove;
+    public JFXButton btnUpdateSupplier;
+    public JFXTextField txtSupplierIdUpdate;
+    public Label lblSupplierIdUpdate;
+    public JFXTextField txtSupplierNameUpdate;
+    public JFXTextField txtSupplierEmailUpdate;
+    public JFXTextField txtSupplierPhoneNoUpdate;
+    public JFXTextField txtSupplierCompanyUpdate;
+    public JFXButton btnSearchSupplierUpdate;
+    public ComboBox<String> cmbSupplierAddProduct;
+    public Label lblSupplierNameAddProduct;
+    public Label lblSupplierCompanyAddProduct;
+    public Label lblSupplierEmailAddProduct;
+    public Label lblSupplierPhoneNoAddProduct;
+    public JFXTextField txtProductNameAddProduct;
+    public JFXTextArea txtProductDescAddProduct;
+    public JFXTextField txtProductUnitPriceAddProduct;
+    public JFXTextField txtStockQtyAddProduct;
+    public JFXTextField txtImageLinkAddProduct;
+    public Label lblProductIdAddProduct;
+    public ComboBox<String> cmbProductAddProduct;
+    public JFXButton btnAddProduct;
+    public JFXButton btnRefreshAddProduct;
+    public JFXButton btnRefreshUpdateSupplier;
     private User loggedInUser;
     private String nextCustomerId;
     private String nextSupplierId;
@@ -311,4 +336,71 @@ public class EmployeeFormController implements Initializable {
     private Supplier searchSupplier(String supplierId) {
         return searchedSupplier = SupplierController.getInstance().getSupplier(supplierId);
     }
+
+    public void btnSearchSupplierUpdateOnAction(ActionEvent actionEvent) {
+        displayUpdateSupplierData();
+    }
+    public void txtSupplierIdUpdateOnAction(ActionEvent actionEvent) {
+        displayUpdateSupplierData();
+    }
+    private void displayUpdateSupplierData(){
+        var supplier = searchSupplier(txtSupplierIdUpdate.getText());
+        if (supplier == null) {
+            new Alert(Alert.AlertType.ERROR,"No such Supplier").show();
+        }else{
+            lblSupplierIdUpdate.setText(String.valueOf(supplier.getSupplierId()));
+            txtSupplierNameUpdate.setText(supplier.getName());
+            txtSupplierCompanyUpdate.setText(supplier.getCompany());
+            txtSupplierEmailUpdate.setText(supplier.getEmail());
+            txtSupplierPhoneNoUpdate.setText(supplier.getPhoneNumber());
+        }
+    }
+    public void btnUpdateSupplierOnAction(ActionEvent actionEvent) {
+        String supplierName = txtSupplierNameUpdate.getText();
+        String supplierCompany = txtSupplierCompanyUpdate.getText();
+        String supplierEmail = txtSupplierEmailUpdate.getText();
+        String supplierPhoneNo = txtSupplierPhoneNoUpdate.getText();
+
+        Supplier supplier = new Supplier(
+                searchedSupplier.getSupplierId() ,
+                supplierName,
+                supplierCompany,
+                supplierEmail,
+                supplierPhoneNo
+        );
+
+        boolean isUpdated = SupplierController.getInstance().updateSupplier(supplier);
+        if (isUpdated){
+            new Alert(Alert.AlertType.CONFIRMATION,"Updated the supplier").show();
+        }else{
+            new Alert(Alert.AlertType.ERROR,"Error Occurred while updating the supplier").show();
+        }
+        refreshProcessSupplierUpdate();
+    }
+
+    private void refreshProcessSupplierUpdate() {
+        txtSupplierIdUpdate.clear();
+        lblSupplierIdUpdate.setText(null);
+        txtSupplierNameUpdate.clear();
+        txtSupplierCompanyUpdate.clear();
+        txtSupplierEmailUpdate.clear();
+        txtSupplierPhoneNoUpdate.clear();
+    }
+
+    public void txtSupplierPhoneNoUpdateOnAction(ActionEvent actionEvent) {
+        btnUpdateSupplierOnAction(actionEvent);
+    }
+    public void btnRefreshUpdateSupplierOnAction(ActionEvent actionEvent) {
+        refreshProcessSupplierUpdate();
+    }
+
+//-------------------------------------------------------------------------
+    public void txtImageLinkAddProductOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnAddProductOnAction(ActionEvent actionEvent) {
+    }
+    public void btnRefreshAddProductOnAction(ActionEvent actionEvent) {
+    }
+
 }
