@@ -1,6 +1,5 @@
 package edu.icet.coursework.util.hibernateUtil;
 
-import edu.icet.coursework.entity.CustomerEntity;
 import lombok.Getter;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
