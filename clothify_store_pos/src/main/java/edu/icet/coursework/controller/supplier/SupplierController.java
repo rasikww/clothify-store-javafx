@@ -8,6 +8,7 @@ import edu.icet.coursework.dto.Supplier;
 import edu.icet.coursework.entity.SupplierEntity;
 import edu.icet.coursework.util.BOType;
 import edu.icet.coursework.util.DAOType;
+import javafx.collections.ObservableList;
 
 public class SupplierController {
     private static SupplierController instance;
@@ -43,5 +44,9 @@ public class SupplierController {
 
     public boolean updateSupplier(Supplier supplier) {
         return supplierBO.updateSupplier(supplier);
+    }
+
+    public ObservableList<Supplier> getAllSuppliers() {
+        return supplierBO.getAllSuppliers();
     }
 }

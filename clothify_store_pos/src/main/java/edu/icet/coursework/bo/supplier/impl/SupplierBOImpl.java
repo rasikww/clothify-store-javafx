@@ -6,6 +6,7 @@ import edu.icet.coursework.dao.supplier.SupplierDAO;
 import edu.icet.coursework.dto.Supplier;
 import edu.icet.coursework.entity.SupplierEntity;
 import edu.icet.coursework.util.DAOType;
+import javafx.collections.ObservableList;
 import org.modelmapper.ModelMapper;
 
 public class SupplierBOImpl implements SupplierBO {
@@ -32,5 +33,10 @@ public class SupplierBOImpl implements SupplierBO {
     @Override
     public boolean updateSupplier(Supplier supplier) {
         return supplierDAO.update(new ModelMapper().map(supplier, SupplierEntity.class));
+    }
+
+    @Override
+    public ObservableList<Supplier> getAllSuppliers() {
+        return supplierDAO.getAll();
     }
 }

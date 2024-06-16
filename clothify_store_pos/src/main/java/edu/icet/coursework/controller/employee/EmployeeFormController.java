@@ -9,11 +9,12 @@ import edu.icet.coursework.dto.Customer;
 import edu.icet.coursework.dto.Supplier;
 import edu.icet.coursework.dto.User;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -81,6 +82,13 @@ public class EmployeeFormController implements Initializable {
     public JFXButton btnAddProduct;
     public JFXButton btnRefreshAddProduct;
     public JFXButton btnRefreshUpdateSupplier;
+    public Tab tabSuppliers;
+    public TableColumn<Supplier,Integer> colSupplierId;
+    public TableColumn<Supplier,String> colSupplierName;
+    public TableColumn<Supplier,String> colSupplierCompany;
+    public TableColumn<Supplier,String> colSupplierEmail;
+    public TableColumn<Supplier,String> colSupplierPhoneNo;
+    public TableView<Supplier> tblSuppliers;
     private User loggedInUser;
     private String nextCustomerId;
     private String nextSupplierId;
@@ -385,6 +393,7 @@ public class EmployeeFormController implements Initializable {
         txtSupplierCompanyUpdate.clear();
         txtSupplierEmailUpdate.clear();
         txtSupplierPhoneNoUpdate.clear();
+        loadSuppliersTable();
     }
 
     public void txtSupplierPhoneNoUpdateOnAction(ActionEvent actionEvent) {
@@ -393,8 +402,22 @@ public class EmployeeFormController implements Initializable {
     public void btnRefreshUpdateSupplierOnAction(ActionEvent actionEvent) {
         refreshProcessSupplierUpdate();
     }
+    public void tabSuppliersOnChanged(Event event) {
+        loadSuppliersTable();
+    }
 
-//-------------------------------------------------------------------------
+    private void loadSuppliersTable() {
+        colSupplierId.setCellValueFactory(new PropertyValueFactory<>("supplierId"));
+        colSupplierName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colSupplierCompany.setCellValueFactory(new PropertyValueFactory<>("company"));
+        colSupplierEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colSupplierPhoneNo.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+
+        ObservableList<Supplier> allSuppliers = SupplierController.getInstance().getAllSuppliers();
+        tblSuppliers.setItems(allSuppliers);
+    }
+
+    //-------------------------------------------------------------------------
     public void txtImageLinkAddProductOnAction(ActionEvent actionEvent) {
     }
 
@@ -402,5 +425,6 @@ public class EmployeeFormController implements Initializable {
     }
     public void btnRefreshAddProductOnAction(ActionEvent actionEvent) {
     }
+
 
 }

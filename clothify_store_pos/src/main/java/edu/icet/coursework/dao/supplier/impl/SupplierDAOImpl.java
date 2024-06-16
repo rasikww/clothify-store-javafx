@@ -1,10 +1,14 @@
 package edu.icet.coursework.dao.supplier.impl;
 
 import edu.icet.coursework.dao.supplier.SupplierDAO;
+import edu.icet.coursework.dto.Supplier;
 import edu.icet.coursework.entity.SupplierEntity;
 import edu.icet.coursework.util.hibernateUtil.HibernateSupplierUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
+import org.modelmapper.ModelMapper;
 
 import java.util.List;
 
@@ -110,5 +114,24 @@ public class SupplierDAOImpl implements SupplierDAO {
             session.close();
         }
         return isUpdated;
+    }
+
+    @Override
+    public ObservableList<Supplier> getAll() {
+        ObservableList<Supplier> allSuppliers = FXCollections.observableArrayList();
+        Session session = HibernateSupplierUtil.getInstance().getSession();
+        try {
+            String sql = "SELECT * FROM supplier WHERE deleted=0";
+            NativeQuery<SupplierEntity> query = session.createNativeQuery(sql, SupplierEntity.class);
+            List<SupplierEntity> results = query.list();
+            for (SupplierEntity supplierEntity : results) {
+                allSuppliers.add(new ModelMapper().map(supplierEntity, Supplier.class));
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            session.close();
+        }
+        return allSuppliers;
     }
 }

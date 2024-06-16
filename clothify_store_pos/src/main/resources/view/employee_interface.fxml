@@ -913,7 +913,7 @@
                            </children></AnchorPane>
                   </content>
                 </Tab>
-                  <Tab closable="false" text="Suppliers">
+                  <Tab fx:id="tabSuppliers" closable="false" onSelectionChanged="#tabSuppliersOnChanged" text="Suppliers">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -1243,13 +1243,13 @@
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="349.0" prefWidth="495.0">
                                              <children>
-                                                <TableView layoutX="60.0" layoutY="54.0" prefHeight="321.0" prefWidth="881.0">
+                                                <TableView fx:id="tblSuppliers" layoutX="60.0" layoutY="54.0" prefHeight="321.0" prefWidth="881.0">
                                                    <columns>
-                                                      <TableColumn prefWidth="75.0" text="Supplier ID" />
-                                                      <TableColumn prefWidth="205.59999084472656" text="Name" />
-                                                      <TableColumn prefWidth="132.79998779296875" text="Company" />
-                                                      <TableColumn prefWidth="191.20001220703125" text="Email" />
-                                                      <TableColumn editable="false" prefWidth="187.9998779296875" text="Phone Number" />
+                                                      <TableColumn fx:id="colSupplierId" editable="false" prefWidth="75.0" text="Supplier ID" />
+                                                      <TableColumn fx:id="colSupplierName" editable="false" prefWidth="205.59999084472656" text="Name" />
+                                                      <TableColumn fx:id="colSupplierCompany" editable="false" prefWidth="132.79998779296875" text="Company" />
+                                                      <TableColumn fx:id="colSupplierEmail" editable="false" prefWidth="191.20001220703125" text="Email" />
+                                                      <TableColumn fx:id="colSupplierPhoneNo" editable="false" prefWidth="187.9998779296875" text="Phone Number" />
                                                    </columns>
                                                    <columnResizePolicy>
                                                       <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
