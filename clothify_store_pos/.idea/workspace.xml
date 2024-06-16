@@ -4,16 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="255015c2-beb4-44bd-8c6a-111be5e78d70" name="Changes" comment="Supplier updating interface logic is completed.">
+    <list default="true" id="255015c2-beb4-44bd-8c6a-111be5e78d70" name="Changes" comment="logic added to view all suppliers who are not deleted from the db">
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/product/ProductBO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/product/impl/ProductBOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/product/ProductController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/product/ProductDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/product/impl/ProductDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dto/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/ProductEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/util/hibernateUtil/HibernateProductUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/supplier/SupplierBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/supplier/SupplierBO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/supplier/impl/SupplierBOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/supplier/impl/SupplierBOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/BOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/BOFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/employee/EmployeeFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/employee/EmployeeFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/supplier/SupplierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/supplier/SupplierController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/CrudDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/CrudDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/customer/impl/CustomerDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/customer/impl/CustomerDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/supplier/SupplierDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/supplier/SupplierDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/supplier/impl/SupplierDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/supplier/impl/SupplierDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/DAOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/DAOFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/employee_interface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/employee_interface.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,10 +83,10 @@
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="edu.icet.coursework.util.hibernateUtil" />
+      <recent name="edu.icet.coursework.entity" />
       <recent name="edu.icet.coursework.dao.supplier.impl" />
       <recent name="edu.icet.coursework.dao.supplier" />
       <recent name="edu.icet.coursework.bo.supplier" />
-      <recent name="edu.icet.coursework.bo.supplier.impl" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -252,7 +255,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718475745907</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="logic added to view all suppliers who are not deleted from the db">
+      <option name="closed" value="true" />
+      <created>1718537497067</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1718537497067</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -279,7 +290,8 @@
     <MESSAGE value="Supplier addition and deletion logic is completed." />
     <MESSAGE value="made HibernateUtil abstract and implement HibernateCustomerUtil and HibernateSupplierUtil according to that." />
     <MESSAGE value="Supplier updating interface logic is completed." />
-    <option name="LAST_COMMIT_MESSAGE" value="Supplier updating interface logic is completed." />
+    <MESSAGE value="logic added to view all suppliers who are not deleted from the db" />
+    <option name="LAST_COMMIT_MESSAGE" value="logic added to view all suppliers who are not deleted from the db" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

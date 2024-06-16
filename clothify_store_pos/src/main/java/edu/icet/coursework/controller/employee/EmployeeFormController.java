@@ -4,11 +4,14 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import edu.icet.coursework.controller.customer.CustomerController;
+import edu.icet.coursework.controller.product.ProductController;
 import edu.icet.coursework.controller.supplier.SupplierController;
 import edu.icet.coursework.dto.Customer;
+import edu.icet.coursework.dto.Product;
 import edu.icet.coursework.dto.Supplier;
 import edu.icet.coursework.dto.User;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -78,7 +81,6 @@ public class EmployeeFormController implements Initializable {
     public JFXTextField txtStockQtyAddProduct;
     public JFXTextField txtImageLinkAddProduct;
     public Label lblProductIdAddProduct;
-    public ComboBox<String> cmbProductAddProduct;
     public JFXButton btnAddProduct;
     public JFXButton btnRefreshAddProduct;
     public JFXButton btnRefreshUpdateSupplier;
@@ -89,11 +91,15 @@ public class EmployeeFormController implements Initializable {
     public TableColumn<Supplier,String> colSupplierEmail;
     public TableColumn<Supplier,String> colSupplierPhoneNo;
     public TableView<Supplier> tblSuppliers;
+    public Tab tabProducts;
+    public ComboBox<String> cmbCategoryAddProduct;
     private User loggedInUser;
     private String nextCustomerId;
     private String nextSupplierId;
+    private String nextProductId;
     private Customer searchedCustomer;
     private Supplier searchedSupplier;
+    private Product searchedProduct;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -419,12 +425,98 @@ public class EmployeeFormController implements Initializable {
 
     //-------------------------------------------------------------------------
     public void txtImageLinkAddProductOnAction(ActionEvent actionEvent) {
+        addProductProcess();
     }
 
     public void btnAddProductOnAction(ActionEvent actionEvent) {
+        addProductProcess();
     }
+
+    private void addProductProcess() {
+        var supplierId = SupplierController.getInstance().getAllSuppliers().get(
+                cmbSupplierAddProduct.getSelectionModel().getSelectedIndex()).getSupplierId();
+        String productName = txtProductNameAddProduct.getText();
+        String productDescription = txtProductDescAddProduct.getText();
+        Double unitPrice = Double.valueOf(txtProductUnitPriceAddProduct.getText());
+        Integer stockQuantity = Integer.valueOf(txtStockQtyAddProduct.getText());
+        String link = txtImageLinkAddProduct.getText();
+        String category = cmbCategoryAddProduct.getSelectionModel().getSelectedItem();
+
+        Product product = new Product(
+                Integer.parseInt(nextProductId),
+                supplierId,
+                productName,
+                productDescription,
+                unitPrice,
+                stockQuantity,
+                link,
+                category
+        );
+
+        boolean isAdded = ProductController.getInstance().addProduct(product);
+        if(isAdded){
+            refreshProcessAddProduct();
+            new Alert(Alert.AlertType.CONFIRMATION,"Product Added").show();
+        }else{
+            new Alert(Alert.AlertType.ERROR,"Can't add Product").show();
+        }
+    }
+
     public void btnRefreshAddProductOnAction(ActionEvent actionEvent) {
+        refreshProcessAddProduct();
+    }
+    private void refreshProcessAddProduct(){
+        displayNextProductId();
+        cmbSupplierAddProduct.getSelectionModel().select(0);
+        txtProductNameAddProduct.clear();
+        txtProductDescAddProduct.clear();
+        cmbCategoryAddProduct.getSelectionModel().select(0);
+        txtProductUnitPriceAddProduct.clear();
+        txtStockQtyAddProduct.clear();
+        txtImageLinkAddProduct.clear();
+    }
+    public void tabProductsOnChanged(Event event) {
+        displayNextProductId();
+        loadComboBoxSupplier();
+        loadComboBoxProductCategory();
     }
 
+    private void displayNextProductId() {
+        nextProductId = getNextProductId();
+        lblProductIdAddProduct.setText(nextProductId);
+    }
 
+    private String getNextProductId() {
+        return ProductController.getInstance().generateNextProductId();
+    }
+
+    private void loadComboBoxProductCategory() {
+        ObservableList<String> categories = FXCollections.observableArrayList("Ladies", "Gents", "Kids");
+        cmbCategoryAddProduct.setItems(categories);
+    }
+
+    private void loadComboBoxSupplier() {
+        ObservableList<Supplier> allSuppliers = SupplierController.getInstance().getAllSuppliers();
+        ObservableList<String> dropDownItems = FXCollections.observableArrayList();
+        allSuppliers.forEach(supplier -> {
+            dropDownItems.add(String.format("%d - %s",supplier.getSupplierId(),supplier.getName()));
+        });
+        cmbSupplierAddProduct.setItems(dropDownItems);
+    }
+
+    public void cmbSupplierAddProductOnAction(ActionEvent actionEvent) {
+        displaySelectedSupplierAddProduct();
+    }
+
+    private void displaySelectedSupplierAddProduct() {
+        int selectedIndex = cmbSupplierAddProduct.getSelectionModel().getSelectedIndex();
+        Supplier supplier = SupplierController.getInstance().getAllSuppliers().get(selectedIndex);
+        lblSupplierNameAddProduct.setText(supplier.getName());
+        lblSupplierCompanyAddProduct.setText(supplier.getCompany());
+        lblSupplierEmailAddProduct.setText(supplier.getEmail());
+        lblSupplierPhoneNoAddProduct.setText(supplier.getPhoneNumber());
+    }
+
+    public void cmbCategoryAddProductOnAction(ActionEvent actionEvent) {
+    }
 }

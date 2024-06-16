@@ -1273,7 +1273,7 @@
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab closable="false" text="Products">
+                  <Tab fx:id="tabProducts" closable="false" onSelectionChanged="#tabProductsOnChanged" text="Products">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -1285,7 +1285,7 @@
                                              <children>
                                                 <Pane layoutX="32.0" layoutY="21.0" prefHeight="214.0" prefWidth="316.0" style="-fx-border-color: black; -fx-border-radius: 10px;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="20.0">
                                                    <children>
-                                                      <ComboBox fx:id="cmbSupplierAddProduct" layoutX="34.0" layoutY="23.0" prefHeight="25.0" prefWidth="248.0" promptText="Select a Supplier" />
+                                                      <ComboBox fx:id="cmbSupplierAddProduct" layoutX="34.0" layoutY="23.0" onAction="#cmbSupplierAddProductOnAction" prefHeight="25.0" prefWidth="248.0" promptText="Select a Supplier" />
                                                       <Label layoutX="21.0" layoutY="65.0" text="Name">
                                                          <font>
                                                             <Font size="14.0" />
@@ -1326,22 +1326,22 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label fx:id="lblSupplierNameAddProduct" layoutX="99.0" layoutY="65.0" text="Name Placeholder">
+                                                      <Label fx:id="lblSupplierNameAddProduct" layoutX="99.0" layoutY="65.0">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label fx:id="lblSupplierCompanyAddProduct" layoutX="99.0" layoutY="98.0" text="Company Placeholder">
+                                                      <Label fx:id="lblSupplierCompanyAddProduct" layoutX="99.0" layoutY="98.0">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label fx:id="lblSupplierEmailAddProduct" layoutX="99.0" layoutY="129.0" text="Email Placeholder">
+                                                      <Label fx:id="lblSupplierEmailAddProduct" layoutX="99.0" layoutY="129.0">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label fx:id="lblSupplierPhoneNoAddProduct" layoutX="99.0" layoutY="163.0" text="Phone No Placeholder">
+                                                      <Label fx:id="lblSupplierPhoneNoAddProduct" layoutX="99.0" layoutY="163.0">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
@@ -1445,12 +1445,12 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </JFXTextField>
-                                                      <Label fx:id="lblProductIdAddProduct" layoutX="175.0" layoutY="22.0" prefHeight="20.0" prefWidth="212.0" text="Product ID Placeholder">
+                                                      <Label fx:id="lblProductIdAddProduct" layoutX="175.0" layoutY="22.0" prefHeight="20.0" prefWidth="212.0">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="cmbProductAddProduct" layoutX="173.0" layoutY="174.0" prefHeight="25.0" prefWidth="219.0" promptText="Select Product Category" />
+                                                      <ComboBox fx:id="cmbCategoryAddProduct" layoutX="173.0" layoutY="174.0" onAction="#cmbCategoryAddProductOnAction" prefHeight="25.0" prefWidth="219.0" promptText="Select Product Category" />
                                                    </children>
                                                 </Pane>
                                                 <JFXButton fx:id="btnAddProduct" layoutX="528.0" layoutY="410.0" onAction="#btnAddProductOnAction" prefHeight="35.0" prefWidth="134.0" styleClass="btn-add" stylesheets="@../assets/css/ai_style.css" text="Add Product" />
