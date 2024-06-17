@@ -14,20 +14,26 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "customer")
+@Entity(name = "user")
 @SoftDelete
-public class CustomerEntity {
+public class UserEntity {
     @Id
-    @Column(name = "customer_id")
-    private Integer customerId;
+    private Integer userId;
 
     private String name;
-
-    private String email;
 
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "customerEntity")
+    private String email;
+
+    @Column(name = "password_hash")
+    private String passwordHash;
+
+    @Column(name = "is_admin")
+    private Boolean isAdmin;
+
+    @OneToMany(mappedBy = "userEntity")
     private List<OrderEntity> orderEntities;
+
 }

@@ -2,7 +2,7 @@ package edu.icet.coursework.dao.customer.impl;
 
 import edu.icet.coursework.dao.customer.CustomerDAO;
 import edu.icet.coursework.entity.CustomerEntity;
-import edu.icet.coursework.util.hibernateUtil.HibernateCustomerUtil;
+import edu.icet.coursework.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
 
@@ -13,7 +13,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     @Override
     public boolean save(CustomerEntity entity) {
         boolean isSaved = false;
-        Session session = HibernateCustomerUtil.getInstance().getSession();
+        Session session = HibernateUtil.getInstance().getSession();
         try {
             session.getTransaction().begin();
             session.persist(entity);
@@ -33,7 +33,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     @Override
     public boolean deleteById(Integer id) {
         boolean isDeleted = false;
-        Session session = HibernateCustomerUtil.getInstance().getSession();
+        Session session = HibernateUtil.getInstance().getSession();
         try {
             session.getTransaction().begin();
             CustomerEntity customerEntity = session.get(CustomerEntity.class, id);
@@ -54,7 +54,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public CustomerEntity getLast() {
-        Session session = HibernateCustomerUtil.getInstance().getSession();
+        Session session = HibernateUtil.getInstance().getSession();
         CustomerEntity customerEntity = null;
         try {
             String sql = "SELECT * FROM customer ORDER BY customer_id DESC LIMIT 1";
@@ -75,7 +75,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     @Override
     public CustomerEntity getById(Integer id) {
         CustomerEntity customerEntity = null;
-        Session session = HibernateCustomerUtil.getInstance().getSession();
+        Session session = HibernateUtil.getInstance().getSession();
         try {
             customerEntity = session.get(CustomerEntity.class, id);
         } catch (Exception e) {
@@ -89,7 +89,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     @Override
     public boolean update(CustomerEntity newCustomerEntity) {
         boolean isUpdated = false;
-        Session session = HibernateCustomerUtil.getInstance().getSession();
+        Session session = HibernateUtil.getInstance().getSession();
         try {
             session.getTransaction().begin();
             CustomerEntity customerEntity = session.get(CustomerEntity.class, newCustomerEntity.getCustomerId());

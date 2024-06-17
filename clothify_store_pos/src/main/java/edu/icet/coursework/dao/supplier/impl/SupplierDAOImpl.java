@@ -3,7 +3,7 @@ package edu.icet.coursework.dao.supplier.impl;
 import edu.icet.coursework.dao.supplier.SupplierDAO;
 import edu.icet.coursework.dto.Supplier;
 import edu.icet.coursework.entity.SupplierEntity;
-import edu.icet.coursework.util.hibernateUtil.HibernateSupplierUtil;
+import edu.icet.coursework.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Session;
@@ -17,7 +17,7 @@ public class SupplierDAOImpl implements SupplierDAO {
     @Override
     public boolean save(SupplierEntity entity) {
         boolean isSaved = false;
-        Session session = HibernateSupplierUtil.getInstance().getSession();
+        Session session = HibernateUtil.getInstance().getSession();
         try {
             session.getTransaction().begin();
             session.persist(entity);
@@ -39,7 +39,7 @@ public class SupplierDAOImpl implements SupplierDAO {
     @Override
     public boolean deleteById(Integer id) {
         boolean isDeleted = false;
-        Session session = HibernateSupplierUtil.getInstance().getSession();
+        Session session = HibernateUtil.getInstance().getSession();
         try {
             session.getTransaction().begin();
             SupplierEntity supplierEntity = session.get(SupplierEntity.class, id);
@@ -60,7 +60,7 @@ public class SupplierDAOImpl implements SupplierDAO {
 
     @Override
     public SupplierEntity getLast() {
-        Session session = HibernateSupplierUtil.getInstance().getSession();
+        Session session = HibernateUtil.getInstance().getSession();
         SupplierEntity supplierEntity = null;
         try {
             String sql = "SELECT * FROM supplier ORDER BY supplier_id DESC LIMIT 1";
@@ -82,7 +82,7 @@ public class SupplierDAOImpl implements SupplierDAO {
     @Override
     public SupplierEntity getById(Integer id) {
         SupplierEntity supplierEntity = null;
-        Session session = HibernateSupplierUtil.getInstance().getSession();
+        Session session = HibernateUtil.getInstance().getSession();
         try {
             supplierEntity = session.get(SupplierEntity.class, id);
         } catch (Exception e) {
@@ -96,11 +96,12 @@ public class SupplierDAOImpl implements SupplierDAO {
     @Override
     public boolean update(SupplierEntity newSupplierEntity) {
         boolean isUpdated = false;
-        Session session = HibernateSupplierUtil.getInstance().getSession();
+        Session session = HibernateUtil.getInstance().getSession();
         try {
             session.getTransaction().begin();
             SupplierEntity supplierEntity = session.get(SupplierEntity.class, newSupplierEntity.getSupplierId());
             supplierEntity.setName(newSupplierEntity.getName());
+            supplierEntity.setCompany(newSupplierEntity.getCompany());
             supplierEntity.setEmail(newSupplierEntity.getEmail());
             supplierEntity.setPhoneNumber(newSupplierEntity.getPhoneNumber());
             session.flush();
@@ -119,7 +120,7 @@ public class SupplierDAOImpl implements SupplierDAO {
     @Override
     public ObservableList<Supplier> getAll() {
         ObservableList<Supplier> allSuppliers = FXCollections.observableArrayList();
-        Session session = HibernateSupplierUtil.getInstance().getSession();
+        Session session = HibernateUtil.getInstance().getSession();
         try {
             String sql = "SELECT * FROM supplier WHERE deleted=0";
             NativeQuery<SupplierEntity> query = session.createNativeQuery(sql, SupplierEntity.class);

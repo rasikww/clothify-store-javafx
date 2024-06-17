@@ -1,12 +1,12 @@
 package edu.icet.coursework.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.SoftDelete;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -17,14 +17,25 @@ public class ProductEntity {
     @Id
     @Column(name = "product_id")
     private Integer productId;
-    @Column(name = "supplier_id")
-    private Integer supplierId;
+
+    @ManyToOne
+    @JoinColumn(name = "supplier_id")
+    private SupplierEntity supplierEntity;
+
     private String name;
+
     private String description;
+
     private Double price;
+
     @Column(name = "stock_quantity")
     private Integer stockQuantity;
+
     @Column(name = "product_image_link")
     private String productImageLink;
+
     private String category;
+
+    @ManyToMany(mappedBy = "productEntities")
+    private List<OrderEntity> orderEntities;
 }

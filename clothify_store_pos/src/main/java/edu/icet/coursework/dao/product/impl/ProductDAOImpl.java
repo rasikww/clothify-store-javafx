@@ -3,7 +3,7 @@ package edu.icet.coursework.dao.product.impl;
 import edu.icet.coursework.dao.product.ProductDAO;
 import edu.icet.coursework.dto.Product;
 import edu.icet.coursework.entity.ProductEntity;
-import edu.icet.coursework.util.hibernateUtil.HibernateProductUtil;
+import edu.icet.coursework.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Session;
@@ -16,7 +16,7 @@ public class ProductDAOImpl implements ProductDAO {
     @Override
     public boolean save(ProductEntity entity) {
         boolean isSaved = false;
-        Session session = HibernateProductUtil.getInstance().getSession();
+        Session session = HibernateUtil.getInstance().getSession();
         try {
             session.getTransaction().begin();
             session.persist(entity);
@@ -38,7 +38,7 @@ public class ProductDAOImpl implements ProductDAO {
     @Override
     public boolean deleteById(Integer id) {
         boolean isDeleted = false;
-        Session session = HibernateProductUtil.getInstance().getSession();
+        Session session = HibernateUtil.getInstance().getSession();
         try {
             session.getTransaction().begin();
             ProductEntity productEntity = session.get(ProductEntity.class, id);
@@ -59,7 +59,7 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public ProductEntity getLast() {
-        Session session = HibernateProductUtil.getInstance().getSession();
+        Session session = HibernateUtil.getInstance().getSession();
         ProductEntity productEntity = null;
         try {
             String sql = "SELECT * FROM product ORDER BY product_id DESC LIMIT 1";
@@ -81,7 +81,7 @@ public class ProductDAOImpl implements ProductDAO {
     @Override
     public ProductEntity getById(Integer id) {
         ProductEntity productEntity = null;
-        Session session = HibernateProductUtil.getInstance().getSession();
+        Session session = HibernateUtil.getInstance().getSession();
         try {
             productEntity = session.get(ProductEntity.class, id);
         } catch (Exception e) {
@@ -95,11 +95,11 @@ public class ProductDAOImpl implements ProductDAO {
     @Override
     public boolean update(ProductEntity newProductEntity) {
         boolean isUpdated = false;
-        Session session = HibernateProductUtil.getInstance().getSession();
+        Session session = HibernateUtil.getInstance().getSession();
         try {
             session.getTransaction().begin();
             ProductEntity productEntity = session.get(ProductEntity.class, newProductEntity.getProductId());
-            productEntity.setSupplierId(newProductEntity.getSupplierId());
+            productEntity.setSupplierEntity(newProductEntity.getSupplierEntity());
             productEntity.setName(newProductEntity.getName());
             productEntity.setDescription(newProductEntity.getDescription());
             productEntity.setPrice(newProductEntity.getPrice());
@@ -122,13 +122,15 @@ public class ProductDAOImpl implements ProductDAO {
     @Override
     public ObservableList<Product> getAll() {
         ObservableList<Product> allProducts = FXCollections.observableArrayList();
-        Session session = HibernateProductUtil.getInstance().getSession();
+        Session session = HibernateUtil.getInstance().getSession();
         try {
             String sql = "SELECT * FROM product WHERE deleted=0";
             NativeQuery<ProductEntity> query = session.createNativeQuery(sql, ProductEntity.class);
             List<ProductEntity> results = query.list();
             for (ProductEntity productEntity : results) {
-                allProducts.add(new ModelMapper().map(productEntity, Product.class));
+                Product product = new ModelMapper().map(productEntity, Product.class);
+                product.setSupplierId(productEntity.getSupplierEntity().getSupplierId());
+                allProducts.add(product);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

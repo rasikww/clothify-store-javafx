@@ -1,12 +1,12 @@
 package edu.icet.coursework.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.SoftDelete;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -22,4 +22,7 @@ public class SupplierEntity {
     private String email;
     @Column(name = "phone_number")
     private String phoneNumber;
+
+    @OneToMany(mappedBy = "supplierEntity")
+    private List<ProductEntity> productEntities;
 }
