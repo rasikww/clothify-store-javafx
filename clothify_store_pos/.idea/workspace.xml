@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="255015c2-beb4-44bd-8c6a-111be5e78d70" name="Changes" comment="add product interface logic is completed.">
-      <change beforePath="$PROJECT_DIR$/../Other/test_db.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Other/test_db.txt" afterDir="false" />
+    <list default="true" id="255015c2-beb4-44bd-8c6a-111be5e78d70" name="Changes" comment="remove product interface logic is completed.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/employee/EmployeeFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/employee/EmployeeFormController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/employee_interface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/employee_interface.fxml" afterDir="false" />
@@ -262,7 +261,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718546026896</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="remove product interface logic is completed.">
+      <option name="closed" value="true" />
+      <created>1718642624671</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1718642624673</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -291,7 +298,8 @@
     <MESSAGE value="Supplier updating interface logic is completed." />
     <MESSAGE value="logic added to view all suppliers who are not deleted from the db" />
     <MESSAGE value="add product interface logic is completed." />
-    <option name="LAST_COMMIT_MESSAGE" value="add product interface logic is completed." />
+    <MESSAGE value="remove product interface logic is completed." />
+    <option name="LAST_COMMIT_MESSAGE" value="remove product interface logic is completed." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

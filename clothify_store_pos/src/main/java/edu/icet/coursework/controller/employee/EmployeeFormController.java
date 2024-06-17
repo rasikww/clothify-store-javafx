@@ -104,6 +104,23 @@ public class EmployeeFormController implements Initializable {
     public JFXButton btnRefreshRemoveProduct;
     public JFXTextField txtProductIdRemove;
     public JFXButton btnRemoveProduct;
+    public JFXButton btnSearchProductUpdate;
+    public JFXTextField txtProductNameUpdate;
+    public JFXTextArea txtProductDescUpdate;
+    public JFXTextField txtUnitPriceUpdate;
+    public JFXTextField txtStockQuantityUpdate;
+    public JFXTextField txtProductImageLinkUpdate;
+    public Label lblProductIdUpdate;
+    public ComboBox<String> cmbProductCategoryUpdate;
+    public ComboBox<String> cmbSupplierUpdateProduct;
+    public Label lblSupplierNameUpdateProduct;
+    public Label lblSupplierCompanyUpdateProduct;
+    public Label lblSupplierEmailUpdateProduct;
+    public Label lblSupplierPhoneNoUpdateProduct;
+    public JFXButton btnUpdateProduct;
+    public JFXButton btnRefreshUpdateProduct;
+    public JFXTextField txtProductIdUpdate;
+    public Tab tabUpdateProduct;
     private User loggedInUser;
     private String nextCustomerId;
     private String nextSupplierId;
@@ -477,19 +494,19 @@ public class EmployeeFormController implements Initializable {
         refreshProcessAddProduct();
     }
     private void refreshProcessAddProduct(){
-        displayNextProductId();
         cmbSupplierAddProduct.getSelectionModel().select(0);
+        cmbCategoryAddProduct.getSelectionModel().select(0);
+        displayNextProductId();
         txtProductNameAddProduct.clear();
         txtProductDescAddProduct.clear();
-        cmbCategoryAddProduct.getSelectionModel().select(0);
         txtProductUnitPriceAddProduct.clear();
         txtStockQtyAddProduct.clear();
         txtImageLinkAddProduct.clear();
     }
     public void tabProductsOnChanged(Event event) {
         displayNextProductId();
-        loadComboBoxSupplier();
-        loadComboBoxProductCategory();
+        loadComboBoxSupplier(cmbSupplierAddProduct);
+        loadComboBoxProductCategory(cmbCategoryAddProduct);
     }
 
     private void displayNextProductId() {
@@ -501,18 +518,18 @@ public class EmployeeFormController implements Initializable {
         return ProductController.getInstance().generateNextProductId();
     }
 
-    private void loadComboBoxProductCategory() {
+    private void loadComboBoxProductCategory(ComboBox<String> comboBox) {
         ObservableList<String> categories = FXCollections.observableArrayList("Ladies", "Gents", "Kids");
-        cmbCategoryAddProduct.setItems(categories);
+        comboBox.setItems(categories);
     }
 
-    private void loadComboBoxSupplier() {
+    private void loadComboBoxSupplier(ComboBox<String> comboBox) {
         ObservableList<Supplier> allSuppliers = SupplierController.getInstance().getAllSuppliers();
         ObservableList<String> dropDownItems = FXCollections.observableArrayList();
         allSuppliers.forEach(supplier -> {
             dropDownItems.add(String.format("%d - %s",supplier.getSupplierId(),supplier.getName()));
         });
-        cmbSupplierAddProduct.setItems(dropDownItems);
+        comboBox.setItems(dropDownItems);
     }
 
     public void cmbSupplierAddProductOnAction(ActionEvent actionEvent) {
@@ -581,5 +598,101 @@ public class EmployeeFormController implements Initializable {
             new Alert(Alert.AlertType.ERROR,"Error Occurred while removing the Product").show();
         }
         refreshProcessProductRemove();
+    }
+
+    public void cmbSupplierUpdateProductOnAction(ActionEvent actionEvent) {
+        int index = cmbSupplierUpdateProduct.getSelectionModel().getSelectedIndex();
+        Supplier supplier = SupplierController.getInstance().getAllSuppliers().get(index);
+        displaySupplierDataUpdateProduct(supplier);
+    }
+
+    public void btnUpdateProductOnAction(ActionEvent actionEvent) {
+        String productName = txtProductNameUpdate.getText();
+        String productDesc = txtProductDescUpdate.getText();
+        String productCategory = cmbProductCategoryUpdate.getSelectionModel().getSelectedItem();
+        Double unitPrice = Double.valueOf(txtUnitPriceUpdate.getText());
+        Integer stockQty = Integer.valueOf(txtStockQuantityUpdate.getText());
+        String link = txtProductImageLinkUpdate.getText();
+        Integer supplierId = SupplierController
+                .getInstance()
+                .getAllSuppliers()
+                .get(cmbSupplierUpdateProduct.getSelectionModel().getSelectedIndex())
+                .getSupplierId();
+
+        Product product = new Product(
+                searchedProduct.getProductId(),
+                supplierId,
+                productName,
+                productDesc,
+                unitPrice,
+                stockQty,
+                link,
+                productCategory
+        );
+
+        boolean isUpdated = ProductController.getInstance().updateProduct(product);
+        if (isUpdated){
+            new Alert(Alert.AlertType.CONFIRMATION,"Updated the product").show();
+        }else{
+            new Alert(Alert.AlertType.ERROR,"Error Occurred while updating the product").show();
+        }
+        refreshProcessUpdateProduct();
+    }
+
+    public void btnRefreshUpdateProductOnAction(ActionEvent actionEvent) {
+        refreshProcessUpdateProduct();
+    }
+
+    public void txtProductIdUpdateOnAction(ActionEvent actionEvent) {
+        displayUpdateProductData();
+    }
+
+    public void btnSearchProductUpdateOnAction(ActionEvent actionEvent) {
+        displayUpdateProductData();
+    }
+
+    private void displayUpdateProductData() {
+        var product = searchProduct(txtProductIdUpdate.getText());
+        if (product == null) {
+            new Alert(Alert.AlertType.ERROR,"No such Product").show();
+        }else{
+            lblProductIdUpdate.setText(String.valueOf(product.getProductId()));
+            txtProductNameUpdate.setText(product.getName());
+            txtProductDescUpdate.setText(product.getDescription());
+            cmbProductCategoryUpdate.getSelectionModel().select(product.getCategory());
+            txtUnitPriceUpdate.setText(String.valueOf(product.getPrice()));
+            txtStockQuantityUpdate.setText(String.valueOf(product.getStockQuantity()));
+            txtProductImageLinkUpdate.setText(product.getProductImageLink());
+            Supplier supplier = searchSupplier(String.valueOf(product.getSupplierId()));
+            int index = SupplierController.getInstance().getAllSuppliers().indexOf(supplier);
+            cmbSupplierUpdateProduct.getSelectionModel().select(index);
+            displaySupplierDataUpdateProduct(supplier);
+        }
+    }
+    private void displaySupplierDataUpdateProduct(Supplier supplier){
+        lblSupplierNameUpdateProduct.setText(supplier.getName());
+        lblSupplierCompanyUpdateProduct.setText(supplier.getCompany());
+        lblSupplierEmailUpdateProduct.setText(supplier.getEmail());
+        lblSupplierPhoneNoUpdateProduct.setText(supplier.getPhoneNumber());
+    }
+
+    public void tabUpdateProductOnChanged(Event event) {
+        loadComboBoxSupplier(cmbSupplierUpdateProduct);
+        loadComboBoxProductCategory(cmbProductCategoryUpdate);
+    }
+    private void refreshProcessUpdateProduct(){
+        txtProductIdUpdate.clear();
+        lblProductIdUpdate.setText(null);
+        txtProductNameUpdate.setText(null);
+        txtProductDescUpdate.setText(null);
+        cmbProductCategoryUpdate.getSelectionModel().select(0);
+        txtUnitPriceUpdate.setText(null);
+        txtStockQuantityUpdate.setText(null);
+        txtProductImageLinkUpdate.setText(null);
+        cmbSupplierUpdateProduct.getSelectionModel().select(0);
+        lblSupplierNameUpdateProduct.setText(null);
+        lblSupplierCompanyUpdateProduct.setText(null);
+        lblSupplierEmailUpdateProduct.setText(null);
+        lblSupplierPhoneNoUpdateProduct.setText(null);
     }
 }
