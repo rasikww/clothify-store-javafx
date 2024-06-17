@@ -1255,7 +1255,7 @@
                                                       <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                                    </columnResizePolicy>
                                                 </TableView>
-                                                <JFXButton layoutX="453.0" layoutY="410.0" prefHeight="35.0" prefWidth="96.0" styleClass="btn-refresh" stylesheets="@../assets/css/ai_style.css" text="Refresh" />
+                                                <JFXButton fx:id="btnRefreshTblSuppliers" layoutX="453.0" layoutY="410.0" onAction="#btnRefreshTblSuppliersOnAction" prefHeight="35.0" prefWidth="96.0" styleClass="btn-refresh" stylesheets="@../assets/css/ai_style.css" text="Refresh" />
                                              </children>
                                           </AnchorPane>
                                        </content>
@@ -1815,21 +1815,21 @@
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="349.0" prefWidth="495.0">
                                              <children>
-                                                <TableView layoutX="60.0" layoutY="54.0" prefHeight="321.0" prefWidth="881.0">
+                                                <TableView fx:id="tblProducts" layoutX="60.0" layoutY="54.0" prefHeight="321.0" prefWidth="881.0">
                                                    <columns>
-                                                      <TableColumn prefWidth="75.0" text="Product ID" />
-                                                      <TableColumn prefWidth="75.0" text="Supplier ID" />
-                                                      <TableColumn prefWidth="75.0" text="Name" />
-                                                      <TableColumn prefWidth="75.0" text="Description" />
-                                                      <TableColumn editable="false" prefWidth="107.99996948242188" text="Unit Price" />
-                                                      <TableColumn editable="false" prefWidth="107.99996948242188" text="Stock Quantity" />
-                                                      <TableColumn editable="false" prefWidth="107.99996948242188" text="Category" />
+                                                      <TableColumn fx:id="colProductId" prefWidth="75.0" text="Product ID" />
+                                                      <TableColumn fx:id="colSupplierIdProductTable" prefWidth="75.0" text="Supplier ID" />
+                                                      <TableColumn fx:id="colProductName" prefWidth="75.0" text="Name" />
+                                                      <TableColumn fx:id="colProductDesc" prefWidth="75.0" text="Description" />
+                                                      <TableColumn fx:id="colUnitPrice" editable="false" prefWidth="107.99996948242188" text="Unit Price" />
+                                                      <TableColumn fx:id="colStockQty" editable="false" prefWidth="107.99996948242188" text="Stock Quantity" />
+                                                      <TableColumn fx:id="colCategory" editable="false" prefWidth="107.99996948242188" text="Category" />
                                                    </columns>
                                                    <columnResizePolicy>
                                                       <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                                    </columnResizePolicy>
                                                 </TableView>
-                                                <JFXButton layoutX="453.0" layoutY="410.0" prefHeight="35.0" prefWidth="96.0" styleClass="btn-refresh" stylesheets="@../assets/css/ai_style.css" text="Refresh" />
+                                                <JFXButton fx:id="btnRefreshTblProducts" layoutX="453.0" layoutY="410.0" onAction="#btnRefreshTblProductsOnAction" prefHeight="35.0" prefWidth="96.0" styleClass="btn-refresh" stylesheets="@../assets/css/ai_style.css" text="Refresh" />
                                              </children>
                                           </AnchorPane>
                                        </content>

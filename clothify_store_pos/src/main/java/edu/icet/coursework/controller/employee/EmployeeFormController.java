@@ -121,6 +121,16 @@ public class EmployeeFormController implements Initializable {
     public JFXButton btnRefreshUpdateProduct;
     public JFXTextField txtProductIdUpdate;
     public Tab tabUpdateProduct;
+    public TableColumn<Product, Integer> colProductId;
+    public TableColumn<Product, Integer> colSupplierIdProductTable;
+    public TableColumn<Product, String> colProductName;
+    public TableColumn<Product, String> colProductDesc;
+    public TableColumn<Product, Double> colUnitPrice;
+    public TableColumn<Product, Integer> colStockQty;
+    public TableColumn<Product, String> colCategory;
+    public TableView<Product> tblProducts;
+    public JFXButton btnRefreshTblProducts;
+    public JFXButton btnRefreshTblSuppliers;
     private User loggedInUser;
     private String nextCustomerId;
     private String nextSupplierId;
@@ -451,6 +461,9 @@ public class EmployeeFormController implements Initializable {
         tblSuppliers.setItems(allSuppliers);
     }
 
+    public void btnRefreshTblSuppliersOnAction(ActionEvent actionEvent) {
+        loadSuppliersTable();
+    }
     //-------------------------------------------------------------------------
     public void txtImageLinkAddProductOnAction(ActionEvent actionEvent) {
         addProductProcess();
@@ -507,6 +520,21 @@ public class EmployeeFormController implements Initializable {
         displayNextProductId();
         loadComboBoxSupplier(cmbSupplierAddProduct);
         loadComboBoxProductCategory(cmbCategoryAddProduct);
+
+        loadProductsTable();
+    }
+
+    private void loadProductsTable() {
+        colProductId.setCellValueFactory(new PropertyValueFactory<>("productId"));
+        colSupplierIdProductTable.setCellValueFactory(new PropertyValueFactory<>("supplierId"));
+        colProductName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colProductDesc.setCellValueFactory(new PropertyValueFactory<>("description"));
+        colUnitPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+        colStockQty.setCellValueFactory(new PropertyValueFactory<>("stockQuantity"));
+        colCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
+
+        ObservableList<Product> allProducts = ProductController.getInstance().getAllProducts();
+        tblProducts.setItems(allProducts);
     }
 
     private void displayNextProductId() {
@@ -694,5 +722,9 @@ public class EmployeeFormController implements Initializable {
         lblSupplierCompanyUpdateProduct.setText(null);
         lblSupplierEmailUpdateProduct.setText(null);
         lblSupplierPhoneNoUpdateProduct.setText(null);
+    }
+
+    public void btnRefreshTblProductsOnAction(ActionEvent actionEvent) {
+        loadProductsTable();
     }
 }
