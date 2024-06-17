@@ -44,3 +44,24 @@ INSERT INTO Supplier (supplier_id, name, company, email, phone_number) VALUES (3
 INSERT INTO Supplier (supplier_id, name, company, email, phone_number) VALUES (4, 'Supplier Four', 'Company D', 'supplier.four@companyd.com', '4567890123');
 INSERT INTO Supplier (supplier_id, name, company, email, phone_number) VALUES (5, 'Supplier Five', 'Company E', 'supplier.five@companye.com', '5678901234');
 
+
+
+-- Creating the product table
+CREATE TABLE product (
+    product_id INT PRIMARY KEY,
+    supplier_id INT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    description VARCHAR(255),
+    price DECIMAL(10, 2) NOT NULL,
+    stock_quantity INT NOT NULL,
+    product_image_link VARCHAR(255),
+    category VARCHAR(100)
+);
+
+INSERT INTO product (product_id, supplier_id, name, description, price, stock_quantity, product_image_link, category)
+VALUES
+    (1, 1, 'Gents T-Shirt', '100% cotton, round neck t-shirt', 15.99, 120, 'http://example.com/images/gents_tshirt.jpg', 'Gents'),
+    (2, 2, 'Ladies Summer Dress', 'Floral print summer dress', 39.99, 60, 'http://example.com/images/ladies_summer_dress.jpg', 'Ladies'),
+    (3, 3, 'Kids Jeans', 'Comfortable and durable jeans for kids', 25.99, 80, 'http://example.com/images/kids_jeans.jpg', 'Kids'),
+    (4, 1, 'Gents Formal Shirt', 'Slim fit, long sleeve formal shirt', 29.99, 100, 'http://example.com/images/gents_formal_shirt.jpg', 'Gents'),
+    (5, 2, 'Ladies Blouse', 'Chiffon blouse with ruffle detail', 24.99, 50, 'http://example.com/images/ladies_blouse.jpg', 'Ladies');

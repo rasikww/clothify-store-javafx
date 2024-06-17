@@ -93,6 +93,17 @@ public class EmployeeFormController implements Initializable {
     public TableView<Supplier> tblSuppliers;
     public Tab tabProducts;
     public ComboBox<String> cmbCategoryAddProduct;
+    public JFXButton btnSearchProductRemove;
+    public Label lblProductIdRemove;
+    public Label lblProductName;
+    public Label lblProductDesc;
+    public Label lblProductCategory;
+    public Label lblUnitPrice;
+    public Label lblStockQuantity;
+    public Label lblProductImageLink;
+    public JFXButton btnRefreshRemoveProduct;
+    public JFXTextField txtProductIdRemove;
+    public JFXButton btnRemoveProduct;
     private User loggedInUser;
     private String nextCustomerId;
     private String nextSupplierId;
@@ -518,5 +529,57 @@ public class EmployeeFormController implements Initializable {
     }
 
     public void cmbCategoryAddProductOnAction(ActionEvent actionEvent) {
+    }
+//-----------------------------------------------------------Product Remove section starts here-----------
+    public void btnSearchProductRemoveOnAction(ActionEvent actionEvent) {
+        displayRemoveProductData();
+    }
+
+    private void displayRemoveProductData() {
+        Product product = searchProduct(txtProductIdRemove.getText());
+        if (product == null) {
+            new Alert(Alert.AlertType.ERROR,"No such Product").show();
+        }else{
+            lblProductIdRemove.setText(String.valueOf(product.getProductId()));
+            lblProductName.setText(product.getName());
+            lblProductDesc.setText(product.getDescription());
+            lblProductCategory.setText(product.getCategory());
+            lblUnitPrice.setText(String.valueOf(product.getPrice()));
+            lblStockQuantity.setText(String.valueOf(product.getStockQuantity()));
+            lblProductImageLink.setText(product.getProductImageLink());
+        }
+    }
+
+    private Product searchProduct(String productId) {
+        return searchedProduct = ProductController.getInstance().getProduct(productId);
+    }
+
+    public void btnRefreshRemoveProductOnAction(ActionEvent actionEvent) {
+        refreshProcessProductRemove();
+    }
+
+    private void refreshProcessProductRemove(){
+        txtProductIdRemove.clear();
+        lblProductIdRemove.setText(null);
+        lblProductName.setText(null);
+        lblProductDesc.setText(null);
+        lblProductCategory.setText(null);
+        lblUnitPrice.setText(null);
+        lblStockQuantity.setText(null);
+        lblProductImageLink.setText(null);
+    }
+
+    public void txtProductIdRemoveOnAction(ActionEvent actionEvent) {
+        displayRemoveProductData();
+    }
+
+    public void btnRemoveProductOnAction(ActionEvent actionEvent) {
+        boolean isRemoved = ProductController.getInstance().removeProduct(txtProductIdRemove.getText());
+        if (isRemoved){
+            new Alert(Alert.AlertType.CONFIRMATION,"Removed the Product").show();
+        }else{
+            new Alert(Alert.AlertType.ERROR,"Error Occurred while removing the Product").show();
+        }
+        refreshProcessProductRemove();
     }
 }
