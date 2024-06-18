@@ -4,9 +4,13 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import edu.icet.coursework.controller.customer.CustomerController;
+import edu.icet.coursework.controller.order.OrderController;
 import edu.icet.coursework.controller.product.ProductController;
 import edu.icet.coursework.controller.supplier.SupplierController;
 import edu.icet.coursework.dto.*;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -20,16 +24,21 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Duration;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
 public class EmployeeFormController implements Initializable {
-    public Label lblEmployeeName;
-    public Label lblEmployeeId;
+    
     public Label lblLogout;
     public Label lblCustomerId;
     public JFXTextField txtCustomerNameAdd;
@@ -161,10 +170,23 @@ public class EmployeeFormController implements Initializable {
     public JFXButton btnRemoveAll;
     public JFXButton btnPlaceOrder;
     public Label lblTotal;
+    public Label lblCurrentDate;
+    public Label lblCurrentTime;
+    public Label lblOrderIdPlace;
+    public Label lblCustomerIdPlace;
+    public Label lblCustomerNamePlace2;
+    public Label lblOrderDate;
+    public Label lblOrderTime;
+    public Label lblOrderTotal;
+    public Label lblOrderPlaced;
+    public JFXButton btnRefreshPlace;
+    public Label lblUserName;
+    public Label lblUserId;
     private User loggedInUser;
     private String nextCustomerId;
     private String nextSupplierId;
     private String nextProductId;
+    private String nextOrderId;
     private Customer searchedCustomer;
     private Supplier searchedSupplier;
     private Product searchedProduct;
@@ -176,11 +198,12 @@ public class EmployeeFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
-            lblEmployeeId.setText(String.valueOf(loggedInUser.getUserId()));
-            lblEmployeeName.setText(loggedInUser.getName());
+            lblUserId.setText(String.valueOf(loggedInUser.getUserId()));
+            lblUserName.setText(loggedInUser.getName());
         });
         displayNextCustomerId();
         displayNextSupplierId();
+        loadDateAndTime();
         tblCart.getFocusModel().focusedIndexProperty().addListener((obs, oldIndex, newIndex) -> {
             if (newIndex != null && newIndex.intValue() >= 0) {
                 // Get the selected item at the new focused index
@@ -193,7 +216,22 @@ public class EmployeeFormController implements Initializable {
         });
     }
 
+    private void loadDateAndTime() {
+        Date date = new Date();
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+        lblCurrentDate.setText(f.format(date));
 
+        Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, actionEvent -> {
+            LocalTime time = LocalTime.now();
+            lblCurrentTime.setText(
+                    String.format("%02d : %02d : %02d", time.getHour(), time.getMinute(), time.getSecond())
+            );
+        }),
+                new KeyFrame(Duration.seconds(1))
+        );
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+    }
 
     private void displayNextSupplierId() {
         nextSupplierId = getNextSupplierId();
@@ -780,6 +818,8 @@ public class EmployeeFormController implements Initializable {
         lblCustomerNamePlace.setText(selectedCustomer.getName());
         lblCustomerEmailPlace.setText(selectedCustomer.getEmail());
         lblCustomerPhoneNoPlace.setText(selectedCustomer.getPhoneNumber());
+        lblCustomerIdPlace.setText(String.valueOf(selectedCustomer.getCustomerId()));
+        lblCustomerNamePlace2.setText(selectedCustomer.getName());
         cmbProductPlaceOrder.setDisable(false);
     }
 
@@ -796,10 +836,20 @@ public class EmployeeFormController implements Initializable {
         loadComboBoxCustomer(cmbCustomerPlaceOrder);
         loadComboBoxProduct();
         loadTblCart();
+        displayNextOrderId();
         cmbProductPlaceOrder.setDisable(true);
         btnRemoveSelected.setDisable(true);
         btnRemoveAll.setDisable(true);
         btnPlaceOrder.setDisable(true);
+    }
+
+    private void displayNextOrderId() {
+        nextOrderId = getNextOrderId();
+        lblOrderIdPlace.setText(nextOrderId);
+    }
+
+    private String getNextOrderId() {
+        return OrderController.getInstance().generateNextOrderId();
     }
 
     private void loadTblCart() {
@@ -937,5 +987,63 @@ public class EmployeeFormController implements Initializable {
     }
 
     public void btnPlaceOrderOnAction(ActionEvent actionEvent) {
+        tblCart.setDisable(true);
+        btnRemoveSelected.setDisable(true);
+        btnRemoveAll.setDisable(true);
+        cmbProductPlaceOrder.setDisable(true);
+        txtRequiredQty.setDisable(true);
+        btnAddToCart.setDisable(true);
+        btnPlaceOrder.setDisable(true);
+        lblOrderDate.setText(lblCurrentDate.getText());
+        lblOrderTime.setText(lblCurrentTime.getText());
+        lblOrderTotal.setText(lblTotal.getText());
+        lblOrderPlaced.setVisible(true);
+
+        orderPlacingProcess();
+    }
+
+    private void orderPlacingProcess() {
+        List<OrderDetail> orderDetails = cartTableList;
+        Order order = new Order(
+                Integer.parseInt(getNextOrderId()),
+                selectedCustomer.getCustomerId(),
+                LocalDateTime.now(),
+                Double.parseDouble(lblOrderTotal.getText()),
+                orderDetails,
+                loggedInUser.getUserId()
+        );
+
+        boolean isAdded = OrderController.getInstance().addOrder(order);
+        if(isAdded){
+            refreshProcessPlaceOrder();
+            new Alert(Alert.AlertType.CONFIRMATION,"Order Placed").show();
+        }else{
+            new Alert(Alert.AlertType.ERROR,"Can't Place the Order").show();
+        }
+    }
+
+    public void btnRefreshPlaceOnAction(ActionEvent actionEvent) {
+        refreshProcessPlaceOrder();
+    }
+    private void refreshProcessPlaceOrder(){
+        cartTableList.clear();
+        tblCart.setDisable(false);
+        btnRemoveSelected.setDisable(true);
+        btnRemoveAll.setDisable(true);
+        cmbProductPlaceOrder.getSelectionModel().select(0);
+        cmbProductPlaceOrder.setDisable(true);
+        txtRequiredQty.clear();
+        txtRequiredQty.setDisable(false);
+        btnAddToCart.setDisable(false);
+        btnPlaceOrder.setDisable(true);
+        btnRemoveAll.setDisable(true);
+        btnRemoveSelected.setDisable(true);
+        lblOrderDate.setText(null);
+        lblOrderTime.setText(null);
+        lblOrderTotal.setText(null);
+        lblOrderPlaced.setVisible(false);
+        cmbCustomerPlaceOrder.setDisable(false);
+        cmbCustomerPlaceOrder.getSelectionModel().select(0);
+        displayNextOrderId();
     }
 }

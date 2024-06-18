@@ -21,10 +21,9 @@ public class OrderDetailEntity {
     )
     @SequenceGenerator(
             name = "order_detail_id_generator",
-            initialValue = 1,
             allocationSize = 1
     )
-    private Long orderDetailId;
+    private Integer orderDetailId;
 
     private Integer quantity;
 

@@ -4,7 +4,6 @@ import edu.icet.coursework.bo.customer.CustomerBO;
 import edu.icet.coursework.dao.DAOFactory;
 import edu.icet.coursework.dao.customer.CustomerDAO;
 import edu.icet.coursework.dto.Customer;
-import edu.icet.coursework.dto.Supplier;
 import edu.icet.coursework.entity.CustomerEntity;
 import edu.icet.coursework.util.DAOType;
 import javafx.collections.ObservableList;

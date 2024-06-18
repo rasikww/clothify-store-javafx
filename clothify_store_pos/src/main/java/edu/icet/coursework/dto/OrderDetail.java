@@ -1,7 +1,5 @@
 package edu.icet.coursework.dto;
 
-import edu.icet.coursework.entity.OrderEntity;
-import edu.icet.coursework.entity.ProductEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

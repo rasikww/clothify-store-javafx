@@ -47,12 +47,12 @@
                               <Font name="Bookman Old Style" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblEmployeeName" alignment="TOP_LEFT" layoutX="14.0" layoutY="112.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="205.0" text="User Name Placeholder" textFill="WHITE" wrapText="true">
+                        <Label fx:id="lblUserName" alignment="TOP_LEFT" layoutX="14.0" layoutY="112.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="205.0" text="User Name Placeholder" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="Bookman Old Style" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblEmployeeId" alignment="TOP_LEFT" layoutX="-2.0" layoutY="87.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="28.0" prefWidth="134.0" text="ID Placeholder" textFill="WHITE" wrapText="true">
+                        <Label fx:id="lblUserId" alignment="TOP_LEFT" layoutX="-2.0" layoutY="87.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="28.0" prefWidth="134.0" text="ID Placeholder" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="Bookman Old Style" size="18.0" />
                            </font>
@@ -388,15 +388,30 @@
                                                                <children>
                                                                   <Pane prefHeight="131.0" prefWidth="234.0" style="-fx-border-color: black; -fx-border-radius: 10px;">
                                                                      <children>
-                                                                        <Label layoutX="19.0" layoutY="26.0" text="Date" />
-                                                                        <Label layoutX="19.0" layoutY="54.0" text="Time" />
-                                                                        <Label layoutX="21.0" layoutY="80.0" text="Order ID" />
-                                                                        <Label layoutX="58.0" layoutY="26.0" text=":" />
-                                                                        <Label layoutX="59.0" layoutY="54.0" text=":" />
-                                                                        <Label layoutX="75.0" layoutY="80.0" text=":" />
-                                                                        <Label layoutX="87.0" layoutY="80.0" prefHeight="17.0" prefWidth="123.0" text="OrderID Placeholder" />
-                                                                        <Label layoutX="74.0" layoutY="54.0" text="Time Placeholder" />
-                                                                        <Label layoutX="72.0" layoutY="26.0" text="Date Placeholder" />
+                                                                        <Label layoutX="19.0" layoutY="26.0" text="Date">
+                                                                           <font>
+                                                                              <Font size="18.0" />
+                                                                           </font></Label>
+                                                                        <Label layoutX="19.0" layoutY="77.0" text="Time">
+                                                                           <font>
+                                                                              <Font size="18.0" />
+                                                                           </font></Label>
+                                                                        <Label layoutX="58.0" layoutY="26.0" text=":">
+                                                                           <font>
+                                                                              <Font size="18.0" />
+                                                                           </font></Label>
+                                                                        <Label layoutX="59.0" layoutY="77.0" text=":">
+                                                                           <font>
+                                                                              <Font size="18.0" />
+                                                                           </font></Label>
+                                                                        <Label fx:id="lblCurrentTime" layoutX="74.0" layoutY="77.0" text="Time Placeholder">
+                                                                           <font>
+                                                                              <Font size="18.0" />
+                                                                           </font></Label>
+                                                                        <Label fx:id="lblCurrentDate" layoutX="72.0" layoutY="26.0" text="Date Placeholder">
+                                                                           <font>
+                                                                              <Font size="18.0" />
+                                                                           </font></Label>
                                                                      </children>
                                                                      <StackPane.margin>
                                                                         <Insets right="5.0" />
@@ -418,17 +433,17 @@
                                                                         <Label layoutX="79.0" layoutY="91.0" text=":" />
                                                                         <Label layoutX="58.0" layoutY="144.0" text=":" />
                                                                         <Label layoutX="58.0" layoutY="171.0" text=":" />
-                                                                        <Label layoutX="91.0" layoutY="91.0" text="Customer Name Placeholder" />
-                                                                        <Label layoutX="74.0" layoutY="144.0" text="Date Placeholder" />
+                                                                        <Label fx:id="lblCustomerNamePlace2" alignment="TOP_LEFT" layoutX="91.0" layoutY="91.0" prefHeight="43.0" prefWidth="152.0" wrapText="true" />
+                                                                        <Label fx:id="lblOrderDate" layoutX="74.0" layoutY="144.0" />
                                                                         <Label layoutX="14.0" layoutY="25.0" text="Order ID" />
-                                                                        <Label layoutX="81.0" layoutY="26.0" prefHeight="17.0" prefWidth="123.0" text="OrderID Placeholder" />
-                                                                        <Label layoutX="93.0" layoutY="57.0" text="Customer ID Placeholder" />
-                                                                        <Label layoutX="73.0" layoutY="171.0" text="Time Placeholder" />
+                                                                        <Label fx:id="lblOrderIdPlace" layoutX="81.0" layoutY="26.0" prefHeight="17.0" prefWidth="123.0" />
+                                                                        <Label fx:id="lblCustomerIdPlace" layoutX="93.0" layoutY="57.0" />
+                                                                        <Label fx:id="lblOrderTime" layoutX="73.0" layoutY="171.0" />
                                                                         <Label layoutX="71.0" layoutY="25.0" text=":" />
                                                                         <Label layoutX="14.0" layoutY="198.0" text="Total" />
                                                                         <Label layoutX="58.0" layoutY="198.0" text=":" />
-                                                                        <Label layoutX="73.0" layoutY="198.0" text="Total Placeholder" />
-                                                                        <Label layoutX="83.0" layoutY="233.0" text="Order Placed !" />
+                                                                        <Label fx:id="lblOrderTotal" layoutX="73.0" layoutY="198.0" />
+                                                                        <Label fx:id="lblOrderPlaced" layoutX="83.0" layoutY="233.0" text="Order Placed !" visible="false" />
                                                                      </children>
                                                                      <BorderPane.margin>
                                                                         <Insets right="5.0" />
@@ -438,7 +453,7 @@
                                                                <bottom>
                                                                   <Pane BorderPane.alignment="CENTER">
                                                                      <children>
-                                                                        <JFXButton layoutX="67.0" layoutY="2.0" prefHeight="35.0" prefWidth="111.0" styleClass="btn-refresh" stylesheets="@../assets/css/ai_style.css" text="Refresh" />
+                                                                        <JFXButton fx:id="btnRefreshPlace" layoutX="67.0" layoutY="2.0" onAction="#btnRefreshPlaceOnAction" prefHeight="35.0" prefWidth="111.0" styleClass="btn-refresh" stylesheets="@../assets/css/ai_style.css" text="Refresh" />
                                                                      </children>
                                                                      <BorderPane.margin>
                                                                         <Insets bottom="10.0" top="10.0" />
