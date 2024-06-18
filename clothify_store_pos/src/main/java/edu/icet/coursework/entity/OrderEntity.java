@@ -23,26 +23,15 @@ public class OrderEntity {
     @JoinColumn(name = "customer_id")
     private CustomerEntity customerEntity;
 
-    @Column(name = "user_id")
-    private Integer userId;
-
     @Column(name = "order_datetime")
     private LocalDateTime orderDateTime;
 
     @Column(name = "total_cost")
     private Double totalCost;
 
-    @ManyToMany
-    @JoinTable(
-            name = "orders_products",
-            joinColumns = {
-                    @JoinColumn(name = "order_id")
-            },
-            inverseJoinColumns = {
-                    @JoinColumn(name = "product_id")
-            }
-    )
-    private List<ProductEntity> productEntities;
+    @OneToMany(mappedBy = "orderEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderDetailEntity> orderDetailEntities;
+
 
     @ManyToOne
     @JoinColumn(name = "user_id")

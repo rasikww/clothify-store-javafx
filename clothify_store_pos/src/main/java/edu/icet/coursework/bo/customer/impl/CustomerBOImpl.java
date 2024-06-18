@@ -4,8 +4,10 @@ import edu.icet.coursework.bo.customer.CustomerBO;
 import edu.icet.coursework.dao.DAOFactory;
 import edu.icet.coursework.dao.customer.CustomerDAO;
 import edu.icet.coursework.dto.Customer;
+import edu.icet.coursework.dto.Supplier;
 import edu.icet.coursework.entity.CustomerEntity;
 import edu.icet.coursework.util.DAOType;
+import javafx.collections.ObservableList;
 import org.modelmapper.ModelMapper;
 
 public class CustomerBOImpl implements CustomerBO {
@@ -32,5 +34,10 @@ public class CustomerBOImpl implements CustomerBO {
     @Override
     public boolean updateCustomer(Customer customer) {
         return customerDAO.update(new ModelMapper().map(customer, CustomerEntity.class));
+    }
+
+    @Override
+    public ObservableList<Customer> getAllCustomers() {
+        return customerDAO.getAll();
     }
 }

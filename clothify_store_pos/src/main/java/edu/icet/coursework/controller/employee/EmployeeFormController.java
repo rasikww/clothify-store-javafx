@@ -6,11 +6,12 @@ import com.jfoenix.controls.JFXTextField;
 import edu.icet.coursework.controller.customer.CustomerController;
 import edu.icet.coursework.controller.product.ProductController;
 import edu.icet.coursework.controller.supplier.SupplierController;
-import edu.icet.coursework.dto.Customer;
-import edu.icet.coursework.dto.Product;
-import edu.icet.coursework.dto.Supplier;
-import edu.icet.coursework.dto.User;
+import edu.icet.coursework.dto.*;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,6 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class EmployeeFormController implements Initializable {
     public Label lblEmployeeName;
@@ -131,6 +133,23 @@ public class EmployeeFormController implements Initializable {
     public TableView<Product> tblProducts;
     public JFXButton btnRefreshTblProducts;
     public JFXButton btnRefreshTblSuppliers;
+    public ComboBox<String> cmbCustomerPlaceOrder;
+    public ComboBox<String> cmbProductPlaceOrder;
+    public Tab tabOrders;
+    public Label lblCustomerNamePlace;
+    public Label lblCustomerEmailPlace;
+    public Label lblCustomerPhoneNoPlace;
+    public JFXTextField txtRequiredQty;
+    public Label lblProductDescPlace;
+    public Label lblUnitPricePlace;
+    public Label lblStockQtyPlace;
+    public TableView<OrderDetail> tblCart;
+    public TableColumn<OrderDetail,Integer> colProductIdCart;
+    public TableColumn<OrderDetail, String> colProductNameCart;
+    public TableColumn<OrderDetail, Double> colUnitPriceCart;
+    public TableColumn<OrderDetail, Integer> colQuantityCart;
+    public TableColumn<OrderDetail, Double> colTotalCart;
+    public JFXButton btnAddToCart;
     private User loggedInUser;
     private String nextCustomerId;
     private String nextSupplierId;
@@ -138,6 +157,9 @@ public class EmployeeFormController implements Initializable {
     private Customer searchedCustomer;
     private Supplier searchedSupplier;
     private Product searchedProduct;
+    private Customer selectedCustomer;
+    private Product selectedProduct;
+    private ObservableList<OrderDetail> cartTableList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -726,5 +748,91 @@ public class EmployeeFormController implements Initializable {
 
     public void btnRefreshTblProductsOnAction(ActionEvent actionEvent) {
         loadProductsTable();
+    }
+//----------------------------------------------------------------------Order section------------
+    public void cmbCustomerPlaceOrderOnAction(ActionEvent actionEvent) {
+        int selectedIndex = cmbCustomerPlaceOrder.getSelectionModel().getSelectedIndex();
+        selectedCustomer = CustomerController.getInstance().getAllCustomers().get(selectedIndex);
+        lblCustomerNamePlace.setText(selectedCustomer.getName());
+        lblCustomerEmailPlace.setText(selectedCustomer.getEmail());
+        lblCustomerPhoneNoPlace.setText(selectedCustomer.getPhoneNumber());
+    }
+
+    public void cmbProductPlaceOrderOnAction(ActionEvent actionEvent) {
+        int selectedIndex = cmbProductPlaceOrder.getSelectionModel().getSelectedIndex();
+        selectedProduct = ProductController.getInstance().getAllProducts().get(selectedIndex);
+        lblProductDescPlace.setText(selectedProduct.getDescription());
+        lblUnitPricePlace.setText(String.valueOf(selectedProduct.getPrice()));
+        lblStockQtyPlace.setText(String.valueOf(selectedProduct.getStockQuantity()));
+    }
+
+    public void tabOrdersOnChanged(Event event) {
+        loadComboBoxCustomer(cmbCustomerPlaceOrder);
+        loadComboBoxProduct();
+        loadTblCart();
+    }
+
+    private void loadTblCart() {
+        colProductIdCart.setCellValueFactory(tf -> {
+            ObservableValue<Integer> value = new SimpleIntegerProperty(tf.getValue().getProduct().getProductId()).asObject();
+            return value;
+        });
+        colProductNameCart.setCellValueFactory(tf -> {
+            ObservableValue<String> value = new SimpleStringProperty(tf.getValue().getProduct().getName());
+            return value;
+        });
+        colUnitPriceCart.setCellValueFactory(tf -> {
+            ObservableValue<Double> value = new SimpleDoubleProperty(tf.getValue().getProduct().getPrice()).asObject();
+            return value;
+        });
+        colQuantityCart.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        colTotalCart.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
+    }
+
+    private void loadComboBoxProduct() {
+        ObservableList<Product> allProducts = ProductController.getInstance().getAllProducts();
+        ObservableList<String> dropDownItems = FXCollections.observableArrayList();
+        allProducts.forEach(product -> {
+            dropDownItems.add(String.format("%d - %s",product.getProductId(),product.getName()));
+        });
+        cmbProductPlaceOrder.setItems(dropDownItems);
+    }
+
+    private void loadComboBoxCustomer(ComboBox<String> comboBox) {
+        ObservableList<Customer> allCustomers = CustomerController.getInstance().getAllCustomers();
+        ObservableList<String> dropDownItems = FXCollections.observableArrayList();
+        allCustomers.forEach(customer -> {
+            dropDownItems.add(String.format("%d - %s",customer.getCustomerId(),customer.getName()));
+        });
+        comboBox.setItems(dropDownItems);
+    }
+
+    public void txtRequiredQtyOnAction(ActionEvent actionEvent) {
+        addToCartProcess();
+    }
+
+    private void addToCartProcess() {
+        int selectedIndex = cmbProductPlaceOrder.getSelectionModel().getSelectedIndex();
+        Product product = ProductController.getInstance().getAllProducts().get(selectedIndex);
+        Pattern pattern = Pattern.compile("\\d+");
+        String requiredQty = txtRequiredQty.getText();
+        if (!pattern.matcher(requiredQty).matches()){
+           new Alert(Alert.AlertType.ERROR,"Enter a Number").show();
+        } else if (product.getStockQuantity() < Integer.parseInt(requiredQty) || Integer.parseInt(requiredQty)<=0) {
+            new Alert(Alert.AlertType.ERROR,"Cannot provide that much").show();
+        }else{
+            OrderDetail orderDetail = new OrderDetail(
+                    Integer.parseInt(requiredQty),
+                    null,
+                    selectedProduct,
+                    selectedProduct.getPrice() * Integer.parseInt(requiredQty)
+            );
+            cartTableList.add(orderDetail);
+            tblCart.setItems(cartTableList);
+        }
+    }
+
+    public void btnAddToCartOnAction(ActionEvent actionEvent) {
+        addToCartProcess();
     }
 }

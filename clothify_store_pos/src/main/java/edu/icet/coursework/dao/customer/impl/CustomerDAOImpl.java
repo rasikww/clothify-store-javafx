@@ -1,10 +1,14 @@
 package edu.icet.coursework.dao.customer.impl;
 
 import edu.icet.coursework.dao.customer.CustomerDAO;
+import edu.icet.coursework.dto.Customer;
 import edu.icet.coursework.entity.CustomerEntity;
 import edu.icet.coursework.util.HibernateUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
+import org.modelmapper.ModelMapper;
 
 import java.util.List;
 
@@ -107,6 +111,25 @@ public class CustomerDAOImpl implements CustomerDAO {
             session.close();
         }
         return isUpdated;
+    }
+
+    @Override
+    public ObservableList<Customer> getAll() {
+        ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
+        Session session = HibernateUtil.getInstance().getSession();
+        try {
+            String sql = "SELECT * FROM customer WHERE deleted=0";
+            NativeQuery<CustomerEntity> query = session.createNativeQuery(sql, CustomerEntity.class);
+            List<CustomerEntity> results = query.list();
+            for (CustomerEntity customerEntity : results) {
+                allCustomers.add(new ModelMapper().map(customerEntity, Customer.class));
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            session.close();
+        }
+        return allCustomers;
     }
 
 }

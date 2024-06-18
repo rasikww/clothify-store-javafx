@@ -1,9 +1,6 @@
 package edu.icet.coursework.util;
 
-import edu.icet.coursework.entity.CustomerEntity;
-import edu.icet.coursework.entity.OrderEntity;
-import edu.icet.coursework.entity.ProductEntity;
-import edu.icet.coursework.entity.SupplierEntity;
+import edu.icet.coursework.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -25,6 +22,8 @@ public class HibernateUtil {
                 .addAnnotatedClass(CustomerEntity.class)
                 .addAnnotatedClass(ProductEntity.class)
                 .addAnnotatedClass(OrderEntity.class)
+                .addAnnotatedClass(OrderDetailEntity.class)
+                .addAnnotatedClass(UserEntity.class)
                 .getMetadataBuilder()
                 .applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
                 .build();

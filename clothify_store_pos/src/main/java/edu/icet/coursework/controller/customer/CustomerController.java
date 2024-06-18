@@ -5,9 +5,11 @@ import edu.icet.coursework.bo.customer.CustomerBO;
 import edu.icet.coursework.dao.DAOFactory;
 import edu.icet.coursework.dao.customer.CustomerDAO;
 import edu.icet.coursework.dto.Customer;
+import edu.icet.coursework.dto.Supplier;
 import edu.icet.coursework.entity.CustomerEntity;
 import edu.icet.coursework.util.BOType;
 import edu.icet.coursework.util.DAOType;
+import javafx.collections.ObservableList;
 
 public class CustomerController {
     private static CustomerController instance;
@@ -43,5 +45,9 @@ public class CustomerController {
 
     public boolean updateCustomer(Customer customer) {
         return customerBO.updateCustomer(customer);
+    }
+
+    public ObservableList<Customer> getAllCustomers() {
+        return customerBO.getAllCustomers();
     }
 }

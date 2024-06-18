@@ -36,6 +36,6 @@ public class ProductEntity {
 
     private String category;
 
-    @ManyToMany(mappedBy = "productEntities")
-    private List<OrderEntity> orderEntities;
+    @OneToMany(mappedBy = "productEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderDetailEntity> orderDetailEntities;
 }
