@@ -19,7 +19,10 @@ import javafx.event.Event;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
@@ -150,6 +153,14 @@ public class EmployeeFormController implements Initializable {
     public TableColumn<OrderDetail, Integer> colQuantityCart;
     public TableColumn<OrderDetail, Double> colTotalCart;
     public JFXButton btnAddToCart;
+    public Label lblDescSelected;
+    public Label lblUnitPriceSelected;
+    public Label lblQtySelected;
+    public Label lblRequiredQtySelected;
+    public JFXButton btnRemoveSelected;
+    public JFXButton btnRemoveAll;
+    public JFXButton btnPlaceOrder;
+    public Label lblTotal;
     private User loggedInUser;
     private String nextCustomerId;
     private String nextSupplierId;
@@ -160,6 +171,7 @@ public class EmployeeFormController implements Initializable {
     private Customer selectedCustomer;
     private Product selectedProduct;
     private ObservableList<OrderDetail> cartTableList = FXCollections.observableArrayList();
+    private OrderDetail selectedOrderDetail;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -169,7 +181,19 @@ public class EmployeeFormController implements Initializable {
         });
         displayNextCustomerId();
         displayNextSupplierId();
+        tblCart.getFocusModel().focusedIndexProperty().addListener((obs, oldIndex, newIndex) -> {
+            if (newIndex != null && newIndex.intValue() >= 0) {
+                // Get the selected item at the new focused index
+                selectedOrderDetail = tblCart.getItems().get(newIndex.intValue());
+                if (selectedOrderDetail != null) {
+                    showSelectedProductDetail(selectedOrderDetail);
+                    btnRemoveSelected.setDisable(false);
+                }
+            }
+        });
     }
+
+
 
     private void displayNextSupplierId() {
         nextSupplierId = getNextSupplierId();
@@ -756,6 +780,7 @@ public class EmployeeFormController implements Initializable {
         lblCustomerNamePlace.setText(selectedCustomer.getName());
         lblCustomerEmailPlace.setText(selectedCustomer.getEmail());
         lblCustomerPhoneNoPlace.setText(selectedCustomer.getPhoneNumber());
+        cmbProductPlaceOrder.setDisable(false);
     }
 
     public void cmbProductPlaceOrderOnAction(ActionEvent actionEvent) {
@@ -764,12 +789,17 @@ public class EmployeeFormController implements Initializable {
         lblProductDescPlace.setText(selectedProduct.getDescription());
         lblUnitPricePlace.setText(String.valueOf(selectedProduct.getPrice()));
         lblStockQtyPlace.setText(String.valueOf(selectedProduct.getStockQuantity()));
+        cmbCustomerPlaceOrder.setDisable(true);
     }
 
     public void tabOrdersOnChanged(Event event) {
         loadComboBoxCustomer(cmbCustomerPlaceOrder);
         loadComboBoxProduct();
         loadTblCart();
+        cmbProductPlaceOrder.setDisable(true);
+        btnRemoveSelected.setDisable(true);
+        btnRemoveAll.setDisable(true);
+        btnPlaceOrder.setDisable(true);
     }
 
     private void loadTblCart() {
@@ -829,10 +859,83 @@ public class EmployeeFormController implements Initializable {
             );
             cartTableList.add(orderDetail);
             tblCart.setItems(cartTableList);
+            lblTotal.setText(String.valueOf(calculateTotal()));
+            btnRemoveAll.setDisable(false);
+            btnPlaceOrder.setDisable(false);
         }
     }
 
     public void btnAddToCartOnAction(ActionEvent actionEvent) {
         addToCartProcess();
+    }
+
+    private void showSelectedProductDetail(OrderDetail orderDetail) {
+        if (orderDetail!= null) {
+            lblDescSelected.setText(orderDetail.getProduct().getDescription());
+            lblUnitPriceSelected.setText(String.valueOf(orderDetail.getProduct().getPrice()));
+            lblQtySelected.setText(String.valueOf(orderDetail.getProduct().getStockQuantity()));
+            lblRequiredQtySelected.setText(String.valueOf(orderDetail.getQuantity()));
+            btnRemoveSelected.setDisable(false);
+        }
+    }
+
+    public void btnRemoveSelectedOnAction(ActionEvent actionEvent) {
+        boolean isRemoved = cartTableList.remove(selectedOrderDetail);
+        if (isRemoved) {
+            new Alert(Alert.AlertType.CONFIRMATION,
+                    "Product: "+
+                            selectedOrderDetail.getProduct().getName()+
+                            ", Removed from cart").show();
+        }
+        else {
+            new Alert(Alert.AlertType.ERROR,"Cannot remove the product").show();
+        }
+        clearSelectedProductDetail();
+        btnRemoveSelected.setDisable(true);
+        if (cartTableList.isEmpty()){
+            lblTotal.setText(null);
+            btnRemoveAll.setDisable(true);
+            btnPlaceOrder.setDisable(true);
+        }else {
+            lblTotal.setText(String.valueOf(calculateTotal()));
+        }
+    }
+
+    private void clearSelectedProductDetail() {
+        lblDescSelected.setText(null);
+        lblUnitPriceSelected.setText(null);
+        lblQtySelected.setText(null);
+        lblRequiredQtySelected.setText(null);
+        btnRemoveSelected.setDisable(false);
+    }
+
+    private Double calculateTotal() {
+        Double total = 0.0;
+        for (OrderDetail orderDetail : cartTableList) {
+            total += orderDetail.getTotalPrice();
+        }
+        return new BigDecimal(total)
+                .setScale(2, RoundingMode.HALF_UP)
+                .doubleValue();
+    }
+
+    public void tblCartOnMouseClick(MouseEvent mouseEvent) {
+        if (selectedOrderDetail!= null) {
+            selectedOrderDetail = tblCart.getSelectionModel().getSelectedItem();
+            showSelectedProductDetail(selectedOrderDetail);
+        }
+    }
+
+    public void btnRemoveAllOnAction(ActionEvent actionEvent) {
+        cartTableList.clear();
+        new Alert(Alert.AlertType.CONFIRMATION, "Removed all products from the cart").show();
+        lblTotal.setText(null);
+        clearSelectedProductDetail();
+        btnRemoveAll.setDisable(true);
+        btnRemoveSelected.setDisable(true);
+        btnPlaceOrder.setDisable(true);
+    }
+
+    public void btnPlaceOrderOnAction(ActionEvent actionEvent) {
     }
 }

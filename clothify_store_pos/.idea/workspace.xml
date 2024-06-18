@@ -4,20 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="255015c2-beb4-44bd-8c6a-111be5e78d70" name="Changes" comment="fixed relational mappings of _order, user, product, supplier and customer entity classes for Hibernate logic.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dto/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dto/OrderDetail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/OrderDetailEntity.java" afterDir="false" />
+    <list default="true" id="255015c2-beb4-44bd-8c6a-111be5e78d70" name="Changes" comment="add to cart process and the cart viewing process is completed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/customer/CustomerBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/customer/CustomerBO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/customer/impl/CustomerBOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/customer/impl/CustomerBOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/customer/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/customer/CustomerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/employee/EmployeeFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/employee/EmployeeFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/customer/CustomerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/customer/CustomerDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/customer/impl/CustomerDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/customer/impl/CustomerDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/OrderEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/OrderEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/ProductEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/ProductEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dto/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dto/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/UserEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/util/HibernateUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/util/HibernateUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/employee_interface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/employee_interface.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -304,7 +297,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718666867081</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="add to cart process and the cart viewing process is completed">
+      <option name="closed" value="true" />
+      <created>1718719531496</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1718719531496</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -337,7 +338,8 @@
     <MESSAGE value="update product interface all logic are completed." />
     <MESSAGE value="completed displaying all the products in the products table." />
     <MESSAGE value="fixed relational mappings of _order, user, product, supplier and customer entity classes for Hibernate logic." />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed relational mappings of _order, user, product, supplier and customer entity classes for Hibernate logic." />
+    <MESSAGE value="add to cart process and the cart viewing process is completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="add to cart process and the cart viewing process is completed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

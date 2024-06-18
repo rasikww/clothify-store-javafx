@@ -472,7 +472,7 @@
                                                             <Insets />
                                                          </opaqueInsets>
                                                          <center>
-                                                            <TableView fx:id="tblCart" prefHeight="216.0" prefWidth="492.0" BorderPane.alignment="CENTER">
+                                                            <TableView fx:id="tblCart" onMouseClicked="#tblCartOnMouseClick" prefHeight="216.0" prefWidth="492.0" BorderPane.alignment="CENTER">
                                                               <columns>
                                                                 <TableColumn fx:id="colProductIdCart" editable="false" prefWidth="75.0" text="Product ID" />
                                                                 <TableColumn fx:id="colProductNameCart" editable="false" prefWidth="75.0" text="Name" />
@@ -507,10 +507,10 @@
                                                                                     <Label layoutX="91.0" layoutY="71.0" text=":" />
                                                                                     <Label layoutX="90.0" layoutY="106.0" text=":" />
                                                                                     <Label layoutX="91.0" layoutY="140.0" text=":" />
-                                                                                    <Label alignment="TOP_LEFT" layoutX="99.0" layoutY="36.0" prefHeight="36.0" prefWidth="194.0" text="Name Placeholder" wrapText="true" />
-                                                                                    <Label layoutX="99.0" layoutY="71.0" prefHeight="17.0" prefWidth="165.0" text="Unit Price Placeholder" />
-                                                                                    <Label layoutX="99.0" layoutY="106.0" prefHeight="17.0" prefWidth="137.0" text="Qty in Stock Placeholder" />
-                                                                                    <Label layoutX="99.0" layoutY="140.0" prefHeight="17.0" prefWidth="149.0" text="Required Qty Placeholder" />
+                                                                                    <Label fx:id="lblDescSelected" alignment="TOP_LEFT" layoutX="99.0" layoutY="36.0" prefHeight="36.0" prefWidth="194.0" wrapText="true" />
+                                                                                    <Label fx:id="lblUnitPriceSelected" layoutX="99.0" layoutY="71.0" prefHeight="17.0" prefWidth="165.0" />
+                                                                                    <Label fx:id="lblQtySelected" layoutX="99.0" layoutY="106.0" prefHeight="17.0" prefWidth="137.0" />
+                                                                                    <Label fx:id="lblRequiredQtySelected" layoutX="99.0" layoutY="140.0" prefHeight="17.0" prefWidth="149.0" />
                                                                                  </children>
                                                                                  <StackPane.margin>
                                                                                     <Insets />
@@ -529,17 +529,17 @@
                                                                      <center>
                                                                         <VBox alignment="CENTER" maxWidth="100.0" prefHeight="192.0" prefWidth="100.0">
                                                                            <children>
-                                                                              <JFXButton styleClass="btn-remove" stylesheets="@../assets/css/ai_style.css" text="Remove">
+                                                                              <JFXButton fx:id="btnRemoveSelected" onAction="#btnRemoveSelectedOnAction" styleClass="btn-remove" stylesheets="@../assets/css/ai_style.css" text="Remove">
                                                                                  <VBox.margin>
                                                                                     <Insets bottom="30.0" />
                                                                                  </VBox.margin>
                                                                               </JFXButton>
-                                                                              <JFXButton layoutX="84.0" layoutY="75.0" styleClass="btn-remove" stylesheets="@../assets/css/ai_style.css" text="Remove All">
+                                                                              <JFXButton fx:id="btnRemoveAll" layoutX="84.0" layoutY="75.0" onAction="#btnRemoveAllOnAction" styleClass="btn-remove" stylesheets="@../assets/css/ai_style.css" text="Remove All">
                                                                                  <VBox.margin>
                                                                                     <Insets bottom="30.0" />
                                                                                  </VBox.margin>
                                                                               </JFXButton>
-                                                                              <JFXButton layoutX="84.0" layoutY="118.0" styleClass="btn-add" stylesheets="@../assets/css/ai_style.css" text="Place Order">
+                                                                              <JFXButton fx:id="btnPlaceOrder" layoutX="84.0" layoutY="118.0" onAction="#btnPlaceOrderOnAction" styleClass="btn-add" stylesheets="@../assets/css/ai_style.css" text="Place Order">
                                                                                  <VBox.margin>
                                                                                     <Insets bottom="30.0" />
                                                                                  </VBox.margin>
@@ -554,7 +554,7 @@
                                                                         <HBox alignment="CENTER" prefHeight="23.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                                                            <children>
                                                                               <Label alignment="CENTER" contentDisplay="TOP" text="Total : " />
-                                                                              <Label alignment="CENTER" contentDisplay="TOP" layoutX="92.0" layoutY="12.0" text="Total Placholder" />
+                                                                              <Label fx:id="lblTotal" alignment="CENTER" contentDisplay="TOP" layoutX="92.0" layoutY="12.0" text="Total Placholder" />
                                                                            </children>
                                                                         </HBox>
                                                                      </top>
