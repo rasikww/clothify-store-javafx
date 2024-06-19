@@ -182,6 +182,16 @@ public class EmployeeFormController implements Initializable {
     public JFXButton btnRefreshPlace;
     public Label lblUserName;
     public Label lblUserId;
+    public Label lblOrderIdRemove;
+    public Label lblCustomerIdRemoveOrder;
+    public Label lblCustomerNameRemoveOrder;
+    public Label lblDateRemoveOrder;
+    public Label lblTimeRemoveOrder;
+    public JFXButton btnRemoveOrder;
+    public JFXButton btnRefreshRemoveOrder;
+    public JFXTextField txtOrderIdRemove;
+    public JFXButton btnSearchOrderRemove;
+    public Label lblTotalRemoveOrder;
     private User loggedInUser;
     private String nextCustomerId;
     private String nextSupplierId;
@@ -190,6 +200,7 @@ public class EmployeeFormController implements Initializable {
     private Customer searchedCustomer;
     private Supplier searchedSupplier;
     private Product searchedProduct;
+    private Order searchedOrder;
     private Customer selectedCustomer;
     private Product selectedProduct;
     private ObservableList<OrderDetail> cartTableList = FXCollections.observableArrayList();
@@ -1015,7 +1026,7 @@ public class EmployeeFormController implements Initializable {
 
         boolean isAdded = OrderController.getInstance().addOrder(order);
         if(isAdded){
-            refreshProcessPlaceOrder();
+            afterPlacingOrder();
             new Alert(Alert.AlertType.CONFIRMATION,"Order Placed").show();
         }else{
             new Alert(Alert.AlertType.ERROR,"Can't Place the Order").show();
@@ -1024,6 +1035,19 @@ public class EmployeeFormController implements Initializable {
 
     public void btnRefreshPlaceOnAction(ActionEvent actionEvent) {
         refreshProcessPlaceOrder();
+    }
+    private void afterPlacingOrder(){
+        cartTableList.clear();
+        tblCart.setDisable(false);
+        btnRemoveSelected.setDisable(true);
+        btnRemoveAll.setDisable(true);
+        cmbProductPlaceOrder.setDisable(true);
+        txtRequiredQty.setDisable(true);
+        btnAddToCart.setDisable(true);
+        btnPlaceOrder.setDisable(true);
+        btnRemoveAll.setDisable(true);
+        btnRemoveSelected.setDisable(true);
+        cmbCustomerPlaceOrder.setDisable(true);
     }
     private void refreshProcessPlaceOrder(){
         cartTableList.clear();
@@ -1045,5 +1069,57 @@ public class EmployeeFormController implements Initializable {
         cmbCustomerPlaceOrder.setDisable(false);
         cmbCustomerPlaceOrder.getSelectionModel().select(0);
         displayNextOrderId();
+    }
+
+    public void btnRemoveOrderOnAction(ActionEvent actionEvent) {
+        boolean isRemoved = OrderController.getInstance().removeOrder(txtOrderIdRemove.getText());
+        if (isRemoved){
+            new Alert(Alert.AlertType.CONFIRMATION,"Removed the Order").show();
+        }else{
+            new Alert(Alert.AlertType.ERROR,"Error Occurred while removing the Order").show();
+        }
+        refreshProcessOrderRemove();
+    }
+
+    private void refreshProcessOrderRemove() {
+        txtOrderIdRemove.clear();
+        lblOrderIdRemove.setText(null);
+        lblCustomerIdRemoveOrder.setText(null);
+        lblCustomerNameRemoveOrder.setText(null);
+        lblDateRemoveOrder.setText(null);
+        lblTimeRemoveOrder.setText(null);
+        lblTotalRemoveOrder.setText(null);
+    }
+
+    public void btnRefreshRemoveOrderOnAction(ActionEvent actionEvent) {
+        refreshProcessOrderRemove();
+    }
+
+    public void txtOrderIdRemoveOnAction(ActionEvent actionEvent) {
+        displayRemoveOrderData();
+    }
+
+    public void btnSearchOrderRemoveOnAction(ActionEvent actionEvent) {
+        displayRemoveOrderData();
+    }
+
+    private void displayRemoveOrderData() {
+        Order order = searchOrder(txtOrderIdRemove.getText());
+        if (order == null) {
+            new Alert(Alert.AlertType.ERROR,"No such Order").show();
+        }else{
+            lblOrderIdRemove.setText(String.valueOf(order.getOrderId()));
+            lblCustomerIdRemoveOrder.setText(String.valueOf(order.getCustomerId()));
+            Customer customer = searchCustomer(String.valueOf(order.getCustomerId()));
+            lblCustomerNameRemoveOrder.setText(customer.getName());
+            LocalDateTime orderDateTime = order.getOrderDateTime();
+            lblDateRemoveOrder.setText(String.valueOf(orderDateTime.toLocalDate()));
+            lblTimeRemoveOrder.setText(String.valueOf(orderDateTime.toLocalTime()).split("\\.")[0]);
+            lblTotalRemoveOrder.setText(String.valueOf(order.getTotalCost()));
+        }
+    }
+
+    private Order searchOrder(String orderId) {
+        return searchedOrder = OrderController.getInstance().getOrder(orderId);
     }
 }

@@ -434,15 +434,15 @@
                                                                         <Label layoutX="58.0" layoutY="144.0" text=":" />
                                                                         <Label layoutX="58.0" layoutY="171.0" text=":" />
                                                                         <Label fx:id="lblCustomerNamePlace2" alignment="TOP_LEFT" layoutX="91.0" layoutY="91.0" prefHeight="43.0" prefWidth="152.0" wrapText="true" />
-                                                                        <Label fx:id="lblOrderDate" layoutX="74.0" layoutY="144.0" />
+                                                                        <Label fx:id="lblOrderDate" layoutX="74.0" layoutY="144.0" prefHeight="18.0" prefWidth="134.0" />
                                                                         <Label layoutX="14.0" layoutY="25.0" text="Order ID" />
                                                                         <Label fx:id="lblOrderIdPlace" layoutX="81.0" layoutY="26.0" prefHeight="17.0" prefWidth="123.0" />
-                                                                        <Label fx:id="lblCustomerIdPlace" layoutX="93.0" layoutY="57.0" />
-                                                                        <Label fx:id="lblOrderTime" layoutX="73.0" layoutY="171.0" />
+                                                                        <Label fx:id="lblCustomerIdPlace" layoutX="93.0" layoutY="57.0" prefHeight="18.0" prefWidth="110.0" />
+                                                                        <Label fx:id="lblOrderTime" layoutX="73.0" layoutY="171.0" prefHeight="18.0" prefWidth="140.0" />
                                                                         <Label layoutX="71.0" layoutY="25.0" text=":" />
                                                                         <Label layoutX="14.0" layoutY="198.0" text="Total" />
                                                                         <Label layoutX="58.0" layoutY="198.0" text=":" />
-                                                                        <Label fx:id="lblOrderTotal" layoutX="73.0" layoutY="198.0" />
+                                                                        <Label fx:id="lblOrderTotal" layoutX="73.0" layoutY="198.0" prefHeight="18.0" prefWidth="122.0" />
                                                                         <Label fx:id="lblOrderPlaced" layoutX="83.0" layoutY="233.0" text="Order Placed !" visible="false" />
                                                                      </children>
                                                                      <BorderPane.margin>
@@ -666,14 +666,14 @@
                                                       <Font size="20.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXButton layoutX="429.0" layoutY="414.0" prefHeight="35.0" prefWidth="96.0" styleClass="btn-remove" stylesheets="@../assets/css/ai_style.css" text="Remove" />
-                                                <JFXButton layoutX="786.0" layoutY="414.0" prefHeight="35.0" prefWidth="96.0" styleClass="btn-refresh" stylesheets="@../assets/css/ai_style.css" text="Refresh" />
-                                                <JFXTextField layoutX="449.0" layoutY="19.0" prefHeight="26.0" prefWidth="312.0" promptText="Enter Order ID">
+                                                <JFXButton fx:id="btnRemoveOrder" layoutX="429.0" layoutY="414.0" onAction="#btnRemoveOrderOnAction" prefHeight="35.0" prefWidth="96.0" styleClass="btn-remove" stylesheets="@../assets/css/ai_style.css" text="Remove" />
+                                                <JFXButton fx:id="btnRefreshRemoveOrder" layoutX="786.0" layoutY="414.0" onAction="#btnRefreshRemoveOrderOnAction" prefHeight="35.0" prefWidth="96.0" styleClass="btn-refresh" stylesheets="@../assets/css/ai_style.css" text="Refresh" />
+                                                <JFXTextField fx:id="txtOrderIdRemove" layoutX="449.0" layoutY="19.0" onAction="#txtOrderIdRemoveOnAction" prefHeight="26.0" prefWidth="312.0" promptText="Enter Order ID">
                                                    <font>
                                                       <Font size="15.0" />
                                                    </font>
                                                 </JFXTextField>
-                                                <JFXButton layoutX="786.0" layoutY="14.0" prefHeight="35.0" prefWidth="96.0" styleClass="btn-add" stylesheets="@../assets/css/ai_style.css" text="Search" />
+                                                <JFXButton fx:id="btnSearchOrderRemove" layoutX="786.0" layoutY="14.0" onAction="#btnSearchOrderRemoveOnAction" prefHeight="35.0" prefWidth="96.0" styleClass="btn-add" stylesheets="@../assets/css/ai_style.css" text="Search" />
                                                 <Pane layoutX="234.0" layoutY="84.0" prefHeight="315.0" prefWidth="486.0" style="-fx-border-color: black; -fx-border-radius: 10px;">
                                                    <children>
                                                       <Label layoutX="15.0" layoutY="32.0" text="Order ID">
@@ -681,7 +681,7 @@
                                                             <Font size="20.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label layoutX="16.0" layoutY="76.0" text="Customer ID">
+                                                      <Label layoutX="14.0" layoutY="76.0" text="Customer ID">
                                                          <font>
                                                             <Font size="20.0" />
                                                          </font>
@@ -736,32 +736,32 @@
                                                             <Font size="20.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label layoutX="185.0" layoutY="31.0" prefHeight="30.0" prefWidth="240.0" text="Order ID Placeholder">
+                                                      <Label fx:id="lblOrderIdRemove" layoutX="185.0" layoutY="33.0" prefHeight="30.0" prefWidth="240.0">
                                                          <font>
                                                             <Font size="20.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label layoutX="185.0" layoutY="76.0" prefHeight="30.0" prefWidth="251.0" text="Customer ID Placeholder">
+                                                      <Label fx:id="lblCustomerIdRemoveOrder" layoutX="185.0" layoutY="76.0" prefHeight="30.0" prefWidth="251.0">
                                                          <font>
                                                             <Font size="20.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label layoutX="185.0" layoutY="121.0" prefHeight="30.0" prefWidth="291.0" text="Customer Name Placeholder">
+                                                      <Label fx:id="lblCustomerNameRemoveOrder" layoutX="185.0" layoutY="121.0" prefHeight="30.0" prefWidth="291.0">
                                                          <font>
                                                             <Font size="20.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label layoutX="185.0" layoutY="164.0" prefHeight="30.0" prefWidth="174.0" text="Date Placeholder">
+                                                      <Label fx:id="lblDateRemoveOrder" layoutX="185.0" layoutY="164.0" prefHeight="30.0" prefWidth="174.0">
                                                          <font>
                                                             <Font size="20.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label layoutX="185.0" layoutY="212.0" text="Time Placeholder">
+                                                      <Label fx:id="lblTimeRemoveOrder" layoutX="185.0" layoutY="212.0">
                                                          <font>
                                                             <Font size="20.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label layoutX="185.0" layoutY="254.0" prefHeight="30.0" prefWidth="185.0" text="Total Placeholder">
+                                                      <Label fx:id="lblTotalRemoveOrder" layoutX="185.0" layoutY="254.0" prefHeight="30.0" prefWidth="185.0">
                                                          <font>
                                                             <Font size="20.0" />
                                                          </font>

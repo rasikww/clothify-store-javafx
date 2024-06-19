@@ -48,7 +48,15 @@ public class OrderDAOImpl implements OrderDAO {
                     .collect(Collectors.toList());
             orderEntity.setOrderDetailEntities(orderDetailEntities);
 
+            for (OrderDetailEntity orderDetailEntity : orderEntity.getOrderDetailEntities()) {
+                Integer requiredQty = orderDetailEntity.getQuantity();
+                ProductEntity productEntity = orderDetailEntity.getProductEntity();
+                Integer stockQty = productEntity.getStockQuantity();
+                productEntity.setStockQuantity(stockQty-requiredQty);
+            }
+
             session.persist(orderEntity);
+
             session.getTransaction().commit();
             isSaved = true;
         } catch (Exception e) {

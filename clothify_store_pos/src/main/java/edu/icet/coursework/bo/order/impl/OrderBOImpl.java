@@ -4,6 +4,7 @@ import edu.icet.coursework.bo.order.OrderBO;
 import edu.icet.coursework.dao.DAOFactory;
 import edu.icet.coursework.dao.order.OrderDAO;
 import edu.icet.coursework.dto.Order;
+import edu.icet.coursework.entity.OrderEntity;
 import edu.icet.coursework.util.DAOType;
 import javafx.collections.ObservableList;
 import org.modelmapper.ModelMapper;
@@ -23,7 +24,8 @@ public class OrderBOImpl implements OrderBO {
     @Override
     public Order getOrder(Integer orderId) {
         try {
-            return new ModelMapper().map(orderDAO.getById(orderId), Order.class);
+            OrderEntity orderEntity = orderDAO.getById(orderId);
+            return new ModelMapper().map(orderEntity, Order.class);
         } catch (Exception e) {
             return null;
         }
