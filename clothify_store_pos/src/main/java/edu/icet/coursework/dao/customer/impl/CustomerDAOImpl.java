@@ -15,12 +15,16 @@ import java.util.List;
 public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
-    public boolean save(CustomerEntity entity) {
+    public boolean save(Customer customer) {
         boolean isSaved = false;
         Session session = HibernateUtil.getInstance().getSession();
         try {
             session.getTransaction().begin();
-            session.persist(entity);
+
+            CustomerEntity customerEntity =
+                    new ModelMapper().map(customer, CustomerEntity.class);
+
+            session.persist(customerEntity);
             session.getTransaction().commit();
             isSaved = true;
         } catch (Exception e) {
@@ -91,15 +95,15 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public boolean update(CustomerEntity newCustomerEntity) {
+    public boolean update(Customer newCustomer) {
         boolean isUpdated = false;
         Session session = HibernateUtil.getInstance().getSession();
         try {
             session.getTransaction().begin();
-            CustomerEntity customerEntity = session.get(CustomerEntity.class, newCustomerEntity.getCustomerId());
-            customerEntity.setName(newCustomerEntity.getName());
-            customerEntity.setEmail(newCustomerEntity.getEmail());
-            customerEntity.setPhoneNumber(newCustomerEntity.getPhoneNumber());
+            CustomerEntity customerEntity = session.get(CustomerEntity.class, newCustomer.getCustomerId());
+            customerEntity.setName(newCustomer.getName());
+            customerEntity.setEmail(newCustomer.getEmail());
+            customerEntity.setPhoneNumber(newCustomer.getPhoneNumber());
             session.flush();
             session.getTransaction().commit();
             isUpdated = true;

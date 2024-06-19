@@ -14,20 +14,21 @@ import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
     @Override
-    public boolean save(UserEntity entity) {
+    public boolean save(User user) {
         boolean isSaved = false;
         Session session = HibernateUtil.getInstance().getSession();
         try {
             session.getTransaction().begin();
-            session.persist(entity);
+
+            UserEntity userEntity = new ModelMapper().map(user, UserEntity.class);
+
+            session.persist(userEntity);
             session.getTransaction().commit();
             isSaved = true;
-            System.out.println("in try: "+ entity);
         } catch (Exception e) {
             if (session.getTransaction().isActive()){
                 session.getTransaction().rollback();
             }
-            System.out.println("in catch");
 
         }finally {
             session.close();
@@ -93,26 +94,28 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public boolean update(UserEntity newUserEntity) {
+    public boolean update(User newUser) {
         boolean isUpdated = false;
-//        Session session = HibernateUtil.getInstance().getSession();
-//        try {
-//            session.getTransaction().begin();
-//            UserEntity userEntity = session.get(UserEntity.class, newUserEntity.getUserId());
-//            userEntity.setName(newUserEntity.getName());
-//            userEntity.setCompany(newUserEntity.getCompany());
-//            userEntity.setEmail(newUserEntity.getEmail());
-//            userEntity.setPhoneNumber(newUserEntity.getPhoneNumber());
-//            session.flush();
-//            session.getTransaction().commit();
-//            isUpdated = true;
-//        } catch (Exception e) {
-//            if (session.getTransaction().isActive()){
-//                session.getTransaction().rollback();
-//            }
-//        } finally {
-//            session.close();
-//        }
+        Session session = HibernateUtil.getInstance().getSession();
+        try {
+            session.getTransaction().begin();
+
+            UserEntity userEntity = session.get(UserEntity.class, newUser.getUserId());
+            userEntity.setName(newUser.getName());
+            userEntity.setEmail(newUser.getEmail());
+            userEntity.setPhoneNumber(newUser.getPhoneNumber());
+            userEntity.setIsAdmin(newUser.getIsAdmin());
+
+            session.flush();
+            session.getTransaction().commit();
+            isUpdated = true;
+        } catch (Exception e) {
+            if (session.getTransaction().isActive()){
+                session.getTransaction().rollback();
+            }
+        } finally {
+            session.close();
+        }
         return isUpdated;
     }
 

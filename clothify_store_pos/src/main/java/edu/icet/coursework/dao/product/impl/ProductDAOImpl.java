@@ -3,6 +3,7 @@ package edu.icet.coursework.dao.product.impl;
 import edu.icet.coursework.dao.product.ProductDAO;
 import edu.icet.coursework.dto.Product;
 import edu.icet.coursework.entity.ProductEntity;
+import edu.icet.coursework.entity.SupplierEntity;
 import edu.icet.coursework.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,20 +15,27 @@ import java.util.List;
 
 public class ProductDAOImpl implements ProductDAO {
     @Override
-    public boolean save(ProductEntity entity) {
+    public boolean save(Product product) {
         boolean isSaved = false;
         Session session = HibernateUtil.getInstance().getSession();
         try {
             session.getTransaction().begin();
-            session.persist(entity);
+
+            ProductEntity productEntity =
+                    new ModelMapper().map(product, ProductEntity.class);
+            SupplierEntity supplierEntity =
+                    session.get(SupplierEntity.class, product.getSupplierId());
+            productEntity.setSupplierEntity(supplierEntity);
+
+            supplierEntity.addProductEntity(productEntity);
+
+            session.persist(productEntity);
             session.getTransaction().commit();
             isSaved = true;
-            System.out.println("in try: "+ entity);
         } catch (Exception e) {
             if (session.getTransaction().isActive()){
                 session.getTransaction().rollback();
             }
-            System.out.println("in catch");
 
         }finally {
             session.close();
@@ -93,19 +101,19 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public boolean update(ProductEntity newProductEntity) {
+    public boolean update(Product newProduct) {
         boolean isUpdated = false;
         Session session = HibernateUtil.getInstance().getSession();
         try {
             session.getTransaction().begin();
-            ProductEntity productEntity = session.get(ProductEntity.class, newProductEntity.getProductId());
-            productEntity.setSupplierEntity(newProductEntity.getSupplierEntity());
-            productEntity.setName(newProductEntity.getName());
-            productEntity.setDescription(newProductEntity.getDescription());
-            productEntity.setPrice(newProductEntity.getPrice());
-            productEntity.setStockQuantity(newProductEntity.getStockQuantity());
-            productEntity.setProductImageLink(newProductEntity.getProductImageLink());
-            productEntity.setCategory(newProductEntity.getCategory());
+            ProductEntity productEntity = session.get(ProductEntity.class, newProduct.getProductId());
+            productEntity.setSupplierEntity(session.get(SupplierEntity.class,newProduct.getSupplierId()));
+            productEntity.setName(newProduct.getName());
+            productEntity.setDescription(newProduct.getDescription());
+            productEntity.setPrice(newProduct.getPrice());
+            productEntity.setStockQuantity(newProduct.getStockQuantity());
+            productEntity.setProductImageLink(newProduct.getProductImageLink());
+            productEntity.setCategory(newProduct.getCategory());
             session.flush();
             session.getTransaction().commit();
             isUpdated = true;

@@ -30,4 +30,14 @@ public class CustomerEntity {
 
     @OneToMany(mappedBy = "customerEntity")
     private List<OrderEntity> orderEntities;
+
+
+    public void addOrderEntity(OrderEntity entity) {
+        orderEntities.add(entity);
+        entity.setCustomerEntity(this);
+    }
+    public void removeOrderEntity(OrderEntity entity) {
+        orderEntities.remove(entity);
+        entity.setCustomerEntity(null);
+    }
 }

@@ -5,6 +5,6 @@ import edu.icet.coursework.dto.Supplier;
 import edu.icet.coursework.entity.SupplierEntity;
 import javafx.collections.ObservableList;
 
-public interface SupplierDAO extends CrudDAO<SupplierEntity> {
+public interface SupplierDAO extends CrudDAO<SupplierEntity,Supplier> {
     ObservableList<Supplier> getAll();
 }

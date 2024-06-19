@@ -4,7 +4,7 @@ import edu.icet.coursework.controller.product.ProductController;
 import edu.icet.coursework.dao.order.OrderDAO;
 import edu.icet.coursework.dto.Order;
 import edu.icet.coursework.dto.OrderDetail;
-import edu.icet.coursework.entity.OrderEntity;
+import edu.icet.coursework.entity.*;
 import edu.icet.coursework.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,23 +13,48 @@ import org.hibernate.query.NativeQuery;
 import org.modelmapper.ModelMapper;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OrderDAOImpl implements OrderDAO {
     @Override
-    public boolean save(OrderEntity entity) {
+    public boolean save(Order order) {
         boolean isSaved = false;
         Session session = HibernateUtil.getInstance().getSession();
         try {
             session.getTransaction().begin();
-            session.persist(entity);
+
+            OrderEntity orderEntity = new OrderEntity();
+            orderEntity.setOrderId(order.getOrderId());
+            orderEntity.setCustomerEntity(session.get(CustomerEntity.class,order.getCustomerId()));
+            orderEntity.setOrderDateTime(order.getOrderDateTime());
+            orderEntity.setTotalCost(order.getTotalCost());
+            orderEntity.setUserEntity(session.get(UserEntity.class,order.getUserId()));
+
+            List<OrderDetailEntity> orderDetailEntities = order.getOrderDetails().stream()
+                    .map(orderDetail -> {
+                        OrderDetailEntity orderDetailEntity = new OrderDetailEntity();
+                        orderDetailEntity.setQuantity(orderDetail.getQuantity());
+                        orderDetailEntity.setTotalPrice(orderDetail.getTotalPrice());
+
+                        ProductEntity productEntity =
+                                session.get(
+                                        ProductEntity.class,
+                                        orderDetail.getProduct().getProductId()
+                                );
+                        orderDetailEntity.setProductEntity(productEntity);
+                        orderDetailEntity.setOrderEntity(orderEntity);
+                        return orderDetailEntity;
+                    })
+                    .collect(Collectors.toList());
+            orderEntity.setOrderDetailEntities(orderDetailEntities);
+
+            session.persist(orderEntity);
             session.getTransaction().commit();
             isSaved = true;
-            System.out.println("in try: "+ entity);
         } catch (Exception e) {
             if (session.getTransaction().isActive()){
                 session.getTransaction().rollback();
             }
-            System.out.println("in catch");
 
         }finally {
             session.close();
@@ -80,6 +105,7 @@ public class OrderDAOImpl implements OrderDAO {
         return orderEntity;
     }
 
+
     @Override
     public OrderEntity getById(Integer id) {
         OrderEntity orderEntity = null;
@@ -94,14 +120,16 @@ public class OrderDAOImpl implements OrderDAO {
         return orderEntity;
     }
 
+
     @Override
-    public boolean update(OrderEntity newOrderEntity) {
+    public boolean update(Order newOrder) {
         boolean isUpdated = false;
         Session session = HibernateUtil.getInstance().getSession();
         try {
             session.getTransaction().begin();
-            OrderEntity orderEntity = session.get(OrderEntity.class, newOrderEntity.getOrderId());
-            orderEntity.setCustomerEntity(newOrderEntity.getCustomerEntity());
+
+            OrderEntity orderEntity = session.get(OrderEntity.class, newOrder.getOrderId());
+            orderEntity.setCustomerEntity(session.get(CustomerEntity.class,newOrder.getCustomerId()));
             session.flush();
             session.getTransaction().commit();
             isUpdated = true;
@@ -112,7 +140,7 @@ public class OrderDAOImpl implements OrderDAO {
         } finally {
             session.close();
         }
-        return isUpdated;
+       return isUpdated;
     }
 
     @Override

@@ -5,6 +5,6 @@ import edu.icet.coursework.dto.Order;
 import edu.icet.coursework.entity.OrderEntity;
 import javafx.collections.ObservableList;
 
-public interface OrderDAO extends CrudDAO<OrderEntity> {
+public interface OrderDAO extends CrudDAO<OrderEntity,Order> {
     ObservableList<Order> getAll();
 }

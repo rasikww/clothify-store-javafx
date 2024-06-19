@@ -15,20 +15,22 @@ import java.util.List;
 public class SupplierDAOImpl implements SupplierDAO {
 
     @Override
-    public boolean save(SupplierEntity entity) {
+    public boolean save(Supplier supplier) {
         boolean isSaved = false;
         Session session = HibernateUtil.getInstance().getSession();
         try {
             session.getTransaction().begin();
-            session.persist(entity);
+
+            SupplierEntity supplierEntity =
+                    new ModelMapper().map(supplier, SupplierEntity.class);
+
+            session.persist(supplierEntity);
             session.getTransaction().commit();
             isSaved = true;
-            System.out.println("in try: "+ entity);
         } catch (Exception e) {
             if (session.getTransaction().isActive()){
                 session.getTransaction().rollback();
             }
-            System.out.println("in catch");
 
         }finally {
             session.close();
@@ -94,16 +96,16 @@ public class SupplierDAOImpl implements SupplierDAO {
     }
 
     @Override
-    public boolean update(SupplierEntity newSupplierEntity) {
+    public boolean update(Supplier newSupplier) {
         boolean isUpdated = false;
         Session session = HibernateUtil.getInstance().getSession();
         try {
             session.getTransaction().begin();
-            SupplierEntity supplierEntity = session.get(SupplierEntity.class, newSupplierEntity.getSupplierId());
-            supplierEntity.setName(newSupplierEntity.getName());
-            supplierEntity.setCompany(newSupplierEntity.getCompany());
-            supplierEntity.setEmail(newSupplierEntity.getEmail());
-            supplierEntity.setPhoneNumber(newSupplierEntity.getPhoneNumber());
+            SupplierEntity supplierEntity = session.get(SupplierEntity.class, newSupplier.getSupplierId());
+            supplierEntity.setName(newSupplier.getName());
+            supplierEntity.setCompany(newSupplier.getCompany());
+            supplierEntity.setEmail(newSupplier.getEmail());
+            supplierEntity.setPhoneNumber(newSupplier.getPhoneNumber());
             session.flush();
             session.getTransaction().commit();
             isUpdated = true;

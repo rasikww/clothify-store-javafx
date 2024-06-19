@@ -5,6 +5,6 @@ import edu.icet.coursework.dto.Product;
 import edu.icet.coursework.entity.ProductEntity;
 import javafx.collections.ObservableList;
 
-public interface ProductDAO extends CrudDAO<ProductEntity> {
+public interface ProductDAO extends CrudDAO<ProductEntity,Product> {
     ObservableList<Product> getAll();
 }

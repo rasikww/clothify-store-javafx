@@ -2,7 +2,6 @@ package edu.icet.coursework.dao;
 
 import edu.icet.coursework.dao.customer.impl.CustomerDAOImpl;
 import edu.icet.coursework.dao.order.impl.OrderDAOImpl;
-import edu.icet.coursework.dao.orderDetail.impl.OrderDetailDAOImpl;
 import edu.icet.coursework.dao.product.impl.ProductDAOImpl;
 import edu.icet.coursework.dao.supplier.impl.SupplierDAOImpl;
 import edu.icet.coursework.dao.user.impl.UserDAOImpl;
@@ -22,7 +21,6 @@ public class DAOFactory {
         switch (daoType){
             case CUSTOMER: return (T) new CustomerDAOImpl();
             case ORDER: return (T) new OrderDAOImpl();
-            case ORDER_DETAIL: return (T) new OrderDetailDAOImpl();
             case SUPPLIER: return (T) new SupplierDAOImpl();
             case PRODUCT: return (T) new ProductDAOImpl();
             case USER: return (T) new UserDAOImpl();

@@ -25,4 +25,14 @@ public class SupplierEntity {
 
     @OneToMany(mappedBy = "supplierEntity")
     private List<ProductEntity> productEntities;
+
+    public void addProductEntity(ProductEntity entity){
+        productEntities.add(entity);
+        entity.setSupplierEntity(this);
+    }
+    public void removeProductEntity(ProductEntity entity){
+        productEntities.remove(entity);
+        entity.setSupplierEntity(null);
+    }
+
 }
