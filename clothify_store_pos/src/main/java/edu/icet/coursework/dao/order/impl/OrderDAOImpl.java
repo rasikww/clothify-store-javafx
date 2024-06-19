@@ -1,9 +1,7 @@
 package edu.icet.coursework.dao.order.impl;
 
-import edu.icet.coursework.controller.product.ProductController;
 import edu.icet.coursework.dao.order.OrderDAO;
 import edu.icet.coursework.dto.Order;
-import edu.icet.coursework.dto.OrderDetail;
 import edu.icet.coursework.entity.*;
 import edu.icet.coursework.util.HibernateUtil;
 import javafx.collections.FXCollections;
@@ -156,26 +154,11 @@ public class OrderDAOImpl implements OrderDAO {
         ObservableList<Order> allOrders = FXCollections.observableArrayList();
         Session session = HibernateUtil.getInstance().getSession();
         try {
-            String sql = "SELECT * FROM order WHERE deleted=0";
+            String sql = "SELECT * FROM _order WHERE deleted=0";
             NativeQuery<OrderEntity> query = session.createNativeQuery(sql, OrderEntity.class);
             List<OrderEntity> results = query.list();
-            List<OrderDetail> orderDetails = null;
             for (OrderEntity orderEntity : results) {
                 Order order = new ModelMapper().map(orderEntity, Order.class);
-                order.setCustomerId(orderEntity.getCustomerEntity().getCustomerId());
-                order.setUserId(orderEntity.getUserEntity().getUserId());
-                orderEntity.getOrderDetailEntities().forEach(orderDetailEntity -> {
-                    OrderDetail orderDetail = new OrderDetail(
-                            orderDetailEntity.getQuantity(),
-                            orderDetailEntity.getOrderEntity().getOrderId(),
-                            ProductController.getInstance().getProduct(
-                                    String.valueOf(orderDetailEntity.getProductEntity().getProductId())),
-                            orderDetailEntity.getTotalPrice()
-                    );
-                    orderDetails.add(orderDetail);
-                });
-
-                order.setOrderDetails(orderDetails);
                 allOrders.add(order);
             }
         } catch (Exception e) {

@@ -192,6 +192,25 @@ public class EmployeeFormController implements Initializable {
     public JFXTextField txtOrderIdRemove;
     public JFXButton btnSearchOrderRemove;
     public Label lblTotalRemoveOrder;
+    public JFXButton btnUpdateOrder;
+    public JFXButton btnRefreshUpdateOrder;
+    public JFXTextField txtOrderIdUpdate;
+    public JFXButton btnSearchOrderUpdate;
+    public Label lblOrderIdUpdate;
+    public Label lblCustomerNameUpdateOrder;
+    public Label lblDateUpdateOrder;
+    public Label lblTimeUpdateOrder;
+    public Label lblTotalUpdateOrder;
+    public ComboBox<String> cmbCustomerUpdateOrder;
+    public Tab tabUpdateOrder;
+    public Tab tabViewOrders;
+    public TableColumn<Order, Integer> colOrderId;
+    public TableColumn<Order, Integer> colCustomerIdOrder;
+    public TableColumn<Order, Integer> colUserIdOrder;
+    public TableColumn<Order, LocalDateTime> colDateTime;
+    public TableColumn<Order, Double> colTotalCost;
+    public JFXButton btnRefreshTblOrders;
+    public TableView<Order> tblOrders;
     private User loggedInUser;
     private String nextCustomerId;
     private String nextSupplierId;
@@ -200,7 +219,6 @@ public class EmployeeFormController implements Initializable {
     private Customer searchedCustomer;
     private Supplier searchedSupplier;
     private Product searchedProduct;
-    private Order searchedOrder;
     private Customer selectedCustomer;
     private Product selectedProduct;
     private ObservableList<OrderDetail> cartTableList = FXCollections.observableArrayList();
@@ -1120,6 +1138,93 @@ public class EmployeeFormController implements Initializable {
     }
 
     private Order searchOrder(String orderId) {
-        return searchedOrder = OrderController.getInstance().getOrder(orderId);
+        return OrderController.getInstance().getOrder(orderId);
+    }
+
+    public void btnUpdateOrderOnAction(ActionEvent actionEvent) {
+        Integer customerId = Integer.valueOf(getSelectedCustomer()[0]);
+
+        Order order = new Order();
+        order.setOrderId(Integer.valueOf(lblOrderIdUpdate.getText()));
+        order.setCustomerId(customerId);
+
+        boolean isUpdated = OrderController.getInstance().updateOrder(order);
+        if (isUpdated){
+            new Alert(Alert.AlertType.CONFIRMATION,"Updated the order").show();
+        }else{
+            new Alert(Alert.AlertType.ERROR,"Error Occurred while updating the order").show();
+        }
+        refreshProcessOrderUpdate();
+    }
+
+    private void refreshProcessOrderUpdate() {
+        txtOrderIdUpdate.clear();
+        lblOrderIdUpdate.setText(null);
+        cmbCustomerUpdateOrder.getSelectionModel().select(0);
+        lblCustomerNameUpdateOrder.setText(null);
+        lblDateUpdateOrder.setText(null);
+        lblTimeUpdateOrder.setText(null);
+        lblTotalUpdateOrder.setText(null);
+    }
+
+    public void btnRefreshUpdateOrderOnAction(ActionEvent actionEvent) {
+        refreshProcessOrderUpdate();
+    }
+
+    public void txtOrderIdUpdateOnAction(ActionEvent actionEvent) {
+        displayUpdateOrderData();
+    }
+
+    public void btnSearchOrderUpdateOnAction(ActionEvent actionEvent) {
+        displayUpdateOrderData();
+    }
+
+    private void displayUpdateOrderData() {
+        Order order = searchOrder(txtOrderIdUpdate.getText());
+        if (order == null) {
+            new Alert(Alert.AlertType.ERROR,"No such Order").show();
+        }else{
+            lblOrderIdUpdate.setText(String.valueOf(order.getOrderId()));
+            Customer customer = searchCustomer(String.valueOf(order.getCustomerId()));
+            lblCustomerNameUpdateOrder.setText(customer.getName());
+            LocalDateTime orderDateTime = order.getOrderDateTime();
+            lblDateUpdateOrder.setText(String.valueOf(orderDateTime.toLocalDate()));
+            lblTimeUpdateOrder.setText(String.valueOf(orderDateTime.toLocalTime()).split("\\.")[0]);
+            lblTotalUpdateOrder.setText(String.valueOf(order.getTotalCost()));
+        }
+    }
+
+    public void cmbCustomerUpdateOrderOnAction(ActionEvent actionEvent) {
+        lblCustomerNameUpdateOrder.setText(getSelectedCustomer()[1]);
+    }
+
+    private String[] getSelectedCustomer(){
+        return cmbCustomerUpdateOrder
+                .getSelectionModel()
+                .getSelectedItem()
+                .split(" - ");
+    }
+
+    public void tabUpdateOrderOnChanged(Event event) {
+        loadComboBoxCustomer(cmbCustomerUpdateOrder);
+    }
+
+    public void tabViewOrdersOnAction(Event event) {
+        loadTblOrders();
+    }
+
+    public void btnRefreshTblOrdersOnAction(ActionEvent actionEvent) {
+        loadTblOrders();
+    }
+
+    private void loadTblOrders() {
+        colOrderId.setCellValueFactory(new PropertyValueFactory<>("orderId"));
+        colCustomerIdOrder.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        colUserIdOrder.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        colDateTime.setCellValueFactory(new PropertyValueFactory<>("orderDateTime"));
+        colTotalCost.setCellValueFactory(new PropertyValueFactory<>("totalCost"));
+
+        ObservableList<Order> allOrders = OrderController.getInstance().getAllOrders();
+        tblOrders.setItems(allOrders);
     }
 }

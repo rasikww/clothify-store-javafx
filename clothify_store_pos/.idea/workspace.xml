@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="255015c2-beb4-44bd-8c6a-111be5e78d70" name="Changes" comment="added CrudDAO interface an extra S variable to interact with entities and dtos, configured implementing classes as well">
+    <list default="true" id="255015c2-beb4-44bd-8c6a-111be5e78d70" name="Changes" comment="order section is completed.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/order/impl/OrderBOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/order/impl/OrderBOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/customer/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/customer/CustomerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/employee/EmployeeFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/employee/EmployeeFormController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/order/impl/OrderDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/order/impl/OrderDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/employee_interface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/employee_interface.fxml" afterDir="false" />
@@ -320,7 +318,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718806193243</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="added function to remove an order and added logic to reduce the stock of the product in transactions.">
+      <option name="closed" value="true" />
+      <created>1718821086897</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1718821086897</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -356,7 +362,9 @@
     <MESSAGE value="add to cart process and the cart viewing process is completed" />
     <MESSAGE value="cart selection, removing items completed." />
     <MESSAGE value="added CrudDAO interface an extra S variable to interact with entities and dtos, configured implementing classes as well" />
-    <option name="LAST_COMMIT_MESSAGE" value="added CrudDAO interface an extra S variable to interact with entities and dtos, configured implementing classes as well" />
+    <MESSAGE value="added function to remove an order and added logic to reduce the stock of the product in transactions." />
+    <MESSAGE value="order section is completed." />
+    <option name="LAST_COMMIT_MESSAGE" value="order section is completed." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
