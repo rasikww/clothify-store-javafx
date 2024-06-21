@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
 import org.modelmapper.ModelMapper;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,7 +54,17 @@ public class OrderDAOImpl implements OrderDAO {
                 productEntity.setStockQuantity(stockQty-requiredQty);
             }
 
+            //creating a receipt and saving it to db
+            ReceiptEntity receiptEntity = new ReceiptEntity();
+            receiptEntity.setCustomerEntity(orderEntity.getCustomerEntity());
+            receiptEntity.setOrderEntity(orderEntity);
+            receiptEntity.setReceiptDateTime(LocalDateTime.now());
+            receiptEntity.setPaymentType("default_payment_type");
+
+            orderEntity.getCustomerEntity().addReceiptEntity(receiptEntity);
+
             session.persist(orderEntity);
+            session.persist(receiptEntity);
 
             session.getTransaction().commit();
             isSaved = true;

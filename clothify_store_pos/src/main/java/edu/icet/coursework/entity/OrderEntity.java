@@ -37,6 +37,8 @@ public class OrderEntity {
     @JoinColumn(name = "user_id")
     private UserEntity userEntity;
 
+    @OneToOne(mappedBy = "orderEntity")
+    private ReceiptEntity receiptEntity;
 
 
 }

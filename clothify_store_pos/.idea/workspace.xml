@@ -5,10 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="255015c2-beb4-44bd-8c6a-111be5e78d70" name="Changes" comment="order section is completed.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/receipt/ReceiptBO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/receipt/impl/ReceiptBOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/receipt/ReceiptController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/receipt/ReceiptDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/receipt/impl/ReceiptDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dto/Receipt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/ReceiptEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/employee/EmployeeFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/employee/EmployeeFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/BOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/BOFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/DAOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/DAOFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/order/impl/OrderDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/order/impl/OrderDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/employee_interface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/employee_interface.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/CustomerEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/CustomerEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/OrderEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/OrderEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/util/BOType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/util/BOType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/util/DAOType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/util/DAOType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/util/HibernateUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/util/HibernateUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +69,7 @@
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/Edu/iCD/Standalone App Development/Final_Coursework/clothify_store_pos/src/main/java/edu/icet/coursework/dao&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;D:/Edu/iCD/Standalone App Development/Final_Coursework/clothify_store_pos/src/main/java/edu/icet/coursework/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
@@ -326,7 +339,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718821086897</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="order section is completed.">
+      <option name="closed" value="true" />
+      <created>1718825828100</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1718825828101</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

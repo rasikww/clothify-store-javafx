@@ -31,6 +31,9 @@ public class CustomerEntity {
     @OneToMany(mappedBy = "customerEntity")
     private List<OrderEntity> orderEntities;
 
+    @OneToMany(mappedBy = "customerEntity")
+    private List<ReceiptEntity> receiptEntityList;
+
 
     public void addOrderEntity(OrderEntity entity) {
         orderEntities.add(entity);
@@ -38,6 +41,15 @@ public class CustomerEntity {
     }
     public void removeOrderEntity(OrderEntity entity) {
         orderEntities.remove(entity);
+        entity.setCustomerEntity(null);
+    }
+
+    public void addReceiptEntity(ReceiptEntity entity){
+        receiptEntityList.add(entity);
+        entity.setCustomerEntity(this);
+    }
+    public void removeReceiptEntity(ReceiptEntity entity){
+        receiptEntityList.remove(entity);
         entity.setCustomerEntity(null);
     }
 }

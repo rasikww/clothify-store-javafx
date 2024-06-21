@@ -3,6 +3,7 @@ package edu.icet.coursework.bo;
 import edu.icet.coursework.bo.customer.impl.CustomerBOImpl;
 import edu.icet.coursework.bo.order.impl.OrderBOImpl;
 import edu.icet.coursework.bo.product.impl.ProductBOImpl;
+import edu.icet.coursework.bo.receipt.impl.ReceiptBOImpl;
 import edu.icet.coursework.bo.supplier.impl.SupplierBOImpl;
 import edu.icet.coursework.bo.user.impl.UserBOImpl;
 import edu.icet.coursework.util.BOType;
@@ -24,6 +25,7 @@ public class BOFactory {
             case SUPPLIER: return (T) new SupplierBOImpl();
             case PRODUCT: return (T) new ProductBOImpl();
             case USER: return (T) new UserBOImpl();
+            case RECEIPT: return (T) new ReceiptBOImpl();
             case REPORT:
                 break;
         }
