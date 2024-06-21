@@ -41,4 +41,8 @@ public class ReceiptController {
     public boolean updateReceipt(Receipt receipt) {
         return receiptBO.updateReceipt(receipt);
     }
+
+    public boolean viewLastReceipt() {
+        return receiptBO.viewLastReceipt();
+    }
 }

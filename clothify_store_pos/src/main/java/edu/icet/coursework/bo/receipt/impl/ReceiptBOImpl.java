@@ -34,4 +34,9 @@ public class ReceiptBOImpl implements ReceiptBO {
     public boolean updateReceipt(Receipt receiptDTO) {
         return receiptDAO.update(receiptDTO);
     }
+
+    @Override
+    public boolean viewLastReceipt() {
+        return receiptDAO.viewLastReceipt();
+    }
 }

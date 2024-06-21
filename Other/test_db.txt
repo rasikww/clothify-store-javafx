@@ -65,3 +65,46 @@ VALUES
     (3, 3, 'Kids Jeans', 'Comfortable and durable jeans for kids', 25.99, 80, 'http://example.com/images/kids_jeans.jpg', 'Kids'),
     (4, 1, 'Gents Formal Shirt', 'Slim fit, long sleeve formal shirt', 29.99, 100, 'http://example.com/images/gents_formal_shirt.jpg', 'Gents'),
     (5, 2, 'Ladies Blouse', 'Chiffon blouse with ruffle detail', 24.99, 50, 'http://example.com/images/ladies_blouse.jpg', 'Ladies');
+
+
+
+
+
+Jasper
+===========
+WITH latest_receipt AS (
+    SELECT receipt_id, payment_type, receipt_date_time, customer_id, order_id
+    FROM test.receipt
+    ORDER BY receipt_id DESC
+    LIMIT 1
+)
+SELECT 
+    receipt.receipt_id,
+    receipt.payment_type,
+    receipt.receipt_date_time,
+    receipt.customer_id,
+    receipt.order_id,
+    customer.name,
+    customer.email,
+    customer.phone_number,
+    _order.total_cost,
+    _order.user_id,
+    order_detail.quantity,
+    order_detail.total_price,
+    order_detail.product_id,
+    product.name AS product_name,
+    product.description,
+    product.price
+FROM 
+    latest_receipt AS receipt
+INNER JOIN 
+    test.customer ON receipt.customer_id = customer.customer_id
+INNER JOIN 
+    test._order AS _order ON receipt.order_id = _order.order_id
+INNER JOIN 
+    test.order_detail ON _order.order_id = order_detail.order_id
+INNER JOIN
+    test.product ON order_detail.product_id = product.product_id
+ORDER BY 
+    receipt.receipt_id DESC;
+

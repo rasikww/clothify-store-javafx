@@ -8,4 +8,6 @@ public interface ReceiptBO extends SuperBO {
     boolean deleteReceiptById(Integer id);
     Receipt getReceipt(Integer receiptId);
     boolean updateReceipt(Receipt receipt);
+
+    boolean viewLastReceipt();
 }

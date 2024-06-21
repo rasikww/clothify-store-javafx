@@ -4,24 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="255015c2-beb4-44bd-8c6a-111be5e78d70" name="Changes" comment="order section is completed.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/receipt/ReceiptBO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/receipt/impl/ReceiptBOImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/receipt/ReceiptController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/receipt/ReceiptDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/receipt/impl/ReceiptDAOImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dto/Receipt.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/ReceiptEntity.java" afterDir="false" />
+    <list default="true" id="255015c2-beb4-44bd-8c6a-111be5e78d70" name="Changes" comment="Added receipt entity and completed hibernate logic to add a receipt after placing an order.">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/reports/receipt.jrxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Other/test_db.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Other/test_db.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/BOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/BOFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/DAOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/DAOFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/order/impl/OrderDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/order/impl/OrderDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/CustomerEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/CustomerEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/OrderEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/OrderEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/util/BOType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/util/BOType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/util/DAOType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/util/DAOType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/util/HibernateUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/util/HibernateUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/receipt/ReceiptBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/receipt/ReceiptBO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/receipt/impl/ReceiptBOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/receipt/impl/ReceiptBOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/employee/EmployeeFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/employee/EmployeeFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/receipt/ReceiptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/receipt/ReceiptController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/receipt/ReceiptDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/receipt/ReceiptDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/receipt/impl/ReceiptDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/receipt/impl/ReceiptDAOImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,28 +47,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Maven.clothify_store_pos [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.clothify_store_pos [javafx:run].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.clothify_store_pos [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Edu/iCD/Standalone App Development/Final_Coursework/clothify_store_pos/src/main/java/edu/icet/coursework/dao&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;D:/Edu/iCD/Standalone App Development/Final_Coursework/clothify_store_pos/src/main/java/edu/icet/coursework/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Maven.clothify_store_pos [clean,install].executor": "Run",
+    "Maven.clothify_store_pos [javafx:run].executor": "Run",
+    "Maven.clothify_store_pos [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Edu/iCD/Standalone App Development/Final_Coursework/clothify_store_pos/src/main/resources/reports",
+    "onboarding.tips.debug.path": "D:/Edu/iCD/Standalone App Development/Final_Coursework/clothify_store_pos/src/main/java/edu/icet/coursework/Main.java",
+    "project.structure.last.edited": "Global Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Edu\iCD\Standalone App Development\Final_Coursework\clothify_store_pos\src\main\resources\reports" />
       <recent name="D:\Edu\iCD\Standalone App Development\Final_Coursework\clothify_store_pos\src\main\java\edu\icet\coursework\dao" />
       <recent name="D:\Edu\iCD\Standalone App Development\Final_Coursework\clothify_store_pos\src\main\java\edu\icet\coursework\bo\supplier" />
     </key>
@@ -347,7 +340,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718825828101</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Added receipt entity and completed hibernate logic to add a receipt after placing an order.">
+      <option name="closed" value="true" />
+      <created>1718973822889</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1718973822889</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -385,7 +386,8 @@
     <MESSAGE value="added CrudDAO interface an extra S variable to interact with entities and dtos, configured implementing classes as well" />
     <MESSAGE value="added function to remove an order and added logic to reduce the stock of the product in transactions." />
     <MESSAGE value="order section is completed." />
-    <option name="LAST_COMMIT_MESSAGE" value="order section is completed." />
+    <MESSAGE value="Added receipt entity and completed hibernate logic to add a receipt after placing an order." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added receipt entity and completed hibernate logic to add a receipt after placing an order." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

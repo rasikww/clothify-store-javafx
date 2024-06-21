@@ -1,9 +1,17 @@
 package edu.icet.coursework.dao.receipt.impl;
 
 import edu.icet.coursework.dao.receipt.ReceiptDAO;
+import edu.icet.coursework.db.DBConnection;
 import edu.icet.coursework.dto.Receipt;
 import edu.icet.coursework.entity.ReceiptEntity;
 import edu.icet.coursework.util.HibernateUtil;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
 import org.modelmapper.ModelMapper;
@@ -118,6 +126,28 @@ public class ReceiptDAOImpl implements ReceiptDAO {
 //            session.close();
 //        }
         return isUpdated;
+    }
+
+    @Override
+    public boolean viewLastReceipt() {
+        boolean isViewable = false;
+        try {
+            JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/reports/receipt.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            JasperPrint jasperPrint =
+                    JasperFillManager.fillReport(
+                            jasperReport,
+                            null,
+                            DBConnection.getInstance().getConnection()
+                    );
+
+            JasperViewer.viewReport(jasperPrint);
+            isViewable = true;
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return isViewable;
     }
 
 //    @Override

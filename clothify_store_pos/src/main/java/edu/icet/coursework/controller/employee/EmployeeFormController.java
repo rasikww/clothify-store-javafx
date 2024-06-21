@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXTextField;
 import edu.icet.coursework.controller.customer.CustomerController;
 import edu.icet.coursework.controller.order.OrderController;
 import edu.icet.coursework.controller.product.ProductController;
+import edu.icet.coursework.controller.receipt.ReceiptController;
 import edu.icet.coursework.controller.supplier.SupplierController;
 import edu.icet.coursework.dto.*;
 import javafx.animation.Animation;
@@ -1029,6 +1030,8 @@ public class EmployeeFormController implements Initializable {
         lblOrderPlaced.setVisible(true);
 
         orderPlacingProcess();
+
+
     }
 
     private void orderPlacingProcess() {
@@ -1046,6 +1049,7 @@ public class EmployeeFormController implements Initializable {
         if(isAdded){
             afterPlacingOrder();
             new Alert(Alert.AlertType.CONFIRMATION,"Order Placed").show();
+            viewReceipt();
         }else{
             new Alert(Alert.AlertType.ERROR,"Can't Place the Order").show();
         }
@@ -1067,6 +1071,14 @@ public class EmployeeFormController implements Initializable {
         btnRemoveSelected.setDisable(true);
         cmbCustomerPlaceOrder.setDisable(true);
     }
+
+    private void viewReceipt() {
+        boolean isViewable  = ReceiptController.getInstance().viewLastReceipt();
+        if(!isViewable){
+            new Alert(Alert.AlertType.ERROR,"Error Occurred while Viewing Receipt").show();
+        }
+    }
+
     private void refreshProcessPlaceOrder(){
         cartTableList.clear();
         tblCart.setDisable(false);
