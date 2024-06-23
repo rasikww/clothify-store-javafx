@@ -7,4 +7,6 @@ import javafx.collections.ObservableList;
 
 public interface UserDAO extends CrudDAO<UserEntity,User> {
     ObservableList<User> getAll();
+
+    User getByEmail(String strEmail);
 }

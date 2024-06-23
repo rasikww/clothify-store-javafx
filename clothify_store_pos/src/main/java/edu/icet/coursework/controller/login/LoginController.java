@@ -2,8 +2,11 @@ package edu.icet.coursework.controller.login;
 
 import edu.icet.coursework.controller.admin.AdminFormController;
 import edu.icet.coursework.controller.employee.EmployeeFormController;
+import edu.icet.coursework.dao.DAOFactory;
+import edu.icet.coursework.dao.user.UserDAO;
 import edu.icet.coursework.dto.User;
 import edu.icet.coursework.util.CrudUtil;
+import edu.icet.coursework.util.DAOType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -97,7 +100,7 @@ public class LoginController {
     }
 
     private User getUser(String strEmail, String hashedPassword){
-        String sql = "SELECT * FROM user where email=? AND password_hash=?";
+        String sql = "SELECT * FROM users where email=? AND password_hash=?";
         try {
             ResultSet resultSet = CrudUtil.execute(sql, strEmail, hashedPassword);
             while (resultSet.next()){
@@ -114,5 +117,44 @@ public class LoginController {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public boolean addEmailPassword(String strEmail, String strPassword) {
+        String hashedPassword = strToHashPassword(strPassword);
+        UserDAO userDao = DAOFactory.getInstance().getDAO(DAOType.USER);
+
+        boolean isUpdated = false;
+
+        User userByEmail = userDao.getByEmail(strEmail);
+        if (userByEmail.getUserId() == null){
+            return false;
+        }else{
+            //send an email to the user, confirm it's actually the user and get back true or false;
+            //let's say it's isATrueUser;
+            //if(isATrueUser){
+//            User user = new User();
+//            user.setUserId(userByEmail.getUserId());
+//            user.setName(userByEmail.getName());
+//            user.setPhoneNumber(userByEmail.getPhoneNumber());
+//            user.setEmail(strEmail);
+//            user.setPasswordHash(hashedPassword);
+//            user.setIsAdmin(userByEmail.getIsAdmin());
+//
+//            isUpdated = userDao.update(user);
+            // }else{
+         //       return isUpdated;
+            // }
+
+            User user = new User();
+            user.setUserId(userByEmail.getUserId());
+            user.setName(userByEmail.getName());
+            user.setPhoneNumber(userByEmail.getPhoneNumber());
+            user.setEmail(strEmail);
+            user.setPasswordHash(hashedPassword);
+            user.setIsAdmin(userByEmail.getIsAdmin());
+
+            isUpdated = userDao.update(user);
+        }
+        return isUpdated;
     }
 }

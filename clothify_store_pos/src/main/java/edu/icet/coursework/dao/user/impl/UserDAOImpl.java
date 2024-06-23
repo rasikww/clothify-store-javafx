@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
+import org.hibernate.query.Query;
 import org.modelmapper.ModelMapper;
 
 import java.util.List;
@@ -101,14 +102,19 @@ public class UserDAOImpl implements UserDAO {
             session.getTransaction().begin();
 
             UserEntity userEntity = session.get(UserEntity.class, newUser.getUserId());
+
             userEntity.setName(newUser.getName());
             userEntity.setEmail(newUser.getEmail());
+            if (newUser.getPasswordHash() != null) {
+                userEntity.setPasswordHash(newUser.getPasswordHash());
+            }
             userEntity.setPhoneNumber(newUser.getPhoneNumber());
             userEntity.setIsAdmin(newUser.getIsAdmin());
 
             session.flush();
             session.getTransaction().commit();
             isUpdated = true;
+
         } catch (Exception e) {
             if (session.getTransaction().isActive()){
                 session.getTransaction().rollback();
@@ -136,5 +142,19 @@ public class UserDAOImpl implements UserDAO {
             session.close();
         }
         return allUsers;
+    }
+
+    @Override
+    public User getByEmail(String strEmail) {
+        Session session = HibernateUtil.getInstance().getSession();
+
+        String sql = "SELECT * FROM users WHERE email = :strEmail";
+        Query<UserEntity> query = session.createNativeQuery(sql, UserEntity.class);
+        query.setParameter("strEmail",strEmail);
+        UserEntity userEntity = query.getSingleResult();
+        if (userEntity != null){
+            return new ModelMapper().map(userEntity,User.class);
+        }else return new User();
+
     }
 }

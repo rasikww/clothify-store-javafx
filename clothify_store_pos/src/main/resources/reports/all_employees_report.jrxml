@@ -16,7 +16,8 @@ SELECT user_id,
 	email,
 	is_admin,
 	latest_report.report_id
-FROM user, latest_report]]>
+FROM user
+JOIN latest_report on 1=1]]>
 	</queryString>
 	<field name="user_id" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="user_id"/>

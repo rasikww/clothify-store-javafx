@@ -23,12 +23,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URL;
@@ -231,6 +237,8 @@ public class EmployeeFormController implements Initializable {
     private ObservableList<OrderDetail> cartTableList = FXCollections.observableArrayList();
     private OrderDetail selectedOrderDetail;
 
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
@@ -250,6 +258,26 @@ public class EmployeeFormController implements Initializable {
                 }
             }
         });
+    }
+    private void closeWindow(){
+        Stage stage = (Stage) btnAddCustomer.getScene().getWindow();
+        stage.close();
+    }
+
+    public void lblLogoutOnMouseClick(MouseEvent mouseEvent) {
+        closeWindow();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login_screen.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.show();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void loadDateAndTime() {

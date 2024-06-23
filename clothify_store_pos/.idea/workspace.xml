@@ -5,41 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="255015c2-beb4-44bd-8c6a-111be5e78d70" name="Changes" comment="Added 4 Reports generating processes for Inventory, Employees and Suppliers.">
-      <change afterPath="$PROJECT_DIR$/hs_err_pid25136.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hs_err_pid31620.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hs_err_pid7304.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/replay_pid25136.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/replay_pid31620.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/replay_pid7304.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/report/ReportBO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/report/impl/ReportBOImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/report/ReportController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/report/ReportBehaviour.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/report/ReportDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/report/impl/AllSuppliersImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/report/impl/AllUsersImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/report/impl/ProductCatalogImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/report/impl/QtyPerProductSoldImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/report/impl/ReportDAOImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dto/Report.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/ReportEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/util/ReportType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/images/clothify-store-logo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/reports/all_employees_report.jrxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/reports/all_suppliers_details.jrxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/reports/product_info.jrxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/reports/qty_sold_per_product.jrxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hs_err_pid19524.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hs_err_pid9036.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/login/LoginConfirmEmailFormController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/login/LoginPasswordChangeFormController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/BOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/bo/BOFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/employee/EmployeeFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/employee/EmployeeFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/DAOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/DAOFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/receipt/impl/ReceiptDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/receipt/impl/ReceiptDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dto/Receipt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dto/Receipt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/ReceiptEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/ReceiptEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/login/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/login/LoginScreenFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/login/LoginScreenFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/user/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/user/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/user/impl/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/user/impl/UserDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/UserEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/util/HibernateUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/util/HibernateUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/reports/receipt.jrxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/reports/receipt.jrxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/reports/all_employees_report.jrxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/reports/all_employees_report.jrxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/admin_interface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/admin_interface.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/employee_interface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/employee_interface.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/login_confirm_email.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/login_confirm_email.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/login_password_change.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/login_password_change.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,26 +55,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Maven.clothify_store_pos [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.clothify_store_pos [javafx:run].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.clothify_store_pos [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Edu/iCD/Standalone App Development/Final_Coursework/clothify_store_pos/src/main/java/edu/icet/coursework/dao/report&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;D:/Edu/iCD/Standalone App Development/Final_Coursework/clothify_store_pos/src/main/java/edu/icet/coursework/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Maven.clothify_store_pos [clean,install].executor": "Run",
+    "Maven.clothify_store_pos [javafx:run].executor": "Run",
+    "Maven.clothify_store_pos [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Edu/iCD/Standalone App Development/Final_Coursework/clothify_store_pos/src/main/java/edu/icet/coursework/dao/report",
+    "onboarding.tips.debug.path": "D:/Edu/iCD/Standalone App Development/Final_Coursework/clothify_store_pos/src/main/java/edu/icet/coursework/Main.java",
+    "project.structure.last.edited": "Global Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Edu\iCD\Standalone App Development\Final_Coursework\clothify_store_pos\src\main\java\edu\icet\coursework\dao\report" />
@@ -388,7 +370,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718991556049</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Added 4 Reports generating processes for Inventory, Employees and Suppliers.">
+      <option name="closed" value="true" />
+      <created>1719163271648</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1719163271648</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Added 4 Reports generating processes for Inventory, Employees and Suppliers.">
+      <option name="closed" value="true" />
+      <created>1719163287036</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1719163287036</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
