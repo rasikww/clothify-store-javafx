@@ -7,8 +7,10 @@ import edu.icet.coursework.controller.customer.CustomerController;
 import edu.icet.coursework.controller.order.OrderController;
 import edu.icet.coursework.controller.product.ProductController;
 import edu.icet.coursework.controller.receipt.ReceiptController;
+import edu.icet.coursework.controller.report.ReportController;
 import edu.icet.coursework.controller.supplier.SupplierController;
 import edu.icet.coursework.dto.*;
+import edu.icet.coursework.util.ReportType;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -212,6 +214,10 @@ public class EmployeeFormController implements Initializable {
     public TableColumn<Order, Double> colTotalCost;
     public JFXButton btnRefreshTblOrders;
     public TableView<Order> tblOrders;
+    public JFXButton btnGenerateCatalog;
+    public JFXButton btnGenerateQtySold;
+    public JFXButton btnEmployeeDetailsReport;
+    public JFXButton btnSupplierDetailsReport;
     private User loggedInUser;
     private String nextCustomerId;
     private String nextSupplierId;
@@ -1238,5 +1244,32 @@ public class EmployeeFormController implements Initializable {
 
         ObservableList<Order> allOrders = OrderController.getInstance().getAllOrders();
         tblOrders.setItems(allOrders);
+    }
+
+    public void btnGenerateCatalogOnAction(ActionEvent actionEvent) {
+        generateReport(loggedInUser,ReportType.PRODUCT_CATALOG);
+    }
+
+    public void btnGenerateQtySoldOnAction(ActionEvent actionEvent) {
+        generateReport(loggedInUser,ReportType.QTY_SOLD_PER_PRODUCT);
+    }
+    private void generateReport(User loggedInUser, ReportType reportType){
+        Report report = new Report();
+        report.setUser(loggedInUser);
+        report.setReportType(reportType);
+        report.setReportDateTime(LocalDateTime.now());
+        System.out.println("manual report: "+report);
+        boolean isGenerated = ReportController.getInstance().generateReport(report);
+        if (!isGenerated){
+            new Alert(Alert.AlertType.ERROR,"Error Occurred while generating the report").show();
+        }
+    }
+
+    public void btnEmployeeDetailsReportOnAction(ActionEvent actionEvent) {
+        generateReport(loggedInUser,ReportType.ALL_USERS_REPORT);
+    }
+
+    public void btnSupplierDetailsReportOnAction(ActionEvent actionEvent) {
+        generateReport(loggedInUser,ReportType.ALL_SUPPLIERS_REPORT);
     }
 }

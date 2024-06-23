@@ -35,4 +35,7 @@ public class UserEntity {
     @OneToMany(mappedBy = "userEntity")
     private List<OrderEntity> orderEntities;
 
+    @OneToMany(mappedBy = "userEntity")
+    private List<ReportEntity> reportEntityList;
+
 }

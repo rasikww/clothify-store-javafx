@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
@@ -11,7 +10,6 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -453,7 +451,7 @@
                                                                <bottom>
                                                                   <Pane BorderPane.alignment="CENTER">
                                                                      <children>
-                                                                        <JFXButton fx:id="btnRefreshPlace" layoutX="67.0" layoutY="2.0" onAction="#btnRefreshPlaceOnAction" prefHeight="35.0" prefWidth="111.0" styleClass="btn-refresh" stylesheets="@../assets/css/ai_style.css" text="Refresh" />
+                                                                        <JFXButton fx:id="btnRefreshPlace" layoutX="69.0" layoutY="1.0" onAction="#btnRefreshPlaceOnAction" prefHeight="35.0" prefWidth="111.0" styleClass="btn-refresh" stylesheets="@../assets/css/ai_style.css" text="Refresh" />
                                                                      </children>
                                                                      <BorderPane.margin>
                                                                         <Insets bottom="10.0" top="10.0" />
@@ -1872,31 +1870,27 @@
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="349.0" prefWidth="495.0">
                                              <children>
-                                                <JFXButton layoutX="456.0" layoutY="35.0" prefHeight="35.0" prefWidth="96.0" styleClass="btn-add" stylesheets="@../assets/css/ai_style.css" text="Generate" />
                                                 <JFXButton layoutX="846.0" layoutY="412.0" prefHeight="35.0" prefWidth="96.0" styleClass="btn-refresh" stylesheets="@../assets/css/ai_style.css" text="Refresh" />
                                                 <Pane layoutX="60.0" layoutY="35.0" prefHeight="81.0" prefWidth="348.0" style="-fx-border-color: black; -fx-border-radius: 10px;">
                                                    <children>
-                                                      <Label layoutX="29.0" layoutY="10.0" prefHeight="20.0" prefWidth="214.0" text="Select report file output format :">
+                                                      <Label layoutX="67.0" layoutY="4.0" prefHeight="20.0" prefWidth="214.0" text="Product Catalog/Inventory Report">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <JFXRadioButton layoutX="248.0" layoutY="10.0" selected="true" text="PDF">
-                                                         <toggleGroup>
-                                                            <ToggleGroup fx:id="report_type" />
-                                                         </toggleGroup>
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </JFXRadioButton>
-                                                      <JFXRadioButton layoutX="248.0" layoutY="39.0" text="Excel" toggleGroup="$report_type">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </JFXRadioButton>
+                                                      <JFXButton fx:id="btnGenerateCatalog" layoutX="126.0" layoutY="33.0" onAction="#btnGenerateCatalogOnAction" prefHeight="35.0" prefWidth="96.0" styleClass="btn-add" stylesheets="@../assets/css/ai_style.css" text="Generate" />
                                                    </children>
                                                 </Pane>
-                                                <JFXButton layoutX="456.0" layoutY="80.0" prefHeight="35.0" prefWidth="96.0" styleClass="btn-refresh" stylesheets="@../assets/css/ai_style.css" text="Print" />
+                                                <Pane layoutX="60.0" layoutY="167.0" prefHeight="81.0" prefWidth="348.0" style="-fx-border-color: black; -fx-border-radius: 10px;">
+                                                   <children>
+                                                      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="67.0" layoutY="4.0" prefHeight="20.0" prefWidth="214.0" text="Quantity sold per product">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <JFXButton fx:id="btnGenerateQtySold" layoutX="126.0" layoutY="33.0" onAction="#btnGenerateQtySoldOnAction" prefHeight="35.0" prefWidth="96.0" styleClass="btn-add" stylesheets="@../assets/css/ai_style.css" text="Generate" />
+                                                   </children>
+                                                </Pane>
                                              </children>
                                           </AnchorPane>
                                        </content>
@@ -1912,32 +1906,17 @@
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="349.0" prefWidth="495.0">
                                              <children>
-                                                <JFXButton layoutX="458.0" layoutY="153.0" prefHeight="35.0" prefWidth="96.0" styleClass="btn-add" stylesheets="@../assets/css/ai_style.css" text="Generate" />
                                                 <JFXButton layoutX="846.0" layoutY="412.0" prefHeight="35.0" prefWidth="96.0" styleClass="btn-refresh" stylesheets="@../assets/css/ai_style.css" text="Refresh" />
-                                                <Pane layoutX="62.0" layoutY="153.0" prefHeight="81.0" prefWidth="348.0" style="-fx-border-color: black; -fx-border-radius: 10px;">
+                                                <Pane layoutX="52.0" layoutY="39.0" prefHeight="81.0" prefWidth="348.0" style="-fx-border-color: black; -fx-border-radius: 10px;">
                                                    <children>
-                                                      <Label layoutX="29.0" layoutY="10.0" prefHeight="20.0" prefWidth="214.0" text="Select report file output format :">
+                                                      <Label alignment="CENTER" layoutX="67.0" layoutY="4.0" prefHeight="20.0" prefWidth="214.0" text="All Employee Details Report">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <JFXRadioButton layoutX="248.0" layoutY="10.0" selected="true" text="PDF">
-                                                         <toggleGroup>
-                                                            <ToggleGroup fx:id="report_type1" />
-                                                         </toggleGroup>
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </JFXRadioButton>
-                                                      <JFXRadioButton layoutX="248.0" layoutY="39.0" text="Excel" toggleGroup="$report_type1">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </JFXRadioButton>
+                                                      <JFXButton fx:id="btnEmployeeDetailsReport" layoutX="126.0" layoutY="41.0" onAction="#btnEmployeeDetailsReportOnAction" prefHeight="35.0" prefWidth="96.0" styleClass="btn-add" stylesheets="@../assets/css/ai_style.css" text="Generate" />
                                                    </children>
                                                 </Pane>
-                                                <JFXButton layoutX="458.0" layoutY="198.0" prefHeight="35.0" prefWidth="96.0" styleClass="btn-refresh" stylesheets="@../assets/css/ai_style.css" text="Print" />
-                                                <ComboBox layoutX="98.0" layoutY="71.0" prefHeight="26.0" prefWidth="275.0" promptText="Select an Employee" />
                                              </children>
                                           </AnchorPane>
                                        </content>
@@ -1953,32 +1932,17 @@
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="349.0" prefWidth="495.0">
                                              <children>
-                                                <JFXButton layoutX="458.0" layoutY="153.0" prefHeight="35.0" prefWidth="96.0" styleClass="btn-add" stylesheets="@../assets/css/ai_style.css" text="Generate" />
                                                 <JFXButton layoutX="846.0" layoutY="412.0" prefHeight="35.0" prefWidth="96.0" styleClass="btn-refresh" stylesheets="@../assets/css/ai_style.css" text="Refresh" />
-                                                <Pane layoutX="62.0" layoutY="153.0" prefHeight="81.0" prefWidth="348.0" style="-fx-border-color: black; -fx-border-radius: 10px;">
+                                                <Pane layoutX="52.0" layoutY="39.0" prefHeight="81.0" prefWidth="348.0" style="-fx-border-color: black; -fx-border-radius: 10px;">
                                                    <children>
-                                                      <Label layoutX="29.0" layoutY="10.0" prefHeight="20.0" prefWidth="214.0" text="Select report file output format :">
+                                                      <Label alignment="CENTER" layoutX="67.0" layoutY="4.0" prefHeight="20.0" prefWidth="214.0" text="All Suppliers Details Report">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <JFXRadioButton layoutX="248.0" layoutY="10.0" selected="true" text="PDF">
-                                                         <toggleGroup>
-                                                            <ToggleGroup fx:id="report_type11" />
-                                                         </toggleGroup>
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </JFXRadioButton>
-                                                      <JFXRadioButton layoutX="248.0" layoutY="39.0" text="Excel" toggleGroup="$report_type11">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </JFXRadioButton>
+                                                      <JFXButton fx:id="btnSupplierDetailsReport" layoutX="126.0" layoutY="41.0" onAction="#btnSupplierDetailsReportOnAction" prefHeight="35.0" prefWidth="96.0" styleClass="btn-add" stylesheets="@../assets/css/ai_style.css" text="Generate" />
                                                    </children>
                                                 </Pane>
-                                                <JFXButton layoutX="458.0" layoutY="198.0" prefHeight="35.0" prefWidth="96.0" styleClass="btn-refresh" stylesheets="@../assets/css/ai_style.css" text="Print" />
-                                                <ComboBox layoutX="98.0" layoutY="71.0" prefHeight="26.0" prefWidth="275.0" promptText="Select a Supplier" />
                                              </children>
                                           </AnchorPane>
                                        </content>

@@ -141,7 +141,7 @@ public class ReceiptDAOImpl implements ReceiptDAO {
                             DBConnection.getInstance().getConnection()
                     );
 
-            JasperViewer.viewReport(jasperPrint);
+            JasperViewer.viewReport(jasperPrint,false);
             isViewable = true;
 
         } catch (Exception e) {

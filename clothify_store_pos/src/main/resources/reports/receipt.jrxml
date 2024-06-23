@@ -205,7 +205,7 @@ ORDER BY
 			</staticText>
 			<image hAlign="Center">
 				<reportElement x="0" y="-10" width="84" height="70" uuid="94883631-a913-43e2-b182-ab8d77d0181e"/>
-				<imageExpression><![CDATA["src/main/resources/reports/clothify-store-logo.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["src/main/resources/assets/images/clothify-store-logo.jpg"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="100" y="-10" width="143" height="20" uuid="e622555d-198b-4ccd-a4a1-c59c53304058">

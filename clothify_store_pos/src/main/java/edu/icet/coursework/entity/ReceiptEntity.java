@@ -25,14 +25,18 @@ public class ReceiptEntity {
             allocationSize = 1
     )
     private Integer receiptId;
+
     @OneToOne
     @JoinColumn(name = "order_id")
     private OrderEntity orderEntity;
+
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private CustomerEntity customerEntity;
+
     @Column(name = "receipt_date_time")
     private LocalDateTime receiptDateTime;
+
     @Column(name = "payment_type")
     private String paymentType;
 }
