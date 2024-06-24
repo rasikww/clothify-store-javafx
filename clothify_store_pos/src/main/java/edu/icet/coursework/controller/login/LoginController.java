@@ -1,5 +1,6 @@
 package edu.icet.coursework.controller.login;
 
+import edu.icet.coursework.Main;
 import edu.icet.coursework.controller.admin.AdminFormController;
 import edu.icet.coursework.controller.employee.EmployeeFormController;
 import edu.icet.coursework.dao.DAOFactory;
@@ -56,6 +57,7 @@ public class LoginController {
         if (obtainedUser == null) {
             return false;
         }else{
+            Main.getPrimaryStage().close();
             if (obtainedUser.getIsAdmin()){
                 openAdminWindow();
             }else openEmployeeWindow();
@@ -72,6 +74,7 @@ public class LoginController {
             employeeFormController.initUser(obtainedUser);
 
             Stage stage = new Stage();
+            Main.setPrimaryStage(stage);
             stage.setScene(new Scene(root));
             stage.setTitle("Clothify Store Employee View");
 

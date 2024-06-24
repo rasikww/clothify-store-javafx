@@ -3,6 +3,7 @@ package edu.icet.coursework.controller.login;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import edu.icet.coursework.Main;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -39,14 +40,14 @@ public class LoginPasswordChangeFormController implements Initializable {
         stage.close();
     }
     public void btnCancelOnAction(ActionEvent actionEvent) {
-        closeWindow();
+        //closeWindow();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login_screen.fxml"));
             Parent root = loader.load();
-            Stage stage = new Stage();
+            Stage stage = Main.getPrimaryStage();
             stage.setScene(new Scene(root));
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.show();
+//            stage.initStyle(StageStyle.UNDECORATED);
+//            stage.show();
         }
         catch (IOException e) {
             throw new RuntimeException(e);
@@ -85,6 +86,7 @@ public class LoginPasswordChangeFormController implements Initializable {
                     Parent root = loader.load();
 
                     Stage stage = new Stage();
+                    Main.setPrimaryStage(stage);
                     stage.setScene(new Scene(root));
                     stage.initStyle(StageStyle.UNDECORATED);
                     stage.show();
