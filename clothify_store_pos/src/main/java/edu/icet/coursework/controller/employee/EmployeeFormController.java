@@ -313,6 +313,15 @@ public class EmployeeFormController implements Initializable {
     public void initUser(User loggedInUser) {
         this.loggedInUser = loggedInUser;
     }
+    public void txtCustomerNameAddOnAction(ActionEvent actionEvent) {
+        txtCustomerEmailAdd.requestFocus();
+    }
+    public void txtCustomerEmailAddOnAction(ActionEvent actionEvent) {
+            txtCustomerPhoneNoAdd.requestFocus();
+    }
+    public void txtCustomerPhoneNoAddOnAction(ActionEvent actionEvent) {
+        addCustomerProcess();
+    }
 
     public void btnAddCustomerOnAction(ActionEvent actionEvent) {
         addCustomerProcess();
@@ -369,9 +378,7 @@ public class EmployeeFormController implements Initializable {
         txtSupplierPhoneNoAdd.clear();
     }
 
-    public void txtCustomerPhoneNoAddOnAction(ActionEvent actionEvent) {
-        addCustomerProcess();
-    }
+
 
     public void btnRefreshCustomerAddOnAction(ActionEvent actionEvent) {
         refreshProcessCustomerAdd();
@@ -469,7 +476,7 @@ public class EmployeeFormController implements Initializable {
         refreshProcessCustomerUpdate();
     }
 
-    public void btnRefreshCustomerUpdate(ActionEvent actionEvent) {
+    public void btnRefreshCustomerUpdateOnAction(ActionEvent actionEvent) {
         refreshProcessCustomerUpdate();
     }
     public void txtCustomerIdUpdateOnAction(ActionEvent actionEvent) {
@@ -1299,5 +1306,12 @@ public class EmployeeFormController implements Initializable {
 
     public void btnSupplierDetailsReportOnAction(ActionEvent actionEvent) {
         generateReport(loggedInUser,ReportType.ALL_SUPPLIERS_REPORT);
+    }
+
+    public void txtCustomerNameUpdateOnAction(ActionEvent actionEvent) {
+        txtCustomerEmailUpdate.requestFocus();
+    }
+    public void txtCustomerEmailUpdateOnAction(ActionEvent actionEvent) {
+        txtCustomerPhoneNoUpdate.requestFocus();
     }
 }

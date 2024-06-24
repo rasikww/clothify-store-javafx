@@ -14,15 +14,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import static javafx.scene.input.KeyCode.ENTER;
 
 public class LoginScreenFormController implements Initializable {
     public JFXPasswordField txtPassword;
@@ -74,6 +71,7 @@ public class LoginScreenFormController implements Initializable {
     }
 
     public void btnLoginOnAction(ActionEvent actionEvent) {
+        btnLoginProcess();
     }
 
     private void btnLoginProcess(){
@@ -83,7 +81,6 @@ public class LoginScreenFormController implements Initializable {
         if(!(emailValidator.isValid(strEmail))){
             new Alert(Alert.AlertType.ERROR,"Enter Valid Email Address").show();
         } else {
-
             boolean isUserExist = LoginController.getInstance().loginProcess(strEmail, strPassword);
             if (!isUserExist){
                 new Alert(Alert.AlertType.ERROR,"Email and Password doesn't match").show();
@@ -96,14 +93,4 @@ public class LoginScreenFormController implements Initializable {
     public void btnCloseOnAction(ActionEvent actionEvent) {
         System.exit(0);
     }
-
-
-    public void txtPasswordOnKeyPressed(KeyEvent keyEvent) {
-        if(keyEvent.getCode() == ENTER){
-            btnLoginProcess();
-        }
-    }
-
-
-
 }

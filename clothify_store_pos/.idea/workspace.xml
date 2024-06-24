@@ -4,22 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="255015c2-beb4-44bd-8c6a-111be5e78d70" name="Changes" comment="Fixed an issue where double user windows appearing after changing password.">
-      <change afterPath="$PROJECT_DIR$/../Other/or23107131_Rasika_Premachandra.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../logo/clothify-store-logo.jpg" afterDir="false" />
+    <list default="true" id="255015c2-beb4-44bd-8c6a-111be5e78d70" name="Changes" comment="Added admin user account controls.">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/images/clothify-store-logo-bg-removed.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid11220.log" beforeDir="false" afterPath="$PROJECT_DIR$/hs_err_pid11220.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid11836.log" beforeDir="false" afterPath="$PROJECT_DIR$/hs_err_pid11836.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid19524.log" beforeDir="false" afterPath="$PROJECT_DIR$/hs_err_pid19524.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid25136.log" beforeDir="false" afterPath="$PROJECT_DIR$/hs_err_pid25136.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid31620.log" beforeDir="false" afterPath="$PROJECT_DIR$/hs_err_pid31620.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid7304.log" beforeDir="false" afterPath="$PROJECT_DIR$/hs_err_pid7304.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid9036.log" beforeDir="false" afterPath="$PROJECT_DIR$/hs_err_pid9036.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/admin/AdminFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/admin/AdminFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/employee/EmployeeFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/employee/EmployeeFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/login/LoginConfirmEmailFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/login/LoginConfirmEmailFormController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/login/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/login/LoginPasswordChangeFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/login/LoginPasswordChangeFormController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/login/LoginScreenFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/login/LoginScreenFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/user/impl/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/user/impl/UserDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/entity/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/admin_interface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/admin_interface.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/employee_interface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/employee_interface.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/login_screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/login_screen.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +63,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Edu/iCD/Standalone App Development/Final_Coursework/clothify_store_pos/src/main/java/edu/icet/coursework/dao/report",
+    "last_opened_file_path": "D:/Edu/iCD/Standalone App Development/Final_Coursework/clothify_store_pos/src/main/resources/view",
     "onboarding.tips.debug.path": "D:/Edu/iCD/Standalone App Development/Final_Coursework/clothify_store_pos/src/main/java/edu/icet/coursework/Main.java",
     "project.structure.last.edited": "Global Libraries",
     "project.structure.proportion": "0.0",
@@ -75,6 +73,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Edu\iCD\Standalone App Development\Final_Coursework\clothify_store_pos\src\main\resources\view" />
       <recent name="D:\Edu\iCD\Standalone App Development\Final_Coursework\clothify_store_pos\src\main\java\edu\icet\coursework\dao\report" />
       <recent name="D:\Edu\iCD\Standalone App Development\Final_Coursework\clothify_store_pos\src\main\resources\reports" />
       <recent name="D:\Edu\iCD\Standalone App Development\Final_Coursework\clothify_store_pos\src\main\java\edu\icet\coursework\dao" />
@@ -392,7 +391,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719185845631</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Fixed an issue where double user windows appearing after changing password.">
+      <option name="closed" value="true" />
+      <created>1719187718009</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1719187718009</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -408,7 +415,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added window changes according to admin or employee account" />
     <MESSAGE value="added user object passing to admin and employee controllers" />
     <MESSAGE value="added hibernateUtil" />
     <MESSAGE value="add customer ui logic is complete" />
@@ -433,7 +439,8 @@
     <MESSAGE value="Added 4 Reports generating processes for Inventory, Employees and Suppliers." />
     <MESSAGE value="Added Login password change ability." />
     <MESSAGE value="Fixed an issue where double user windows appearing after changing password." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed an issue where double user windows appearing after changing password." />
+    <MESSAGE value="Added admin user account controls." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added admin user account controls." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

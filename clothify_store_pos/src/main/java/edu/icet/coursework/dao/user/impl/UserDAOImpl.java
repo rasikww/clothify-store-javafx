@@ -64,7 +64,7 @@ public class UserDAOImpl implements UserDAO {
         Session session = HibernateUtil.getInstance().getSession();
         UserEntity userEntity = null;
         try {
-            String sql = "SELECT * FROM user ORDER BY user_id DESC LIMIT 1";
+            String sql = "SELECT * FROM users ORDER BY user_id DESC LIMIT 1";
             NativeQuery<UserEntity> query = session.createNativeQuery(sql, UserEntity.class);
             List<UserEntity> results = query.list();
 
@@ -130,7 +130,7 @@ public class UserDAOImpl implements UserDAO {
         ObservableList<User> allUsers = FXCollections.observableArrayList();
         Session session = HibernateUtil.getInstance().getSession();
         try {
-            String sql = "SELECT * FROM user WHERE deleted=0";
+            String sql = "SELECT * FROM users WHERE deleted=0";
             NativeQuery<UserEntity> query = session.createNativeQuery(sql, UserEntity.class);
             List<UserEntity> results = query.list();
             for (UserEntity userEntity : results) {

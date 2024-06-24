@@ -15,14 +15,6 @@ import java.util.List;
 @SoftDelete
 public class UserEntity {
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "user_id_generator"
-    )
-    @SequenceGenerator(
-            name = "user_id_generator",
-            allocationSize = 1
-    )
     @Column(name = "user_id")
     private Integer userId;
 

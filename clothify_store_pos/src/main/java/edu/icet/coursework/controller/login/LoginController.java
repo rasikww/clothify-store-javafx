@@ -93,6 +93,7 @@ public class LoginController {
             adminFormController.initUser(obtainedUser);
 
             Stage stage = new Stage();
+            Main.setPrimaryStage(stage);
             stage.setScene(new Scene(root));
             stage.setTitle("Clothify Store Admin View");
 

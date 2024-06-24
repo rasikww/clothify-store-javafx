@@ -13,7 +13,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import java.io.IOException;
@@ -80,16 +79,19 @@ public class LoginPasswordChangeFormController implements Initializable {
             if (!isAdded){
                 new Alert(Alert.AlertType.ERROR,"Email doesn't match for any account").show();
             }else{
-                closeWindow();
+                //closeWindow();
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login_screen.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login_confirm_email.fxml"));
                     Parent root = loader.load();
 
-                    Stage stage = new Stage();
-                    Main.setPrimaryStage(stage);
+//                    Stage stage = new Stage();
+//                    Main.setPrimaryStage(stage);
+//                    stage.setScene(new Scene(root));
+//                    stage.initStyle(StageStyle.UNDECORATED);
+//                    stage.show();
+
+                    Stage stage = Main.getPrimaryStage();
                     stage.setScene(new Scene(root));
-                    stage.initStyle(StageStyle.UNDECORATED);
-                    stage.show();
 
                 } catch (IOException e) {
                     throw new RuntimeException(e);
