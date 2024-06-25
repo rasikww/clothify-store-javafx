@@ -1962,7 +1962,7 @@
                                           </Label>
                                        </graphic>
                                     </Tab>
-                                    <Tab closable="false">
+                                    <Tab fx:id="tabSalesReport" closable="false" onSelectionChanged="#tabSalesReportOnChanged">
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="349.0" prefWidth="495.0">
                                              <children>
@@ -1991,8 +1991,8 @@
                                                          </font>
                                                       </Label>
                                                       <JFXButton fx:id="btnMonthlyReport" layoutX="94.0" layoutY="183.0" onAction="#btnMonthlyReportOnAction" prefHeight="35.0" prefWidth="96.0" styleClass="btn-add" stylesheets="@../assets/css/ai_style.css" text="Generate" />
-                                                      <ComboBox layoutX="67.0" layoutY="67.0" prefWidth="150.0" promptText="Select A Year" />
-                                                      <ComboBox layoutX="67.0" layoutY="127.0" prefWidth="150.0" promptText="Select A Month" />
+                                                      <ComboBox fx:id="cmbYears1" layoutX="67.0" layoutY="67.0" prefWidth="150.0" promptText="Select A Year" />
+                                                      <ComboBox fx:id="cmbMonths" layoutX="67.0" layoutY="127.0" prefWidth="150.0" promptText="Select A Month" />
                                                    </children>
                                                 </Pane>
                                                 <Pane layoutX="658.0" layoutY="95.0" prefHeight="279.0" prefWidth="284.0" style="-fx-border-color: black; -fx-border-radius: 10px;">
@@ -2003,7 +2003,7 @@
                                                          </font>
                                                       </Label>
                                                       <JFXButton fx:id="btnAnnualReport" layoutX="94.0" layoutY="183.0" onAction="#btnAnnualReportOnAction" prefHeight="35.0" prefWidth="96.0" styleClass="btn-add" stylesheets="@../assets/css/ai_style.css" text="Generate" />
-                                                      <ComboBox layoutX="67.0" layoutY="87.0" prefWidth="150.0" promptText="Select A Year" />
+                                                      <ComboBox fx:id="cmbYears2" layoutX="67.0" layoutY="87.0" prefWidth="150.0" promptText="Select A Year" />
                                                    </children>
                                                 </Pane>
                                              </children>

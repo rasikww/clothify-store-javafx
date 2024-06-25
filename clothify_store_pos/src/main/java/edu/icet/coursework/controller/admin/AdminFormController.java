@@ -15,6 +15,9 @@ import javafx.event.Event;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AdminFormController extends EmployeeFormController {
 
     public Tab tabAccounts;
@@ -55,6 +58,10 @@ public class AdminFormController extends EmployeeFormController {
     public DatePicker datePickerDaily;
     public JFXButton btnMonthlyReport;
     public JFXButton btnAnnualReport;
+    public Tab tabSalesReport;
+    public ComboBox<Integer> cmbYears1;
+    public ComboBox<String> cmbMonths;
+    public ComboBox<Integer> cmbYears2;
     private String nextUserId;
     private User searchedUser;
 
@@ -271,8 +278,27 @@ public class AdminFormController extends EmployeeFormController {
     }
 
     public void btnMonthlyReportOnAction(ActionEvent actionEvent) {
+        int month = cmbMonths.getSelectionModel().getSelectedIndex() + 1;
+        int year = cmbYears1.getSelectionModel().getSelectedItem();
+        List<Integer> list = new ArrayList<>();
+        list.add(year);
+        list.add(month);
+        generateReport(loggedInUser, ReportType.MONTHLY_SALES_REPORT, list);
     }
 
     public void btnAnnualReportOnAction(ActionEvent actionEvent) {
+        int year = cmbYears2.getSelectionModel().getSelectedItem();
+        generateReport(loggedInUser, ReportType.ANNUAL_SALES_REPORT, year);
+    }
+
+    public void tabSalesReportOnChanged(Event event) {
+        ObservableList<String> months =
+                FXCollections.observableArrayList("January","February","March","April",
+                        "May","June","July","August","September","October","November","December");
+        ObservableList<Integer> years = FXCollections.observableArrayList(2023, 2024, 2025);
+
+        cmbYears1.setItems(years);
+        cmbYears2.setItems(years);
+        cmbMonths.setItems(months);
     }
 }

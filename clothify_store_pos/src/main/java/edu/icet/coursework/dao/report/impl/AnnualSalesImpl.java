@@ -16,51 +16,59 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DailySalesImpl implements ReportBehaviour {
+public class AnnualSalesImpl implements ReportBehaviour {
     @Override
     public boolean generate(Report report) {
         Session session = HibernateUtil.getInstance().getSession();
         boolean isGenerated = false;
 
         try {
+            Integer selectedYear = (Integer) report.getOther();//getOther contains selectedYear INT
+
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("selectedYear", selectedYear);
+
             HashMap<String,Object> data= new HashMap<>();
             data.put("reportId",report.getReportId());
 
-            String sqlTotalOrders = "SELECT COUNT(*) FROM _order WHERE DATE(order_datetime) = :selectedDate";
-            String sqlTotalRevenue = "SELECT SUM(total_cost) FROM _order WHERE DATE(order_datetime) = :selectedDate";
-            String sqlAvgSalesValue = "SELECT AVG(total_cost) FROM _order WHERE DATE(order_datetime) = :selectedDate";
-            String sqlTotalCustomers = "SELECT COUNT(DISTINCT customer_id) FROM _order WHERE DATE(order_datetime) = :selectedDate";
+            String sqlTotalOrders = "SELECT COUNT(*) FROM _order WHERE YEAR(order_datetime) = :selectedYear";
+            String sqlTotalRevenue = "SELECT SUM(total_cost) FROM _order WHERE YEAR(order_datetime) = :selectedYear";
+            String sqlAvgSalesValue = "SELECT AVG(total_cost) FROM _order WHERE YEAR(order_datetime) = :selectedYear";
+            String sqlTotalCustomers = "SELECT COUNT(DISTINCT customer_id) FROM _order " +
+                    "WHERE YEAR(order_datetime) = :selectedYear";
             String sqlTopSellingProduct = "SELECT p.name, SUM(od.quantity) AS totalQuantitySold FROM order_detail od " +
                     "JOIN _order o ON od.order_id = o.order_id "+
                     "JOIN product p ON od.product_id = p.product_id "+
-                    "WHERE DATE(o.order_datetime) = :selectedDate GROUP BY od.product_id ORDER BY totalQuantitySold DESC LIMIT 1";
-            String sqlHighestSale = "SELECT MAX(total_cost) FROM _order WHERE DATE(order_datetime) = :selectedDate";
+                    "WHERE YEAR(order_datetime) = :selectedYear " +
+                    "GROUP BY od.product_id ORDER BY totalQuantitySold DESC LIMIT 1";
+            String sqlHighestSale = "SELECT MAX(total_cost) FROM _order WHERE YEAR(order_datetime) = :selectedYear";
             String sqlTopSellingCategory = "SELECT p.category, SUM(od.quantity) AS totalQuantitySold FROM order_detail od " +
                     "JOIN _order o ON od.order_id = o.order_id "+
                     "JOIN product p ON od.product_id = p.product_id "+
-                    "WHERE DATE(o.order_datetime) = :selectedDate GROUP BY p.category ORDER BY totalQuantitySold DESC LIMIT 1";
+                    "WHERE YEAR(order_datetime) = :selectedYear " +
+                    "GROUP BY p.category ORDER BY totalQuantitySold DESC LIMIT 1";
 
 
             Object totalOrders = session.createNativeQuery(sqlTotalOrders)
-                    .setParameter("selectedDate", report.getOther())
+                    .setParameter("selectedYear", selectedYear)
                     .getSingleResult();
             Object totalRevenue = session.createNativeQuery(sqlTotalRevenue)
-                    .setParameter("selectedDate", report.getOther())
+                    .setParameter("selectedYear", selectedYear)
                     .getSingleResult();
             Object avgSalesValue = session.createNativeQuery(sqlAvgSalesValue)
-                    .setParameter("selectedDate", report.getOther())
+                    .setParameter("selectedYear", selectedYear)
                     .getSingleResult();
             Object totalCustomers = session.createNativeQuery(sqlTotalCustomers)
-                    .setParameter("selectedDate", report.getOther())
+                    .setParameter("selectedYear", selectedYear)
                     .getSingleResult();
             List<Object[]> topSellingProduct = session.createNativeQuery(sqlTopSellingProduct)
-                    .setParameter("selectedDate", report.getOther())
+                    .setParameter("selectedYear", selectedYear)
                     .list();
             Object highestSale = session.createNativeQuery(sqlHighestSale)
-                    .setParameter("selectedDate", report.getOther())
+                    .setParameter("selectedYear", selectedYear)
                     .getSingleResult();
             List<Object[]> topSellingCategory = session.createNativeQuery(sqlTopSellingCategory)
-                    .setParameter("selectedDate", report.getOther())
+                    .setParameter("selectedYear", selectedYear)
                     .list();
 
 
@@ -90,9 +98,7 @@ public class DailySalesImpl implements ReportBehaviour {
             List<Map<String, ?>> dataList = Collections.singletonList(data);
             JRDataSource dataSource = new JRMapCollectionDataSource(dataList);
 
-            Map<String, Object> parameters = new HashMap<>();
-            parameters.put("selectedDate", report.getOther());//in here, getOther() gives LocalDate
-            JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/reports/daily_sales.jrxml");
+            JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/reports/annual_sales.jrxml");
 
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 

@@ -168,6 +168,10 @@ public class ReportDAOImpl implements ReportDAO {
             break;
             case DAILY_SALES_REPORT: this.reportToGenerate = new DailySalesImpl();
             break;
+            case MONTHLY_SALES_REPORT: this.reportToGenerate = new MonthlySalesImpl();
+            break;
+            case ANNUAL_SALES_REPORT: this.reportToGenerate = new AnnualSalesImpl();
+            break;
         }
     }
 }

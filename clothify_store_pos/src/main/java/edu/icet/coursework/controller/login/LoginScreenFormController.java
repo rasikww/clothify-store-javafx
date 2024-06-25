@@ -63,7 +63,7 @@ public class LoginScreenFormController implements Initializable {
             //stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(new Scene(root));
             //stage.initStyle(StageStyle.UNDECORATED);
-            //stage.show();
+            stage.show();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
