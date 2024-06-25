@@ -224,7 +224,7 @@ public class EmployeeFormController implements Initializable {
     public JFXButton btnGenerateQtySold;
     public JFXButton btnEmployeeDetailsReport;
     public JFXButton btnSupplierDetailsReport;
-    private User loggedInUser;
+    protected User loggedInUser;
     private String nextCustomerId;
     private String nextSupplierId;
     private String nextProductId;
@@ -1282,18 +1282,18 @@ public class EmployeeFormController implements Initializable {
     }
 
     public void btnGenerateCatalogOnAction(ActionEvent actionEvent) {
-        generateReport(loggedInUser,ReportType.PRODUCT_CATALOG);
+        generateReport(loggedInUser,ReportType.PRODUCT_CATALOG,null);
     }
 
     public void btnGenerateQtySoldOnAction(ActionEvent actionEvent) {
-        generateReport(loggedInUser,ReportType.QTY_SOLD_PER_PRODUCT);
+        generateReport(loggedInUser,ReportType.QTY_SOLD_PER_PRODUCT,null);
     }
-    private void generateReport(User loggedInUser, ReportType reportType){
+    protected void generateReport(User loggedInUser, ReportType reportType, Object other){
         Report report = new Report();
         report.setUser(loggedInUser);
         report.setReportType(reportType);
         report.setReportDateTime(LocalDateTime.now());
-        System.out.println("manual report: "+report);
+        report.setOther(other);
         boolean isGenerated = ReportController.getInstance().generateReport(report);
         if (!isGenerated){
             new Alert(Alert.AlertType.ERROR,"Error Occurred while generating the report").show();
@@ -1301,11 +1301,11 @@ public class EmployeeFormController implements Initializable {
     }
 
     public void btnEmployeeDetailsReportOnAction(ActionEvent actionEvent) {
-        generateReport(loggedInUser,ReportType.ALL_USERS_REPORT);
+        generateReport(loggedInUser,ReportType.ALL_USERS_REPORT,null);
     }
 
     public void btnSupplierDetailsReportOnAction(ActionEvent actionEvent) {
-        generateReport(loggedInUser,ReportType.ALL_SUPPLIERS_REPORT);
+        generateReport(loggedInUser,ReportType.ALL_SUPPLIERS_REPORT,null);
     }
 
     public void txtCustomerNameUpdateOnAction(ActionEvent actionEvent) {

@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import edu.icet.coursework.controller.employee.EmployeeFormController;
 import edu.icet.coursework.controller.user.UserController;
 import edu.icet.coursework.dto.User;
+import edu.icet.coursework.util.ReportType;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -50,6 +51,10 @@ public class AdminFormController extends EmployeeFormController {
     public JFXTextField txtUserIdUpdate;
     public JFXButton btnSearchUpdateUser;
     public Tab tabViewUsers;
+    public JFXButton btnDailyReport;
+    public DatePicker datePickerDaily;
+    public JFXButton btnMonthlyReport;
+    public JFXButton btnAnnualReport;
     private String nextUserId;
     private User searchedUser;
 
@@ -259,5 +264,15 @@ public class AdminFormController extends EmployeeFormController {
 
     public void tabViewUsersOnChanged(Event event) {
         loadTblUsers();
+    }
+
+    public void btnDailyReportOnAction(ActionEvent actionEvent) {
+        generateReport(loggedInUser, ReportType.DAILY_SALES_REPORT,datePickerDaily.getValue());
+    }
+
+    public void btnMonthlyReportOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnAnnualReportOnAction(ActionEvent actionEvent) {
     }
 }

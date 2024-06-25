@@ -16,4 +16,5 @@ public class Report {
     private User user;
     private ReportType reportType;
     private LocalDateTime reportDateTime;
+    private Object other;
 }

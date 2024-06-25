@@ -106,6 +106,7 @@ public class ReportDAOImpl implements ReportDAO {
             session.persist(reportEntity);
 
             session.getTransaction().commit();
+            report.setReportId(reportEntity.getReportId());
             isSaved = true;
 
         } catch (Exception e) {
@@ -164,6 +165,8 @@ public class ReportDAOImpl implements ReportDAO {
             case ALL_USERS_REPORT: this.reportToGenerate = new AllUsersImpl();
             break;
             case ALL_SUPPLIERS_REPORT: this.reportToGenerate = new AllSuppliersImpl();
+            break;
+            case DAILY_SALES_REPORT: this.reportToGenerate = new DailySalesImpl();
             break;
         }
     }
