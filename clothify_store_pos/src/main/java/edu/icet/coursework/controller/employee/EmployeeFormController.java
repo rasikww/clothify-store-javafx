@@ -3,6 +3,7 @@ package edu.icet.coursework.controller.employee;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import edu.icet.coursework.Main;
 import edu.icet.coursework.controller.customer.CustomerController;
 import edu.icet.coursework.controller.order.OrderController;
 import edu.icet.coursework.controller.product.ProductController;
@@ -270,10 +271,9 @@ public class EmployeeFormController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login_screen.fxml"));
             Parent root = loader.load();
 
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.show();
+            Stage primaryStage = Main.getPrimaryStage();
+            primaryStage.setScene(new Scene(root));
+            primaryStage.show();
 
         } catch (IOException e) {
             throw new RuntimeException(e);

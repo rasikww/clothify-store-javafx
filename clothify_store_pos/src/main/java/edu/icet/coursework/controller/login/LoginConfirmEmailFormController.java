@@ -21,15 +21,12 @@ public class LoginConfirmEmailFormController {
     }
 
     public void btnOkOnAction(ActionEvent actionEvent) {
-        //closeWindow();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login_screen.fxml"));
             Parent root = loader.load();
 
-            Stage stage = Main.getPrimaryStage();
-            stage.setScene(new Scene(root));
-//            stage.initStyle(StageStyle.UNDECORATED);
-//            stage.show();
+            Stage primaryStage = Main.getPrimaryStage();
+            primaryStage.setScene(new Scene(root));
 
         } catch (IOException e) {
             throw new RuntimeException(e);

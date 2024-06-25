@@ -34,19 +34,12 @@ public class LoginPasswordChangeFormController implements Initializable {
         });
     }
 
-    private void closeWindow(){
-        Stage stage = (Stage) btnConfirm.getScene().getWindow();
-        stage.close();
-    }
     public void btnCancelOnAction(ActionEvent actionEvent) {
-        //closeWindow();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login_screen.fxml"));
             Parent root = loader.load();
-            Stage stage = Main.getPrimaryStage();
-            stage.setScene(new Scene(root));
-//            stage.initStyle(StageStyle.UNDECORATED);
-//            stage.show();
+            Stage primaryStage = Main.getPrimaryStage();
+            primaryStage.setScene(new Scene(root));
         }
         catch (IOException e) {
             throw new RuntimeException(e);
@@ -79,19 +72,12 @@ public class LoginPasswordChangeFormController implements Initializable {
             if (!isAdded){
                 new Alert(Alert.AlertType.ERROR,"Email doesn't match for any account").show();
             }else{
-                //closeWindow();
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login_confirm_email.fxml"));
                     Parent root = loader.load();
 
-//                    Stage stage = new Stage();
-//                    Main.setPrimaryStage(stage);
-//                    stage.setScene(new Scene(root));
-//                    stage.initStyle(StageStyle.UNDECORATED);
-//                    stage.show();
-
-                    Stage stage = Main.getPrimaryStage();
-                    stage.setScene(new Scene(root));
+                    Stage primaryStage = Main.getPrimaryStage();
+                    primaryStage.setScene(new Scene(root));
 
                 } catch (IOException e) {
                     throw new RuntimeException(e);

@@ -52,18 +52,12 @@ public class LoginScreenFormController implements Initializable {
     }
 
     public void linkChangePasswordOnAction(ActionEvent actionEvent) {
-        //closeWindow();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login_password_change.fxml"));
             Parent root = loader.load();
 
-            LoginPasswordChangeFormController loginPasswordChangeFormController = loader.getController();
-
-            Stage stage = Main.getPrimaryStage();
-            //stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setScene(new Scene(root));
-            //stage.initStyle(StageStyle.UNDECORATED);
-            stage.show();
+            Stage primaryStage = Main.getPrimaryStage();
+            primaryStage.setScene(new Scene(root));
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -85,7 +79,7 @@ public class LoginScreenFormController implements Initializable {
             if (!isUserExist){
                 new Alert(Alert.AlertType.ERROR,"Email and Password doesn't match").show();
             }else{
-                closeWindow();
+                Main.getPrimaryStage().close();//closeWindow();
             }
         }
     }

@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="255015c2-beb4-44bd-8c6a-111be5e78d70" name="Changes" comment="Added daily sales report for admins.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/report/impl/AnnualSalesImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/report/impl/MonthlySalesImpl.java" afterDir="false" />
+    <list default="true" id="255015c2-beb4-44bd-8c6a-111be5e78d70" name="Changes" comment="Added monthly sales and annual sales report for admins.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/admin/AdminFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/admin/AdminFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/employee/EmployeeFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/employee/EmployeeFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/login/LoginConfirmEmailFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/login/LoginConfirmEmailFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/login/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/login/LoginPasswordChangeFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/login/LoginPasswordChangeFormController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/login/LoginScreenFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/controller/login/LoginScreenFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/report/impl/DailySalesImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/report/impl/DailySalesImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/report/impl/ReportDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/dao/report/impl/ReportDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/util/ReportType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/icet/coursework/util/ReportType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/admin_interface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/admin_interface.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -411,7 +408,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719274894669</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Added monthly sales and annual sales report for admins.">
+      <option name="closed" value="true" />
+      <created>1719318259738</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1719318259738</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -427,7 +432,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added hibernateUtil" />
     <MESSAGE value="add customer ui logic is complete" />
     <MESSAGE value="added @SoftDelete to CustomerEntity and completed customer deletion." />
     <MESSAGE value="added java and hibernate logic for update customer section of the UI" />
@@ -452,7 +456,8 @@
     <MESSAGE value="Fixed an issue where double user windows appearing after changing password." />
     <MESSAGE value="Added admin user account controls." />
     <MESSAGE value="Added daily sales report for admins." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added daily sales report for admins." />
+    <MESSAGE value="Added monthly sales and annual sales report for admins." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added monthly sales and annual sales report for admins." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

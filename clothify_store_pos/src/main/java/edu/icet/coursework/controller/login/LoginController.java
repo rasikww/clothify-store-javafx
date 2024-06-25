@@ -74,11 +74,10 @@ public class LoginController {
             employeeFormController.initUser(obtainedUser);
 
             Stage stage = new Stage();
-            Main.setPrimaryStage(stage);
             stage.setScene(new Scene(root));
             stage.setTitle("Clothify Store Employee View");
-
             stage.show();
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -93,11 +92,10 @@ public class LoginController {
             adminFormController.initUser(obtainedUser);
 
             Stage stage = new Stage();
-            Main.setPrimaryStage(stage);
             stage.setScene(new Scene(root));
             stage.setTitle("Clothify Store Admin View");
-
             stage.show();
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
